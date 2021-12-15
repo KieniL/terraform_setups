@@ -1,0 +1,5 @@
+repos:
+- repo: https://github.com/KieniL/terraform_setups
+  hooks:
+    - id: terraform_fmt
+    - id: terraform_docs
