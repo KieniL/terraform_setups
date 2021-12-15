@@ -1,5 +1,13 @@
 repos:
-- repo: https://github.com/KieniL/terraform_setups
+- repo: local
   hooks:
     - id: terraform_fmt
+      name: run terraform format
+      files: ^modules/home-vault/
+      language: system
+      entry: bash -c 'cd modules/home/vault && terraform fmt'
     - id: terraform_docs
+      name: run terraform docs
+      language: system
+      entry: bash -c 'cd modules/home/vault && terraform-docs markdown table --output-file README.md --output-mode inject ./'
+      files: ^modules/home-vault/
