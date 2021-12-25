@@ -1,0 +1,15 @@
+variable "vm" {
+  default = {
+    admin_username = "azureuser"
+    admin_password = "Pa$$w0rd1234"
+    size           = "Standard_D2s_v3"
+  }
+}
+
+variable "resource" {
+  default = {
+    prefix   = "az-900-01-tf"
+    location = "West Europe"
+    tag      = "az-900-prep"
+  }
+}
