@@ -56,24 +56,23 @@ resource "azurerm_network_security_group" "sg" {
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
-    destination_port_range     = "389"
-    source_address_prefix      = "VirtualNetwork"
+    destination_port_range     = "3389"
+    source_address_prefixes    = [var.source_ip]
     destination_address_prefix = "*"
   }
 
   security_rule {
-    name                   = "HTTP_VNET"
-    priority               = 1000
-    direction              = "Inbound"
-    access                 = "Allow"
-    protocol               = "Tcp"
-    source_port_range      = "*"
-    destination_port_range = "80"
-    source_address_prefix  = "*"
+    name                       = "HTTP_VNET"
+    priority                   = 1000
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "80"
+    source_address_prefixes    = [var.source_ip]
+    destination_address_prefix = "*"
 
   }
-
-
 
   tags = {
     ms-resource-usage = var.resource.tag
@@ -159,7 +158,7 @@ resource "azurerm_windows_virtual_machine" "vm" {
     caching              = "ReadWrite"
     storage_account_type = "Premium_LRS"
 
-    disk_size_gb = "20" # increase default os disk
+    disk_size_gb = "127" # increase default os disk
   }
 
   // to get this run these following commands in azure cli
@@ -172,7 +171,7 @@ resource "azurerm_windows_virtual_machine" "vm" {
   source_image_reference {
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
-    sku       = "2019-datacenter-core-g2"
+    sku       = "2019-datacenter-gensecond"
     version   = "latest"
   }
 
