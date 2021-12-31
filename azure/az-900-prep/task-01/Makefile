@@ -3,7 +3,7 @@ test:
 	terraform validate
 	tflint
 	tfsec --concise-output
-	checkov -d ./ --compact --no-guide
+	checkov -d ./ --compact --quiet
 	
 doc:
 	terraform fmt
