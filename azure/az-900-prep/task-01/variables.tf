@@ -1,7 +1,6 @@
 variable "vm" {
   default = {
     admin_username = "azureuser"
-    admin_password = "Pa$$w0rd1234"
     size           = "Standard_D2s_v3"
   }
 }
