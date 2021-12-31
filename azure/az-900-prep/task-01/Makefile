@@ -8,3 +8,6 @@ test:
 doc:
 	terraform fmt
 	terraform-docs markdown table --output-file README.md --output-mode inject ./
+	inframap generate ./ --clean=false | dot -Tsvg > graph.svg
+
+	
