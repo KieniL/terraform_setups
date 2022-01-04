@@ -151,7 +151,7 @@ resource "azurerm_windows_virtual_machine" "vm" {
 
   computer_name  = "${var.resource.prefix}-vm"
   admin_username = var.vm.admin_username
-  admin_password = var.vm.admin_password
+  admin_password = var.admin_password
 
   os_disk {
     name                 = "${var.resource.prefix}-osdisks"

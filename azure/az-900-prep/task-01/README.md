@@ -35,6 +35,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_admin_password"></a> [admin\_password](#input\_admin\_password) | The vm password | `string` | `"aws"` | no |
 | <a name="input_resource"></a> [resource](#input\_resource) | n/a | `map` | <pre>{<br>  "location": "West Europe",<br>  "prefix": "az-900-01-tf",<br>  "tag": "az-900-prep"<br>}</pre> | no |
 | <a name="input_source_ip"></a> [source\_ip](#input\_source\_ip) | Your source ip | `string` | `"1.1.1.1"` | no |
 | <a name="input_vm"></a> [vm](#input\_vm) | n/a | `map` | <pre>{<br>  "admin_username": "azureuser",<br>  "size": "Standard_D2s_v3"<br>}</pre> | no |

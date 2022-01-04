@@ -14,7 +14,13 @@ variable "source_ip" {
 variable "resource" {
   default = {
     prefix   = "az-900-01-tf"
-    location = "West Europe"
+    location = "Germany West Central"
     tag      = "az-900-prep"
   }
+}
+
+variable "admin_password" {
+  type        = string
+  description = "The vm password"
+  default     = "aws"
 }
