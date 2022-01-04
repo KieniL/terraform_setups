@@ -11,6 +11,7 @@ doc:
 	terraform graph -draw-cycles | dot -Tsvg > graph.svg
 
 plan:
+	terraform fmt
 	terraform plan -out plan.txt
 
 apply:

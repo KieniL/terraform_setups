@@ -15,7 +15,7 @@ variable "resource" {
   default = {
     prefix   = "az-900-04-tf"
     location = "Germany West Central"
-    tag      = "az-900-prep"
+    project  = "az-900-prep"
   }
 }
 
