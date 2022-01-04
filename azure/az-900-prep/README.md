@@ -1,0 +1,1 @@
+Each folder is the implementation of https://microsoftlearning.github.io/AZ-900T0x-MicrosoftAzureFundamentals/
