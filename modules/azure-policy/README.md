@@ -25,15 +25,18 @@ No modules.
 | Name | Type |
 |------|------|
 | [azurerm_policy_assignment.allowedLocationPolicyAssignment](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/policy_assignment) | resource |
+| [azurerm_policy_assignment.requireTagPolicyAssignment](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/policy_assignment) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_allowedLocationSubPolicyId"></a> [allowedLocationSubPolicyId](#input\_allowedLocationSubPolicyId) | The PolicyId for allowedLocation Definition | `string` | `"PolId"` | no |
+| <a name="input_allowedLocationSubPolicyId"></a> [allowedLocationSubPolicyId](#input\_allowedLocationSubPolicyId) | The PolicyId for the default allowedLocation Definition | `string` | `"PolId"` | no |
 | <a name="input_allowedLocations"></a> [allowedLocations](#input\_allowedLocations) | The allowed Locations | `list(string)` | <pre>[<br>  "Germany West Central",<br>  "West Europe"<br>]</pre> | no |
 | <a name="input_resource"></a> [resource](#input\_resource) | n/a | `map` | <pre>{<br>  "location": "Germany West Central",<br>  "prefix": "tf-managed-policy",<br>  "project": "az-900-prep"<br>}</pre> | no |
 | <a name="input_subscriptionId"></a> [subscriptionId](#input\_subscriptionId) | The subscriptionId | `string` | `"SubId"` | no |
+| <a name="input_tagName"></a> [tagName](#input\_tagName) | the tagName to require on all resources | `string` | `"project"` | no |
+| <a name="input_tagPolicyId"></a> [tagPolicyId](#input\_tagPolicyId) | The PolicyDefinition Id for the default require tag Policy | `string` | `"PolId"` | no |
 
 ## Outputs
 
