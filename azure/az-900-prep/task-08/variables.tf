@@ -6,7 +6,7 @@ variable "source_ip" {
 
 variable "resource" {
   default = {
-    prefix   = "az-900-05-tf"
+    prefix   = "az-900-08-tf"
     location = "Germany West Central"
     project  = "az-900-prep"
   }
