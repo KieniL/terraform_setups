@@ -42,12 +42,13 @@ resource "azurerm_subnet" "subnet" {
 
 
 resource "azurerm_mssql_server" "sqlserver" {
-  name                         = "${var.resource.prefix}-sqlserver"
-  location                     = var.resource.location
-  resource_group_name          = azurerm_resource_group.rg.name
-  version                      = "12.0"
-  administrator_login          = "sqluser"
-  administrator_login_password = "Pa$$w0rd1234"
+  name                          = "${var.resource.prefix}-sqlserver"
+  location                      = var.resource.location
+  resource_group_name           = azurerm_resource_group.rg.name
+  version                       = "12.0"
+  administrator_login           = "sqluser"
+  administrator_login_password  = "Pa$$w0rd1234"
+  public_network_access_enabled = true
 
   tags = {
     project = var.resource.project
@@ -63,11 +64,9 @@ resource "azurerm_storage_account" "storage" {
 }
 
 resource "azurerm_mssql_database" "sqldb" {
-  name           = "${var.resource.prefix}-sqldatabase"
-  server_id      = azurerm_mssql_server.sqlserver.id
-  max_size_gb    = 4
-  read_scale     = true
-  zone_redundant = true
+  name        = "${var.resource.prefix}-sqldatabase"
+  server_id   = azurerm_mssql_server.sqlserver.id
+  sample_name = "AdventureWorksLT"
 
   tags = {
     project = var.resource.project
@@ -87,5 +86,13 @@ resource "azurerm_sql_virtual_network_rule" "sqlvnetrule" {
   resource_group_name = azurerm_resource_group.rg.name
   server_name         = azurerm_mssql_server.sqlserver.name
   subnet_id           = azurerm_subnet.subnet.id
+}
 
+
+resource "azurerm_sql_firewall_rule" "firewall" {
+  name                = "sql-firewall-rule"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mssql_server.sqlserver.name
+  start_ip_address    = var.source_ip
+  end_ip_address      = var.source_ip
 }

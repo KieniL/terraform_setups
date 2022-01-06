@@ -25,6 +25,7 @@ No modules.
 | [azurerm_mssql_database_extended_auditing_policy.auditingpolicy](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/mssql_database_extended_auditing_policy) | resource |
 | [azurerm_mssql_server.sqlserver](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/mssql_server) | resource |
 | [azurerm_resource_group.rg](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/resource_group) | resource |
+| [azurerm_sql_firewall_rule.firewall](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/sql_firewall_rule) | resource |
 | [azurerm_sql_virtual_network_rule.sqlvnetrule](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/sql_virtual_network_rule) | resource |
 | [azurerm_storage_account.storage](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/storage_account) | resource |
 | [azurerm_subnet.subnet](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/subnet) | resource |
