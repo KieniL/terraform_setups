@@ -33,6 +33,8 @@ No modules.
 | [azurerm_virtual_network.vnet](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/virtual_network) | resource |
 | [azurerm_windows_virtual_machine.vm01](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/windows_virtual_machine) | resource |
 | [azurerm_windows_virtual_machine.vm02](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/windows_virtual_machine) | resource |
+| [azurerm_public_ip.public_ip01](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/data-sources/public_ip) | data source |
+| [azurerm_public_ip.public_ip02](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/data-sources/public_ip) | data source |
 
 ## Inputs
 
@@ -41,7 +43,7 @@ No modules.
 | <a name="input_admin_password"></a> [admin\_password](#input\_admin\_password) | The vm password | `string` | `"aws"` | no |
 | <a name="input_resource"></a> [resource](#input\_resource) | n/a | `map` | <pre>{<br>  "location": "Germany West Central",<br>  "prefix": "az-900-04-tf",<br>  "project": "az-900-prep"<br>}</pre> | no |
 | <a name="input_source_ip"></a> [source\_ip](#input\_source\_ip) | Your source ip | `string` | `"1.1.1.1"` | no |
-| <a name="input_vm"></a> [vm](#input\_vm) | n/a | `map` | <pre>{<br>  "admin_username": "azureuser",<br>  "size": "Standard_D2s_v3"<br>}</pre> | no |
+| <a name="input_vm"></a> [vm](#input\_vm) | n/a | `map` | <pre>{<br>  "admin_username": "azureuser",<br>  "size": "Standard_B2s"<br>}</pre> | no |
 
 ## Outputs
 
