@@ -25,29 +25,31 @@ resource "azurerm_network_security_group" "sg" {
   location            = var.resource.location
   resource_group_name = azurerm_resource_group.rg.name
 
-  security_rule {
-    name                       = "DENY_VNET"
-    priority                   = 4096
-    direction                  = "Inbound"
-    access                     = "Deny"
-    protocol                   = "*"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "VirtualNetwork"
-    destination_address_prefix = "VirtualNetwork"
-  }
+  # enable to deny vnet communication
+  # security_rule {
+  #   name                       = "DENY_VNET"
+  #   priority                   = 4096
+  #   direction                  = "Inbound"
+  #   access                     = "Deny"
+  #   protocol                   = "*"
+  #   source_port_range          = "*"
+  #   destination_port_range     = "*"
+  #   source_address_prefix      = "VirtualNetwork"
+  #   destination_address_prefix = "VirtualNetwork"
+  # }
 
-  security_rule {
-    name                       = "ALLOW_LB"
-    priority                   = 4095
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "*"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "AzureLoadBalancer"
-    destination_address_prefix = "*"
-  }
+  # enable to enable lb communication
+  # security_rule {
+  #   name                       = "ALLOW_LB"
+  #   priority                   = 4095
+  #   direction                  = "Inbound"
+  #   access                     = "Allow"
+  #   protocol                   = "*"
+  #   source_port_range          = "*"
+  #   destination_port_range     = "*"
+  #   source_address_prefix      = "AzureLoadBalancer"
+  #   destination_address_prefix = "*"
+  # }
 
   security_rule {
     name                       = "RPD_VNET"
