@@ -1,6 +1,6 @@
 # azure-policy
 
-A repo to store policies for azure in terraform
+A repo to store policies for azure in terraform (allowedLocation and require tag)
 
 ![Alt text](./graph.svg)
 <!-- BEGIN_TF_DOCS -->
