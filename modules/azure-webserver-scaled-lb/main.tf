@@ -278,3 +278,31 @@ resource "azurerm_lb_rule" "lb_rule" {
   backend_port                   = 80
   frontend_ip_configuration_name = "publicIPAddress"
 }
+
+resource "azurerm_public_ip" "natip" {
+  name                = "${var.resource.prefix}-natip"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = var.resource.location
+  allocation_method   = "Static"
+  sku                 = "Standard"
+  zones               = ["1"]
+}
+
+resource "azurerm_public_ip_prefix" "ipprefix" {
+  name                = "${var.resource.prefix}-ipprefix"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = var.resource.location
+  prefix_length       = 30
+  zones               = ["1"]
+}
+
+resource "azurerm_nat_gateway" "nat" {
+  name                    = "${var.resource.prefix}-nat"
+  resource_group_name     = azurerm_resource_group.rg.name
+  location                = var.resource.location
+  public_ip_address_ids   = [azurerm_public_ip.natip.id]
+  public_ip_prefix_ids    = [azurerm_public_ip_prefix.ipprefix.id]
+  sku_name                = "Standard"
+  idle_timeout_in_minutes = 10
+  zones                   = ["1", "2", "3"]
+}
