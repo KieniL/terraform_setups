@@ -5,6 +5,12 @@ variable "subscriptionId" {
   default     = "SubId"
 }
 
+variable "networkwatcher_rg_Id" {
+  type        = string
+  description = "The ResourceGroupId for the networkwatcher resourcegroup"
+  default     = "rg"
+}
+
 variable "allowedLocationSubPolicyId" {
   type        = string
   description = "The PolicyId for the default allowedLocation Definition"

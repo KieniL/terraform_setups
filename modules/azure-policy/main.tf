@@ -41,6 +41,7 @@ resource "azurerm_policy_assignment" "requireTagPolicyAssignment" {
   policy_definition_id = var.tagPolicyId
   description          = "Policy Assignment for require Tag"
   display_name         = "Require Tag Policy Assignment"
+  not_scopes           = [var.networkwatcher_rg_Id]
 
   metadata = <<METADATA
     {

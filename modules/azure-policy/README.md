@@ -33,6 +33,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_allowedLocationSubPolicyId"></a> [allowedLocationSubPolicyId](#input\_allowedLocationSubPolicyId) | The PolicyId for the default allowedLocation Definition | `string` | `"PolId"` | no |
 | <a name="input_allowedLocations"></a> [allowedLocations](#input\_allowedLocations) | The allowed Locations | `list(string)` | <pre>[<br>  "Germany West Central",<br>  "West Europe"<br>]</pre> | no |
+| <a name="input_networkwatcher_rg_Id"></a> [networkwatcher\_rg\_Id](#input\_networkwatcher\_rg\_Id) | The ResourceGroupId for the networkwatcher resourcegroup | `string` | `"rg"` | no |
 | <a name="input_resource"></a> [resource](#input\_resource) | n/a | `map` | <pre>{<br>  "location": "Germany West Central",<br>  "prefix": "tf-managed-policy",<br>  "project": "az-900-prep"<br>}</pre> | no |
 | <a name="input_subscriptionId"></a> [subscriptionId](#input\_subscriptionId) | The subscriptionId | `string` | `"SubId"` | no |
 | <a name="input_tagName"></a> [tagName](#input\_tagName) | the tagName to require on all resources | `string` | `"project"` | no |
