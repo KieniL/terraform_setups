@@ -83,8 +83,13 @@ resource "azurerm_subnet" "subnet" {
   name                 = "${var.resource.prefix}-subnet"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = ["10.0.2.0/24"]
+  address_prefixes     = ["10.0.1.0/24"]
 }
+
+locals {
+  user_data = templatefile("${path.module}/user-data.sh", {})
+}
+
 
 resource "azurerm_linux_virtual_machine_scale_set" "scaleset" {
   name                = "${var.resource.prefix}-scaleset"
@@ -96,6 +101,9 @@ resource "azurerm_linux_virtual_machine_scale_set" "scaleset" {
   eviction_policy     = "Deallocate"
 
   admin_username = var.vm.admin_username
+
+  custom_data = base64encode(local.user_data)
+
 
   admin_ssh_key {
     username   = var.vm.admin_username

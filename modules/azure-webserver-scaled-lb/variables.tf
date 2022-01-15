@@ -15,6 +15,6 @@ variable "source_ip" {
 variable "vm" {
   default = {
     admin_username = "azureuser"
-    size           = "Standard_B1s"
+    size           = "Standard_F1s"
   }
 }
