@@ -24,9 +24,13 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [azurerm_lb.lb](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/lb) | resource |
+| [azurerm_lb_backend_address_pool.backend_address_pool](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/lb_backend_address_pool) | resource |
+| [azurerm_lb_rule.lb_rule](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/lb_rule) | resource |
 | [azurerm_linux_virtual_machine_scale_set.scaleset](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/linux_virtual_machine_scale_set) | resource |
 | [azurerm_monitor_autoscale_setting.autoscaler](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/monitor_autoscale_setting) | resource |
 | [azurerm_network_security_group.sg](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/network_security_group) | resource |
+| [azurerm_public_ip.ip](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/public_ip) | resource |
 | [azurerm_resource_group.rg](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/resource_group) | resource |
 | [azurerm_subnet.subnet](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/subnet) | resource |
 | [azurerm_virtual_network.vnet](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/virtual_network) | resource |

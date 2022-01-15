@@ -38,18 +38,17 @@ resource "azurerm_network_security_group" "sg" {
     destination_address_prefix = "VirtualNetwork"
   }
 
-  # enable to enable lb communication
-  # security_rule {
-  #   name                       = "ALLOW_LB"
-  #   priority                   = 4095
-  #   direction                  = "Inbound"
-  #   access                     = "Allow"
-  #   protocol                   = "*"
-  #   source_port_range          = "*"
-  #   destination_port_range     = "*"
-  #   source_address_prefix      = "AzureLoadBalancer"
-  #   destination_address_prefix = "*"
-  # }
+  security_rule {
+    name                       = "ALLOW_LB"
+    priority                   = 4095
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "AzureLoadBalancer"
+    destination_address_prefix = "*"
+  }
 
   security_rule {
     name                       = "SSH_VNET"
@@ -100,6 +99,20 @@ resource "azurerm_linux_virtual_machine_scale_set" "scaleset" {
   priority            = "Spot"
   eviction_policy     = "Deallocate"
 
+  zone_balance = true
+  zones        = [1, 2, 3]
+
+
+  single_placement_group = true
+
+  # upgrade_mode = "Rolling"
+  # rolling_upgrade_policy {
+  #   max_batch_instance_percent              = 20
+  #   max_unhealthy_instance_percent          = 20
+  #   max_unhealthy_upgraded_instance_percent = 5
+  #   pause_time_between_batches              = "PT0S"
+  # }
+
   admin_username = var.vm.admin_username
 
   custom_data = base64encode(local.user_data)
@@ -116,13 +129,16 @@ resource "azurerm_linux_virtual_machine_scale_set" "scaleset" {
   }
 
   network_interface {
-    name    = "example"
+    name    = "nic"
     primary = true
 
+    network_security_group_id = azurerm_network_security_group.sg.id
+
     ip_configuration {
-      name      = "internal"
-      primary   = true
-      subnet_id = azurerm_subnet.subnet.id
+      name                                   = "internal"
+      primary                                = true
+      subnet_id                              = azurerm_subnet.subnet.id
+      load_balancer_backend_address_pool_ids = [azurerm_lb_backend_address_pool.backend_address_pool.id]
     }
   }
 
@@ -218,4 +234,47 @@ resource "azurerm_monitor_autoscale_setting" "autoscaler" {
     project = var.resource.project
   }
 
+}
+
+resource "azurerm_public_ip" "ip" {
+  name                = "${var.resource.prefix}-ip"
+  location            = var.resource.location
+  resource_group_name = azurerm_resource_group.rg.name
+  allocation_method   = "Static"
+  sku                 = "Standard"
+
+  tags = {
+    project = var.resource.project
+  }
+}
+
+resource "azurerm_lb" "lb" {
+  name                = "${var.resource.prefix}-lb"
+  location            = var.resource.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku                 = "Standard"
+
+  frontend_ip_configuration {
+    name                 = "publicIPAddress"
+    public_ip_address_id = azurerm_public_ip.ip.id
+  }
+
+  tags = {
+    project = var.resource.project
+  }
+}
+
+resource "azurerm_lb_backend_address_pool" "backend_address_pool" {
+  loadbalancer_id = azurerm_lb.lb.id
+  name            = "BackEndAddressPool"
+}
+
+resource "azurerm_lb_rule" "lb_rule" {
+  name                           = "${var.resource.prefix}-lb-rule"
+  resource_group_name            = azurerm_resource_group.rg.name
+  loadbalancer_id                = azurerm_lb.lb.id
+  protocol                       = "Tcp"
+  frontend_port                  = 80
+  backend_port                   = 80
+  frontend_ip_configuration_name = "publicIPAddress"
 }
