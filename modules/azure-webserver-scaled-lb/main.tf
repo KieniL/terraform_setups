@@ -39,18 +39,6 @@ resource "azurerm_network_security_group" "sg" {
   }
 
   security_rule {
-    name                       = "ALLOW_LB"
-    priority                   = 4095
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "*"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "AzureLoadBalancer"
-    destination_address_prefix = "*"
-  }
-
-  security_rule {
     name                       = "SSH_VNET"
     priority                   = 4000
     direction                  = "Inbound"
@@ -105,7 +93,9 @@ resource "azurerm_linux_virtual_machine_scale_set" "scaleset" {
 
   single_placement_group = true
 
-  # upgrade_mode = "Rolling"
+  # automatic_os_upgrade = true
+  # upgrade_policy_mode  = "Rolling"
+
   # rolling_upgrade_policy {
   #   max_batch_instance_percent              = 20
   #   max_unhealthy_instance_percent          = 20
@@ -139,6 +129,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "scaleset" {
       primary                                = true
       subnet_id                              = azurerm_subnet.subnet.id
       load_balancer_backend_address_pool_ids = [azurerm_lb_backend_address_pool.backend_address_pool.id]
+      load_balancer_inbound_nat_rules_ids    = [azurerm_lb_nat_pool.lbnatpool.id]
     }
   }
 
@@ -242,6 +233,7 @@ resource "azurerm_public_ip" "ip" {
   resource_group_name = azurerm_resource_group.rg.name
   allocation_method   = "Static"
   sku                 = "Standard"
+  domain_name_label   = azurerm_resource_group.rg.name
 
   tags = {
     project = var.resource.project
@@ -269,40 +261,62 @@ resource "azurerm_lb_backend_address_pool" "backend_address_pool" {
   name            = "BackEndAddressPool"
 }
 
-resource "azurerm_lb_rule" "lb_rule" {
-  name                           = "${var.resource.prefix}-lb-rule"
+resource "azurerm_lb_nat_pool" "lbnatpool" {
+  name                           = "${var.resource.prefix}-sshpool"
   resource_group_name            = azurerm_resource_group.rg.name
   loadbalancer_id                = azurerm_lb.lb.id
   protocol                       = "Tcp"
-  frontend_port                  = 80
+  frontend_port_start            = 50000
+  frontend_port_end              = 50119
   backend_port                   = 80
   frontend_ip_configuration_name = "publicIPAddress"
 }
 
-resource "azurerm_public_ip" "natip" {
-  name                = "${var.resource.prefix}-natip"
-  resource_group_name = azurerm_resource_group.rg.name
-  location            = var.resource.location
-  allocation_method   = "Static"
-  sku                 = "Standard"
-  zones               = ["1"]
-}
+# resource "azurerm_lb_probe" "probe" {
+#   name                = "${var.resource.prefix}-http-probe"
+#   location            = var.resource.location
+#   resource_group_name = azurerm_resource_group.rg.name
+#   protocol            = "Http"
+#   request_path        = "/health"
+#   port                = 8080
+# }
 
-resource "azurerm_public_ip_prefix" "ipprefix" {
-  name                = "${var.resource.prefix}-ipprefix"
-  resource_group_name = azurerm_resource_group.rg.name
-  location            = var.resource.location
-  prefix_length       = 30
-  zones               = ["1"]
-}
 
-resource "azurerm_nat_gateway" "nat" {
-  name                    = "${var.resource.prefix}-nat"
-  resource_group_name     = azurerm_resource_group.rg.name
-  location                = var.resource.location
-  public_ip_address_ids   = [azurerm_public_ip.natip.id]
-  public_ip_prefix_ids    = [azurerm_public_ip_prefix.ipprefix.id]
-  sku_name                = "Standard"
-  idle_timeout_in_minutes = 10
-  zones                   = ["1", "2", "3"]
-}
+
+# resource "azurerm_lb_rule" "lb_rule" {
+#   name                           = "${var.resource.prefix}-lb-rule"
+#   resource_group_name            = azurerm_resource_group.rg.name
+#   loadbalancer_id                = azurerm_lb.lb.id
+#   protocol                       = "Tcp"
+#   frontend_port                  = 80
+#   backend_port                   = 80
+#   frontend_ip_configuration_name = "publicIPAddress"
+# }
+
+# resource "azurerm_public_ip" "natip" {
+#   name                = "${var.resource.prefix}-natip"
+#   resource_group_name = azurerm_resource_group.rg.name
+#   location            = var.resource.location
+#   allocation_method   = "Static"
+#   sku                 = "Standard"
+#   zones               = ["1"]
+# }
+
+# resource "azurerm_public_ip_prefix" "ipprefix" {
+#   name                = "${var.resource.prefix}-ipprefix"
+#   resource_group_name = azurerm_resource_group.rg.name
+#   location            = var.resource.location
+#   prefix_length       = 30
+#   zones               = ["1"]
+# }
+
+# resource "azurerm_nat_gateway" "nat" {
+#   name                    = "${var.resource.prefix}-nat"
+#   resource_group_name     = azurerm_resource_group.rg.name
+#   location                = var.resource.location
+#   public_ip_address_ids   = [azurerm_public_ip.natip.id]
+#   public_ip_prefix_ids    = [azurerm_public_ip_prefix.ipprefix.id]
+#   sku_name                = "Standard"
+#   idle_timeout_in_minutes = 10
+#   zones                   = ["1", "2", "3"]
+# }
