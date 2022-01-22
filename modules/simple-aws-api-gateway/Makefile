@@ -8,7 +8,6 @@ test:
 doc:
 	terraform fmt
 	terraform-docs markdown table --output-file README.md --output-mode inject ./
-	terraform graph -draw-cycles | dot -Tsvg > graph.svg
 
 plan:
 	terraform fmt

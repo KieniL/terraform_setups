@@ -1,5 +1,3 @@
-![Alt text](./graph.svg)
-
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 

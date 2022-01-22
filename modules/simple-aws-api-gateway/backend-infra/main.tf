@@ -133,6 +133,15 @@ resource "aws_apigatewayv2_api" "itemsapi" {
   name          = "items-api"
   protocol_type = "HTTP"
 
+  cors_configuration {
+    allow_origins = ["https://${var.bucket_url}"]
+    allow_headers = ["*"]
+    expose_headers = ["*"]
+    allow_methods  = ["*"]
+    max_age = 96400
+    allow_credentials = true
+  }
+
   tags = {
     project     = var.project
     environment = terraform.workspace
@@ -170,13 +179,53 @@ resource "aws_cloudwatch_log_group" "api_gw" {
   }
 }
 
+resource "aws_apigatewayv2_route" "get_items" {
+  api_id = aws_apigatewayv2_api.itemsapi.id
 
-# resource "aws_apigatewayv2_route" "hello_world" {
-#   api_id = aws_apigatewayv2_api.lambda.id
+  route_key = "GET /items"
 
-#   route_key = "GET /hello"
-#   target    = "integrations/${aws_apigatewayv2_integration.hello_world.id}"
-# }
+  target = "integrations/${aws_apigatewayv2_integration.apiintegration.id}"
+}
+
+resource "aws_apigatewayv2_route" "put_items" {
+  api_id = aws_apigatewayv2_api.itemsapi.id
+
+  route_key = "PUT /items"
+
+  target = "integrations/${aws_apigatewayv2_integration.apiintegration.id}"
+}
+
+resource "aws_apigatewayv2_route" "get_items_id" {
+  api_id = aws_apigatewayv2_api.itemsapi.id
+
+  route_key = "GET /items/{id}"
+
+  target = "integrations/${aws_apigatewayv2_integration.apiintegration.id}"
+}
+
+resource "aws_apigatewayv2_route" "delete_items_Id" {
+  api_id = aws_apigatewayv2_api.itemsapi.id
+
+  route_key = "DELETE /items/{id}"
+
+  target = "integrations/${aws_apigatewayv2_integration.apiintegration.id}"
+}
+
+resource "aws_apigatewayv2_route" "options_items" {
+  api_id = aws_apigatewayv2_api.itemsapi.id
+
+  route_key = "OPTIONS /items"
+
+  target = "integrations/${aws_apigatewayv2_integration.apiintegration.id}"
+}
+
+resource "aws_apigatewayv2_route" "options_items_Id" {
+  api_id = aws_apigatewayv2_api.itemsapi.id
+
+  route_key = "OPTIONS /items/{id}"
+
+  target = "integrations/${aws_apigatewayv2_integration.apiintegration.id}"
+}
 
 resource "aws_lambda_permission" "api_gw" {
   statement_id  = "AllowExecutionFromAPIGateway"
@@ -186,3 +235,4 @@ resource "aws_lambda_permission" "api_gw" {
 
   source_arn = "${aws_apigatewayv2_api.itemsapi.execution_arn}/*/*"
 }
+

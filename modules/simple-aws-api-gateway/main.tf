@@ -16,12 +16,19 @@ module "backend" {
 
   region  = var.region
   project = var.project
+
+  lambda_function_name = var.lambda_function_name
+
+  table_name = var.table_name
+
+  bucket_url = module.frontend.bucket_url
 }
 
 module "frontend" {
   source = "./frontend-infra"
 
-  region  = var.region
-  project = var.project
+  region      = var.region
+  project     = var.project
+  bucket_name = var.bucket_name
 }
 
