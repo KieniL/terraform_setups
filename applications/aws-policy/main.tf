@@ -8,6 +8,25 @@ terraform {
 }
 
 provider "aws" {
-  region = var.region
 }
 
+resource "aws_organizations_policy" "requiretag" {
+  name = "Project Tag Policy"
+
+  type = "TAG_POLICY"
+
+  content = <<CONTENT
+{
+    "tags": {
+        "project": {
+            "enforced_for": {
+                "@@assign": []
+            }
+        }
+    }
+}
+CONTENT
+  tags = {
+    project = var.project
+  }
+}
