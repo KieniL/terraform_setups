@@ -14,7 +14,7 @@ resource "aws_organizations_account" "account" {
   for_each  = { for i, v in var.accounts : i => v }
   name      = each.value.name
   email     = each.value.mail
-  role_name = each.value.role
+  role_name = "OrganizationAccountAccessRole"
 
   tags = {
     project = var.project
