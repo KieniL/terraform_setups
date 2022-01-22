@@ -26,6 +26,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_ou_id"></a> [ou\_id](#input\_ou\_id) | n/a | `any` | n/a | yes |
 | <a name="input_project"></a> [project](#input\_project) | n/a | `any` | n/a | yes |
 
 ## Outputs

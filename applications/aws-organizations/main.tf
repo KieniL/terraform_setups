@@ -13,6 +13,10 @@ provider "aws" {
 resource "aws_organizations_organization" "root" {
   # (resource arguments)
   # import with terraform import aws_organizations_organization.ACCOUNT_NAME ACCOUNT_NUMBER
+  enabled_policy_types = [
+    "SERVICE_CONTROL_POLICY",
+    "TAG_POLICY"
+  ]
 }
 
 resource "aws_organizations_organizational_unit" "develop" {
