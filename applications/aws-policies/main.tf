@@ -306,5 +306,39 @@ CONTENT
 resource "aws_organizations_policy_attachment" "allowed_location" {
   policy_id = aws_organizations_policy.allowedLocation.id
   target_id = var.ou_id
+}
 
+
+resource "aws_organizations_policy" "allowedInstanceTypes" {
+  name = "Allowed InstanceTypes Policy"
+
+
+  content = <<CONTENT
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "RequireMicroInstanceType",
+      "Effect": "Deny",
+      "Action": "ec2:RunInstances",
+      "Resource": [
+        "arn:aws:ec2:*:*:instance/*"
+      ],
+      "Condition": {
+        "StringNotEquals": {
+          "ec2:InstanceType": "t2.micro"
+        }
+      }
+    }
+  ]
+}
+CONTENT
+  tags = {
+    project = var.project
+  }
+}
+
+resource "aws_organizations_policy_attachment" "allowedInstanceTypes" {
+  policy_id = aws_organizations_policy.allowedInstanceTypes.id
+  target_id = var.ou_id
 }
