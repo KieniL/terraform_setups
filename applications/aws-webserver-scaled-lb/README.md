@@ -11,10 +11,7 @@ No providers.
 
 ## Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_backend"></a> [backend](#module\_backend) | ./backend-infra | n/a |
-| <a name="module_frontend"></a> [frontend](#module\_frontend) | ./frontend-infra | n/a |
+No modules.
 
 ## Resources
 
