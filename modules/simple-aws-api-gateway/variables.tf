@@ -13,3 +13,7 @@ variable "lambda_function_name" {
 variable "table_name" {
   default = "producttable"
 }
+
+variable "bucket_name" {
+  default = "items-frontend-static-hosting"
+}
