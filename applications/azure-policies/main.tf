@@ -82,3 +82,141 @@ resource "azurerm_policy_assignment" "allowedSkuPolicyAssignment" {
   PARAMETERS
 
 }
+
+
+resource "azurerm_policy_definition" "allowedimagespolicy" {
+
+  name         = "${var.resource.prefix}-allowedimages-policy-definition"
+  description  = "Policy Definition for allowedImages"
+  display_name = "Allowed Images Policy Definition"
+  policy_type  = "Custom"
+  mode         = "Indexed"
+
+  metadata = <<METADATA
+    {
+    "category": "General"
+    }
+
+METADATA
+
+
+  policy_rule = <<POLICY_RULE
+    {
+    "if": {
+      "allOf": [
+        {
+          "field": "type",
+          "in": [
+            "Microsoft.Compute/virtualMachines",
+            "Microsoft.Compute/VirtualMachineScaleSets"
+          ]
+        },
+        {
+          "not": {
+            "allOf": [
+              {
+                "field": "Microsoft.Compute/imagePublisher",
+                "in": "[parameters('publishers')]"
+              },
+              {
+                "field": "Microsoft.Compute/imageOffer",
+                "in": "[parameters('offers')]"
+              },
+              {
+                "field": "Microsoft.Compute/imageSku",
+                "in": "[parameters('skus')]"
+              },
+              {
+                "field": "Microsoft.Compute/imageVersion",
+                "in": "[parameters('versions')]"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "then": {
+      "effect": "deny"
+    }
+  }
+POLICY_RULE
+
+
+  parameters = <<PARAMETERS
+  {
+    "publishers": {
+      "type": "Array",
+      "metadata": {
+        "description": "The list of allowed Publishers for resources.",
+        "displayName": "Allowed Publishers",
+        "strongType": "publishers"
+      }
+    },
+    "offers": {
+      "type": "Array",
+      "metadata": {
+        "description": "The list of allowed offers for resources.",
+        "displayName": "Allowed offers",
+        "strongType": "offers"
+      }
+    },
+    "skus": {
+      "type": "Array",
+      "metadata": {
+        "description": "The list of allowed skus for resources.",
+        "displayName": "Allowed skus",
+        "strongType": "skus"
+      }
+    },
+    "versions": {
+      "type": "Array",
+      "metadata": {
+        "description": "The list of allowed versions for resources.",
+        "displayName": "Allowed versions",
+        "strongType": "versions"
+      }
+    }
+  }
+PARAMETERS
+
+}
+
+locals {
+  #allowedPublishers = setunion(var.allowedImages)
+  allowedPublishers = { for value, i in var.allowedImages : value => i.publisher }
+  allowedOffers     = { for value, i in var.allowedImages : value => i.offer }
+  allowedSkus       = { for value, i in var.allowedImages : value => i.sku }
+  allowedVersions   = { for value, i in var.allowedImages : value => i.version }
+}
+resource "azurerm_policy_assignment" "allowedImagesPolicyAssignment" {
+  name                 = "${var.resource.prefix}-allowedImages-policy-assignment"
+  scope                = var.subscriptionId
+  policy_definition_id = azurerm_policy_definition.allowedimagespolicy.id
+  description          = "Policy Assignment for allowedImages"
+  display_name         = "Allowed Images Policy Assignment"
+  not_scopes           = [var.networkwatcher_rg_Id]
+
+  metadata = <<METADATA
+    {
+    "category": "General"
+    }
+  METADATA
+
+  parameters = <<PARAMETERS
+  {
+    "publishers": {
+      "value": ${jsonencode(local.allowedPublishers)}
+    },
+    "offers": {
+      "value": ${jsonencode(local.allowedOffers)}
+    },
+    "skus": {
+      "value": ${jsonencode(local.allowedSkus)}
+    },
+    "versions": {
+      "value": ${jsonencode(local.allowedVersions)}
+    }
+  }
+  PARAMETERS
+
+}

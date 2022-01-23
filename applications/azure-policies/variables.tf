@@ -53,3 +53,13 @@ variable "resource" {
     project  = "az-900-prep"
   }
 }
+
+variable "allowedImages" {
+  description = "Map of images names for configuration."
+  type = list(object({
+    publisher = string
+    offer     = string
+    sku       = string
+    version   = string
+  }))
+}
