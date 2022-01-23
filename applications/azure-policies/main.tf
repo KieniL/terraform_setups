@@ -59,3 +59,26 @@ resource "azurerm_policy_assignment" "requireTagPolicyAssignment" {
 
 }
 
+resource "azurerm_policy_assignment" "allowedSkuPolicyAssignment" {
+  name                 = "${var.resource.prefix}-allowedSku-policy-assignment"
+  scope                = var.subscriptionId
+  policy_definition_id = var.allowedSkuPolicyId
+  description          = "Policy Assignment for allowedSku"
+  display_name         = "Allowed Sku Policy Assignment"
+  not_scopes           = [var.networkwatcher_rg_Id]
+
+  metadata = <<METADATA
+    {
+    "category": "General"
+    }
+  METADATA
+
+  parameters = <<PARAMETERS
+  {
+    "listOfAllowedSKUs": {
+      "value": ${jsonencode(var.allowedSkus)}
+    }
+  }
+  PARAMETERS
+
+}

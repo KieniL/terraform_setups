@@ -17,6 +17,12 @@ variable "allowedLocationSubPolicyId" {
   default     = "PolId"
 }
 
+variable "allowedSkuPolicyId" {
+  type        = string
+  description = "The PolicyId for the default allowedSku Definition"
+  default     = "PolId"
+}
+
 variable "tagPolicyId" {
   type        = string
   description = "The PolicyDefinition Id for the default require tag Policy"
@@ -33,6 +39,11 @@ variable "allowedLocations" {
   type        = list(string)
   description = "The allowed Locations"
   default     = ["Germany West Central", "West Europe"]
+}
+
+variable "allowedSkus" {
+  type        = list(string)
+  description = "The allowed skus"
 }
 
 variable "resource" {
