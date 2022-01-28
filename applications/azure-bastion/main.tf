@@ -110,8 +110,6 @@ resource "azurerm_windows_virtual_machine" "mgmtvm" {
   resource_group_name   = azurerm_resource_group.rg.name
   network_interface_ids = [azurerm_network_interface.mgmtnic[0].id]
   size                  = var.mgmtvm.size
-  priority              = "Spot"
-  eviction_policy       = "Deallocate"
 
   computer_name  = "mgmtvm"
   admin_username = var.mgmtvm.username
