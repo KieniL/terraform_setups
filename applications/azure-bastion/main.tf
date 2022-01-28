@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "=2.46.0"
+      version = ">=2.94.0"
     }
   }
 }
@@ -21,7 +21,7 @@ resource "azurerm_resource_group" "rg" {
 
 resource "azurerm_virtual_network" "bastionmgmtvnet" {
   name                = "${var.resource.project}-vnet"
-  address_space       = ["10.255.255.0/25"]
+  address_space       = ["10.255.255.0/24"]
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
@@ -111,6 +111,7 @@ resource "azurerm_windows_virtual_machine" "mgmtvm" {
   network_interface_ids = [azurerm_network_interface.mgmtnic[0].id]
   size                  = var.mgmtvm.size
   priority              = "Spot"
+  eviction_policy       = "Deallocate"
 
   computer_name  = "mgmtvm"
   admin_username = var.mgmtvm.username
@@ -134,25 +135,28 @@ resource "azurerm_windows_virtual_machine" "mgmtvm" {
     sku       = "2019-datacenter-gensecond"
     version   = "latest"
   }
-    #user_data = base64encode("${file(path.module / user_data.txt)}")
-
 
   tags = azurerm_resource_group.rg.tags
 }
 
+data "azurerm_virtual_network" "vnetdest" {
+  for_each            = { for i, v in var.vnet_peerings : i => v }
+  name                = each.value.name
+  resource_group_name = each.value.resourcegroup
+}
 
 resource "azurerm_virtual_network_peering" "vnet-peering-source" {
   for_each                  = { for i, v in var.vnet_peerings : i => v }
-  name                      = "${var.resource.project}-vnetTo${each.value.name}"
+  name                      = "To${each.value.name}"
   resource_group_name       = azurerm_resource_group.rg.name
   virtual_network_name      = azurerm_virtual_network.bastionmgmtvnet.name
-  remote_virtual_network_id = each.value.id
+  remote_virtual_network_id = data.azurerm_virtual_network.vnetdest["${each.key}"].id
 }
 
 resource "azurerm_virtual_network_peering" "vnet-peering-dest" {
   for_each                  = { for i, v in var.vnet_peerings : i => v }
-  name                      = "${each.value.name}To${var.resource.project}-vnet"
-  resource_group_name       = each.value.resourcegroupname
+  name                      = "To${var.resource.project}-vnet"
+  resource_group_name       = each.value.resourcegroup
   virtual_network_name      = each.value.name
   remote_virtual_network_id = azurerm_virtual_network.bastionmgmtvnet.id
 }

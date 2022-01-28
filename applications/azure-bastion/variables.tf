@@ -21,11 +21,10 @@ variable "mgmtvm" {
 }
 
 variable "vnet_peerings" {
-  description = "List of vnet peerings to add. id should be the full id of the resource to peer to. Name is the real vnet name to peer to. Resourcegroupname is the rg of the vnet to peer to"
+  description = "List of vnet peerings to add. Name is the real vnet name to peer to. Resourcegroup is the rg of the vnet to peer to"
   type = list(object({
-    id                = string
-    name              = string
-    resourcegroupname = string
+    name          = string
+    resourcegroup = string
   }))
   default = []
 }
