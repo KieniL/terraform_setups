@@ -94,7 +94,7 @@ resource "azurerm_policy_definition" "allowedimagespolicy" {
 
   metadata = <<METADATA
     {
-    "category": "General"
+    "category": "Compute"
     }
 
 METADATA
@@ -107,7 +107,7 @@ METADATA
         {
           "field": "type",
           "in": [
-            "Microsoft.Compute/virtualMachines",
+            "Microsoft.Compute/VirtualMachines",
             "Microsoft.Compute/VirtualMachineScaleSets"
           ]
         },
@@ -148,32 +148,28 @@ POLICY_RULE
       "type": "Array",
       "metadata": {
         "description": "The list of allowed Publishers for resources.",
-        "displayName": "Allowed Publishers",
-        "strongType": "publishers"
+        "displayName": "Allowed Publishers"
       }
     },
     "offers": {
       "type": "Array",
       "metadata": {
         "description": "The list of allowed offers for resources.",
-        "displayName": "Allowed offers",
-        "strongType": "offers"
+        "displayName": "Allowed offers"
       }
     },
     "skus": {
       "type": "Array",
       "metadata": {
         "description": "The list of allowed skus for resources.",
-        "displayName": "Allowed skus",
-        "strongType": "skus"
+        "displayName": "Allowed skus"
       }
     },
     "versions": {
       "type": "Array",
       "metadata": {
         "description": "The list of allowed versions for resources.",
-        "displayName": "Allowed versions",
-        "strongType": "versions"
+        "displayName": "Allowed versions"
       }
     }
   }
@@ -181,13 +177,7 @@ PARAMETERS
 
 }
 
-locals {
-  #allowedPublishers = setunion(var.allowedImages)
-  allowedPublishers = { for value, i in var.allowedImages : value => i.publisher }
-  allowedOffers     = { for value, i in var.allowedImages : value => i.offer }
-  allowedSkus       = { for value, i in var.allowedImages : value => i.sku }
-  allowedVersions   = { for value, i in var.allowedImages : value => i.version }
-}
+
 resource "azurerm_policy_assignment" "allowedImagesPolicyAssignment" {
   name                 = "${var.resource.prefix}-allowedImages-policy-assignment"
   scope                = var.subscriptionId
@@ -205,16 +195,16 @@ resource "azurerm_policy_assignment" "allowedImagesPolicyAssignment" {
   parameters = <<PARAMETERS
   {
     "publishers": {
-      "value": ${jsonencode(local.allowedPublishers)}
+      "value": ${jsonencode(var.allowedImages.publishers)}
     },
     "offers": {
-      "value": ${jsonencode(local.allowedOffers)}
+      "value": ${jsonencode(var.allowedImages.offers)}
     },
     "skus": {
-      "value": ${jsonencode(local.allowedSkus)}
+      "value": ${jsonencode(var.allowedImages.skus)}
     },
     "versions": {
-      "value": ${jsonencode(local.allowedVersions)}
+      "value": ${jsonencode(var.allowedImages.versions)}
     }
   }
   PARAMETERS

@@ -55,11 +55,11 @@ variable "resource" {
 }
 
 variable "allowedImages" {
-  description = "Map of images names for configuration."
-  type = list(object({
-    publisher = string
-    offer     = string
-    sku       = string
-    version   = string
-  }))
+  description = "Map of images for configuration."
+  type = object({
+    publishers = list(string)
+    offers     = list(string)
+    skus       = list(string)
+    versions   = list(string)
+  })
 }
