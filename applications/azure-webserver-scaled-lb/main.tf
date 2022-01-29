@@ -196,14 +196,39 @@ resource "azurerm_monitor_autoscale_setting" "autoscaler" {
 
 }
 
-resource "azurerm_log_analytics_workspace" "lbloganalyticsworkspace" {
-  name                = "${var.resource.prefix}-lb-loganalytics"
+resource "azurerm_log_analytics_workspace" "gatewayloganalyticsworkspace" {
+  name                = "${var.resource.prefix}-gateway-loganalyticsworkspace"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   sku                 = "PerGB2018"
   retention_in_days   = 30
 
   tags = azurerm_resource_group.rg.tags
+}
+
+resource "azurerm_monitor_diagnostic_setting" "gatewaydiagnosticsettings" {
+  name               = "${var.resource.prefix}-diagnosticsettings"
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.gatewayloganalyticsworkspace.id
+
+  log {
+    category = "AllLogs"
+    enabled  = true
+
+    retention_policy {
+      enabled = true
+      days = 3
+    }
+  }
+
+  metric {
+    category = "AllMetrics"
+    enabled = true
+
+    retention_policy {
+      enabled = true
+      days = 3
+    }
+  }
 }
 
 resource "azurerm_public_ip" "gatewayip" {
