@@ -36,7 +36,7 @@ module "bastion" {
   location          = azurerm_resource_group.rg.location
   resourcegroupname = azurerm_resource_group.rg.name
   project           = var.resource.project
-  bastionsubnetid   = azurerm_subnet.azurebastionsubnet.id
+  bastionsubnetid   = module.vnet.azurebastionsubnet.id
 }
 
 
@@ -47,11 +47,15 @@ module "managementvm" {
   location          = azurerm_resource_group.rg.location
   resourcegroupname = azurerm_resource_group.rg.name
   project           = var.resource.project
-  mgmtsubnetId      = azurerm_subnet.mgmtsubnet[0].id
+  mgmtsubnetId      = module.vnet.mgmtsubnet[0].id
   deploy_management = var.deploy_management
   mgmtvm            = var.mgmtvm
 }
 
 module "vnetpeerings" {
-  source = "./modules/vnet-peerings"
+  source            = "./modules/vnet-peerings"
+  vnet_peerings     = var.vnet_peerings
+  resourcegroupname = azurerm_resource_group.rg.name
+  project           = var.resource.project
+  bastionmgmtvnet   = module.vnet.bastionmgmtvnet
 }

@@ -13,16 +13,16 @@ data "azurerm_virtual_network" "vnetdest" {
 resource "azurerm_virtual_network_peering" "vnet-peering-source" {
   for_each                  = { for i, v in var.vnet_peerings : i => v }
   name                      = "To${each.value.name}"
-  resource_group_name       = azurerm_resource_group.rg.name
-  virtual_network_name      = azurerm_virtual_network.bastionmgmtvnet.name
+  resource_group_name       = var.resourcegroupname
+  virtual_network_name      = var.bastionmgmtvnet.name
   remote_virtual_network_id = data.azurerm_virtual_network.vnetdest["${each.key}"].id
 }
 
 resource "azurerm_virtual_network_peering" "vnet-peering-dest" {
   for_each                  = { for i, v in var.vnet_peerings : i => v }
   provider                  = azurerm.vnettest
-  name                      = "To${var.resource.project}-vnet"
+  name                      = "To${var.project}-vnet"
   resource_group_name       = each.value.resourcegroup
   virtual_network_name      = each.value.name
-  remote_virtual_network_id = azurerm_virtual_network.bastionmgmtvnet.id
+  remote_virtual_network_id = var.bastionmgmtvnet.id
 }
