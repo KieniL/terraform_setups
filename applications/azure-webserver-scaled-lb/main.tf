@@ -99,9 +99,10 @@ resource "azurerm_linux_virtual_machine_scale_set" "scaleset" {
     network_security_group_id = azurerm_network_security_group.sg.id
 
     ip_configuration {
-      name      = "internal"
-      primary   = true
-      subnet_id = azurerm_subnet.subnet.id
+      name                                         = "internal"
+      primary                                      = true
+      subnet_id                                    = azurerm_subnet.subnet.id
+      application_gateway_backend_address_pool_ids = [azurerm_application_gateway.appgateway.backend_address_pool[0].id]
     }
   }
 
@@ -195,15 +196,15 @@ resource "azurerm_monitor_autoscale_setting" "autoscaler" {
 
 }
 
-# resource "azurerm_log_analytics_workspace" "lbloganalyticsworkspace" {
-#   name                = "${var.resource.prefix}-lb-loganalytics"
-#   location            = azurerm_resource_group.rg.location
-#   resource_group_name = azurerm_resource_group.rg.name
-#   sku                 = "PerGB2018"
-#   retention_in_days   = 30
+resource "azurerm_log_analytics_workspace" "lbloganalyticsworkspace" {
+  name                = "${var.resource.prefix}-lb-loganalytics"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku                 = "PerGB2018"
+  retention_in_days   = 30
 
-#   tags = azurerm_resource_group.rg.tags
-# }
+  tags = azurerm_resource_group.rg.tags
+}
 
 resource "azurerm_public_ip" "gatewayip" {
   name                = "${var.resource.prefix}-gatewayip"
@@ -221,8 +222,8 @@ resource "azurerm_application_gateway" "appgateway" {
   resource_group_name = azurerm_resource_group.rg.name
 
   sku {
-    name = "Standard_Small"
-    tier = "Standard"
+    name = "Standard_v2"
+    tier = "Standard_v2"
   }
 
   autoscale_configuration {
@@ -272,4 +273,6 @@ resource "azurerm_application_gateway" "appgateway" {
     backend_address_pool_name  = "${var.resource.prefix}-backendpool"
     backend_http_settings_name = "${var.resource.prefix}-httpsettings"
   }
+
+  tags = azurerm_resource_group.rg.tags
 }
