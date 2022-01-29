@@ -38,6 +38,18 @@ resource "azurerm_network_security_group" "sg" {
   #   destination_address_prefix = "VirtualNetwork"
   # }
 
+    security_rule {
+    name                       = "ALLOW_HTTP"
+    priority                   = 4000
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "80"
+    source_address_prefixes    = [var.source_ip]
+    destination_address_prefix = "*"
+  }
+
   tags = azurerm_resource_group.rg.tags
 }
 
