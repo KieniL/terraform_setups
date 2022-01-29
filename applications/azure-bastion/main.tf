@@ -41,8 +41,8 @@ module "bastion" {
 
 
 module "managementvm" {
-  source = "./modules/managementvm"
-
+  source            = "./modules/managementvm"
+  count             = var.deploy_management ? 1 : 0
   tags              = azurerm_resource_group.rg.tags
   location          = azurerm_resource_group.rg.location
   resourcegroupname = azurerm_resource_group.rg.name

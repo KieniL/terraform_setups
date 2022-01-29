@@ -14,9 +14,10 @@ variable "deploy_management" {
 variable "mgmtvm" {
   description = "Definition of the managementvm"
   type = object({
-    size     = string
-    username = string
-    password = string
+    size             = string
+    username         = string
+    password         = string
+    autoshutdowntime = string
   })
 }
 

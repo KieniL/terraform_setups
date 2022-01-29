@@ -31,7 +31,7 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_deploy_management"></a> [deploy\_management](#input\_deploy\_management) | Boolean to deploy management subnet and vm | `bool` | `false` | no |
-| <a name="input_mgmtvm"></a> [mgmtvm](#input\_mgmtvm) | Definition of the managementvm | <pre>object({<br>    size     = string<br>    username = string<br>    password = string<br>  })</pre> | n/a | yes |
+| <a name="input_mgmtvm"></a> [mgmtvm](#input\_mgmtvm) | Definition of the managementvm | <pre>object({<br>    size             = string<br>    username         = string<br>    password         = string<br>    autoshutdowntime = string<br>  })</pre> | n/a | yes |
 | <a name="input_resource"></a> [resource](#input\_resource) | n/a | `map` | <pre>{<br>  "location": "Germany West Central",<br>  "project": "centralbastion"<br>}</pre> | no |
 
 ## Outputs
