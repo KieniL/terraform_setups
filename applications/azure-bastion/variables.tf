@@ -21,10 +21,11 @@ variable "mgmtvm" {
 }
 
 variable "vnet_peerings" {
-  description = "List of vnet peerings to add. Name is the real vnet name to peer to. Resourcegroup is the rg of the vnet to peer to"
+  description = "List of vnet peerings to add. provider_alias is the defined alias in the terraform. If you have more than one subscription you need to define multiple providers under modules/vnet-peerings (only tested with same subscription). Resourcegroup is the rg of the vnet to peer to. Name is the real vnet name to peer to. "
   type = list(object({
-    name          = string
-    resourcegroup = string
+    provider_alias = string
+    resourcegroup  = string
+    name           = string
   }))
   default = []
 }
