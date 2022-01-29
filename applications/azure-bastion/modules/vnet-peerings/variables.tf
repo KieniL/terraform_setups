@@ -1,6 +1,3 @@
-variable "vnet_peerings" {
-
-}
 
 variable "resourcegroupname" {
     

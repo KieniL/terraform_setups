@@ -54,7 +54,6 @@ module "managementvm" {
 
 module "vnetpeerings" {
   source            = "./modules/vnet-peerings"
-  vnet_peerings     = var.vnet_peerings
   resourcegroupname = azurerm_resource_group.rg.name
   project           = var.resource.project
   bastionmgmtvnet   = module.vnet.bastionmgmtvnet
