@@ -25,31 +25,6 @@ resource "azurerm_network_security_group" "sg" {
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
-  # enable to deny vnet communication
-  # security_rule {
-  #   name                       = "DENY_VNET"
-  #   priority                   = 4096
-  #   direction                  = "Inbound"
-  #   access                     = "Deny"
-  #   protocol                   = "*"
-  #   source_port_range          = "*"
-  #   destination_port_range     = "*"
-  #   source_address_prefix      = "VirtualNetwork"
-  #   destination_address_prefix = "VirtualNetwork"
-  # }
-
-    security_rule {
-    name                       = "ALLOW_HTTP"
-    priority                   = 4000
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "80"
-    source_address_prefixes    = [var.source_ip]
-    destination_address_prefix = "*"
-  }
-
   tags = azurerm_resource_group.rg.tags
 }
 
@@ -62,8 +37,15 @@ resource "azurerm_virtual_network" "vnet" {
   tags = azurerm_resource_group.rg.tags
 }
 
+resource "azurerm_subnet" "frontend" {
+  name                 = "${var.resource.prefix}-frontendsubnet"
+  resource_group_name  = azurerm_resource_group.rg.name
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  address_prefixes     = ["10.0.0.0/24"]
+}
+
 resource "azurerm_subnet" "subnet" {
-  name                 = "${var.resource.prefix}-subnet"
+  name                 = "${var.resource.prefix}-backendsubnet"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.0.1.0/24"]
@@ -117,10 +99,9 @@ resource "azurerm_linux_virtual_machine_scale_set" "scaleset" {
     network_security_group_id = azurerm_network_security_group.sg.id
 
     ip_configuration {
-      name                                   = "internal"
-      primary                                = true
-      subnet_id                              = azurerm_subnet.subnet.id
-      load_balancer_backend_address_pool_ids = [azurerm_lb_backend_address_pool.backend_address_pool.id]
+      name      = "internal"
+      primary   = true
+      subnet_id = azurerm_subnet.subnet.id
     }
   }
 
@@ -214,78 +195,81 @@ resource "azurerm_monitor_autoscale_setting" "autoscaler" {
 
 }
 
-resource "azurerm_public_ip" "lbip" {
-  name                = "${var.resource.prefix}-ip"
+# resource "azurerm_log_analytics_workspace" "lbloganalyticsworkspace" {
+#   name                = "${var.resource.prefix}-lb-loganalytics"
+#   location            = azurerm_resource_group.rg.location
+#   resource_group_name = azurerm_resource_group.rg.name
+#   sku                 = "PerGB2018"
+#   retention_in_days   = 30
+
+#   tags = azurerm_resource_group.rg.tags
+# }
+
+resource "azurerm_public_ip" "gatewayip" {
+  name                = "${var.resource.prefix}-gatewayip"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   allocation_method   = "Static"
   sku                 = "Standard"
-  domain_name_label   = azurerm_resource_group.rg.name
 
   tags = azurerm_resource_group.rg.tags
 }
 
-resource "azurerm_lb" "lb" {
-  name                = "${var.resource.prefix}-lb"
+resource "azurerm_application_gateway" "appgateway" {
+  name                = "${var.resource.prefix}-appgateway"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  sku                 = "Standard"
 
-  frontend_ip_configuration {
-    name                 = "publicIPAddress"
-    public_ip_address_id = azurerm_public_ip.lbip.id
+  sku {
+    name = "Standard_Small"
+    tier = "Standard"
   }
 
-  tags = azurerm_resource_group.rg.tags
-}
+  autoscale_configuration {
+    min_capacity = 1
+    max_capacity = 5
+  }
 
-resource "azurerm_lb_backend_address_pool" "backend_address_pool" {
-  loadbalancer_id = azurerm_lb.lb.id
-  name            = "BackEndAddressPool"
+  gateway_ip_configuration {
+    name      = "${var.resource.prefix}-gateway-ip-configuration"
+    subnet_id = azurerm_subnet.frontend.id
+  }
 
-}
-
-resource "azurerm_lb_probe" "probe" {
-  name                = "${var.resource.prefix}-http-probe"
-  resource_group_name = azurerm_resource_group.rg.name
-  loadbalancer_id     = azurerm_lb.lb.id
-  protocol            = "Http"
-  request_path        = "/"
-  port                = 80
-}
-
-
-resource "azurerm_lb_rule" "lb_rule" {
-  name                           = "${var.resource.prefix}-lb-rule"
-  resource_group_name            = azurerm_resource_group.rg.name
-  loadbalancer_id                = azurerm_lb.lb.id
-  probe_id                       = azurerm_lb_probe.probe.id
-  backend_address_pool_ids       = [azurerm_lb_backend_address_pool.backend_address_pool.id]
-  protocol                       = "Tcp"
-  frontend_port                  = 80
-  backend_port                   = 80
-  frontend_ip_configuration_name = "publicIPAddress"
-  disable_outbound_snat          = true #since same ipconfig is also used for outbound
-}
-
-resource "azurerm_lb_outbound_rule" "lb_outbound_rule" {
-  resource_group_name     = azurerm_resource_group.rg.name
-  loadbalancer_id         = azurerm_lb.lb.id
-  name                    = "OutboundRule"
-  protocol                = "Tcp"
-  backend_address_pool_id = azurerm_lb_backend_address_pool.backend_address_pool.id
+  frontend_port {
+    name = "${var.resource.prefix}-frontendportname"
+    port = 80
+  }
 
   frontend_ip_configuration {
-    name = "publicIPAddress"
+    name                 = "${var.resource.prefix}-frontendipconfig"
+    public_ip_address_id = azurerm_public_ip.gatewayip.id
   }
-}
 
-resource "azurerm_log_analytics_workspace" "lbloganalyticsworkspace" {
-  name                = "${var.resource.prefix}-lb-loganalytics"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
-  sku                 = "PerGB2018"
-  retention_in_days   = 30
+  backend_address_pool {
+    name = "${var.resource.prefix}-backendpool"
+  }
 
-  tags = azurerm_resource_group.rg.tags
+  backend_http_settings {
+    name                  = "${var.resource.prefix}-httpsettings"
+    cookie_based_affinity = "Disabled"
+    path                  = "/"
+    port                  = 80
+    protocol              = "Http"
+    request_timeout       = 60
+  }
+
+  http_listener {
+    name                           = "${var.resource.prefix}-httplistener"
+    frontend_ip_configuration_name = "${var.resource.prefix}-frontendipconfig"
+    frontend_port_name             = "${var.resource.prefix}-frontendportname"
+    protocol                       = "Http"
+  }
+
+  request_routing_rule {
+    name                       = "${var.resource.prefix}-requestroutingrule"
+    rule_type                  = "Basic"
+    http_listener_name         = "${var.resource.prefix}-httplistener"
+    backend_address_pool_name  = "${var.resource.prefix}-backendpool"
+    backend_http_settings_name = "${var.resource.prefix}-httpsettings"
+  }
 }
