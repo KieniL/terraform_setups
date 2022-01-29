@@ -207,7 +207,8 @@ resource "azurerm_log_analytics_workspace" "gatewayloganalyticsworkspace" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "gatewaydiagnosticsettings" {
-  name               = "${var.resource.prefix}-diagnosticsettings"
+  name                       = "${var.resource.prefix}-diagnosticsettings"
+  target_resource_id         = azurerm_application_gateway.appgateway.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.gatewayloganalyticsworkspace.id
 
   log {
@@ -216,17 +217,17 @@ resource "azurerm_monitor_diagnostic_setting" "gatewaydiagnosticsettings" {
 
     retention_policy {
       enabled = true
-      days = 3
+      days    = 3
     }
   }
 
   metric {
     category = "AllMetrics"
-    enabled = true
+    enabled  = true
 
     retention_policy {
       enabled = true
-      days = 3
+      days    = 3
     }
   }
 }
