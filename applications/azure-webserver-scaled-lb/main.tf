@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "=2.46.0"
+      version = ">=2.94.0"
     }
   }
 }
@@ -37,18 +37,6 @@ resource "azurerm_network_security_group" "sg" {
   #   source_address_prefix      = "VirtualNetwork"
   #   destination_address_prefix = "VirtualNetwork"
   # }
-
-  security_rule {
-    name                       = "ALLOW_SSH"
-    priority                   = 4000
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "22"
-    source_address_prefixes    = [var.source_ip]
-    destination_address_prefix = "*"
-  }
 
   tags = azurerm_resource_group.rg.tags
 }
@@ -99,15 +87,11 @@ resource "azurerm_linux_virtual_machine_scale_set" "scaleset" {
   #   pause_time_between_batches              = "PT0S"
   # }
 
-  admin_username = var.vm.admin_username
+  admin_username                  = var.vm.admin_username
+  admin_password                  = var.vm.password
+  disable_password_authentication = false
 
   custom_data = base64encode(local.user_data)
-
-
-  admin_ssh_key {
-    username   = var.vm.admin_username
-    public_key = file("C:\\Users\\lkrei/.ssh/azure_vm.pub")
-  }
 
   os_disk {
     caching              = "ReadWrite"
@@ -246,6 +230,7 @@ resource "azurerm_lb" "lb" {
 resource "azurerm_lb_backend_address_pool" "backend_address_pool" {
   loadbalancer_id = azurerm_lb.lb.id
   name            = "BackEndAddressPool"
+
 }
 
 resource "azurerm_lb_probe" "probe" {
@@ -263,8 +248,32 @@ resource "azurerm_lb_rule" "lb_rule" {
   resource_group_name            = azurerm_resource_group.rg.name
   loadbalancer_id                = azurerm_lb.lb.id
   probe_id                       = azurerm_lb_probe.probe.id
+  backend_address_pool_ids       = [azurerm_lb_backend_address_pool.backend_address_pool.id]
   protocol                       = "Tcp"
   frontend_port                  = 80
   backend_port                   = 80
   frontend_ip_configuration_name = "publicIPAddress"
+  disable_outbound_snat          = true #since same ipconfig is also used for outbound
+}
+
+resource "azurerm_lb_outbound_rule" "lb_outbound_rule" {
+  resource_group_name     = azurerm_resource_group.rg.name
+  loadbalancer_id         = azurerm_lb.lb.id
+  name                    = "OutboundRule"
+  protocol                = "Tcp"
+  backend_address_pool_id = azurerm_lb_backend_address_pool.backend_address_pool.id
+
+  frontend_ip_configuration {
+    name = "publicIPAddress"
+  }
+}
+
+resource "azurerm_log_analytics_workspace" "lbloganalyticsworkspace" {
+  name                = "${var.resource.prefix}-lb-loganalytics"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku                 = "PerGB2018"
+  retention_in_days   = 30
+
+  tags = azurerm_resource_group.rg.tags
 }

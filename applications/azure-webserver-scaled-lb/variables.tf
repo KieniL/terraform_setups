@@ -16,5 +16,6 @@ variable "vm" {
   default = {
     admin_username = "azureuser"
     size           = "Standard_F1s"
+
   }
 }

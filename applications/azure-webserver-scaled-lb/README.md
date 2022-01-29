@@ -26,14 +26,13 @@ No modules.
 |------|------|
 | [azurerm_lb.lb](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/lb) | resource |
 | [azurerm_lb_backend_address_pool.backend_address_pool](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/lb_backend_address_pool) | resource |
+| [azurerm_lb_outbound_rule.lb_outbound_rule](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/lb_outbound_rule) | resource |
+| [azurerm_lb_probe.probe](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/lb_probe) | resource |
 | [azurerm_lb_rule.lb_rule](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/lb_rule) | resource |
 | [azurerm_linux_virtual_machine_scale_set.scaleset](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/linux_virtual_machine_scale_set) | resource |
 | [azurerm_monitor_autoscale_setting.autoscaler](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/monitor_autoscale_setting) | resource |
-| [azurerm_nat_gateway.nat](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/nat_gateway) | resource |
 | [azurerm_network_security_group.sg](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/network_security_group) | resource |
-| [azurerm_public_ip.ip](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/public_ip) | resource |
-| [azurerm_public_ip.natip](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/public_ip) | resource |
-| [azurerm_public_ip_prefix.ipprefix](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/public_ip_prefix) | resource |
+| [azurerm_public_ip.lbip](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/public_ip) | resource |
 | [azurerm_resource_group.rg](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/resource_group) | resource |
 | [azurerm_subnet.subnet](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/subnet) | resource |
 | [azurerm_virtual_network.vnet](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/virtual_network) | resource |
@@ -48,5 +47,8 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_loadbalancer_ip"></a> [loadbalancer\_ip](#output\_loadbalancer\_ip) | n/a |
+| <a name="output_vnet"></a> [vnet](#output\_vnet) | n/a |
 <!-- END_TF_DOCS -->
