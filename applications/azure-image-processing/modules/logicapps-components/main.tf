@@ -10,3 +10,12 @@ resource "azurerm_app_service_plan" "logicappserviceplan" {
 
   tags = var.tags
 }
+
+resource "azurerm_application_insights" "example" {
+  name                = "${var.project}-logicapp-insights"
+  location            = var.location
+  resource_group_name = var.resourcegroupname
+  application_type    = "other"
+
+  tags = var.tags
+}

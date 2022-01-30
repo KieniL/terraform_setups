@@ -25,7 +25,7 @@ These include:
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_imgfunction"></a> [imgfunction](#module\_imgfunction) | ./modules/function | n/a |
-| <a name="module_imglocicappserviceapp"></a> [imglocicappserviceapp](#module\_imglocicappserviceapp) | ./modules/appserviceplan | n/a |
+| <a name="module_imglocicappcomponents"></a> [imglocicappcomponents](#module\_imglocicappcomponents) | ./modules/logicapps-components | n/a |
 | <a name="module_imgnotification"></a> [imgnotification](#module\_imgnotification) | ./modules/notification | n/a |
 | <a name="module_imgstorageaccount"></a> [imgstorageaccount](#module\_imgstorageaccount) | ./modules/storageaccount | n/a |
 

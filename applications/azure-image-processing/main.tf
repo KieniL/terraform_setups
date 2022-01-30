@@ -48,8 +48,8 @@ module "imgnotification" {
   project           = var.resource.project
 }
 
-module "imglocicappserviceapp" {
-  source = "./modules/appserviceplan"
+module "imglocicappcomponents" {
+  source = "./modules/logicapps-components"
 
   tags              = azurerm_resource_group.rg.tags
   location          = azurerm_resource_group.rg.location
