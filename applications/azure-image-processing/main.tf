@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "=2.46.0"
+      version = ">=2.94.0"
     }
   }
 }
@@ -19,19 +19,22 @@ resource "azurerm_resource_group" "rg" {
   }
 }
 
-resource "azurerm_storage_account" "storageaccount" {
-  name                     = "${var.resource.project}-storageaccount"
-  resource_group_name      = azurerm_resource_group.rg.name
-  location                 = azurerm_resource_group.rg.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
 
-  tags = azurerm_resource_group.rg.tagss
+module "storageaccount" {
+  source = "./modules/storageaccount"
+
+  tags              = azurerm_resource_group.rg.tags
+  location          = azurerm_resource_group.rg.location
+  resourcegroupname = azurerm_resource_group.rg.name
+  project           = var.resource.project
 }
 
-resource "azurerm_storage_container" "storagecontainer" {
-  name                  = "${var.resource.project}-storageaccountcontainer"
-  storage_account_name  = azurerm_storage_account.storageaccount.name
-  container_access_type = "private"
+module "function" {
+  source = "./modules/function"
 
+  tags              = azurerm_resource_group.rg.tags
+  location          = azurerm_resource_group.rg.location
+  resourcegroupname = azurerm_resource_group.rg.name
+  project           = var.resource.project
+  storageaccount    = module.storageaccount.storageaccount
 }

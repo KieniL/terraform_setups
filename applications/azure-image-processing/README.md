@@ -1,37 +1,41 @@
 # azure-image-processing
 
-An azure module with logic apps which creates a storage account for upload and then resizes the images and send notifications of new image
+An azure module which creates the components for image processing with logic apps.<br/>
+These include:
+* a storageaccount
+* a function for processing
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | =2.46.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >=2.94.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | =2.46.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 2.94.0 |
 
 ## Modules
 
-No modules.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_function"></a> [function](#module\_function) | ./modules/function | n/a |
+| <a name="module_storageaccount"></a> [storageaccount](#module\_storageaccount) | ./modules/storageaccount | n/a |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [azurerm_resource_group.rg](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/resource_group) | resource |
-| [azurerm_storage_account.storageaccount](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/storage_account) | resource |
-| [azurerm_storage_container.storagecontainer](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/storage_container) | resource |
+| [azurerm_resource_group.rg](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_resource"></a> [resource](#input\_resource) | n/a | `map` | <pre>{<br>  "location": "Germany West Central",<br>  "project": "imageprocessor"<br>}</pre> | no |
+| <a name="input_resource"></a> [resource](#input\_resource) | n/a | `map` | <pre>{<br>  "location": "Germany West Central",<br>  "project": "imgprocessor"<br>}</pre> | no |
 
 ## Outputs
 

@@ -7,7 +7,7 @@ test:
 	
 doc:
 	terraform fmt --recursive
-	terraform-docs markdown table --output-file README.md --output-mode inject ./
+	terraform-docs markdown table --output-file README.md --output-mode inject ./ --recursive
 
 plan:
 	terraform fmt --recursive
