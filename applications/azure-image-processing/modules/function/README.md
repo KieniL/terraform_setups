@@ -32,5 +32,7 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_function_app_name"></a> [function\_app\_name](#output\_function\_app\_name) | Name of deployed image function |
 <!-- END_TF_DOCS -->

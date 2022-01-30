@@ -20,7 +20,7 @@ resource "azurerm_resource_group" "rg" {
 }
 
 
-module "storageaccount" {
+module "imgstorageaccount" {
   source = "./modules/storageaccount"
 
   tags              = azurerm_resource_group.rg.tags
@@ -29,12 +29,12 @@ module "storageaccount" {
   project           = var.resource.project
 }
 
-module "function" {
+module "imgfunction" {
   source = "./modules/function"
 
   tags              = azurerm_resource_group.rg.tags
   location          = azurerm_resource_group.rg.location
   resourcegroupname = azurerm_resource_group.rg.name
   project           = var.resource.project
-  storageaccount    = module.storageaccount.storageaccount
+  storageaccount    = module.imgstorageaccount.storageaccount
 }

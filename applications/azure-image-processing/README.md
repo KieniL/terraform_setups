@@ -22,8 +22,8 @@ These include:
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_function"></a> [function](#module\_function) | ./modules/function | n/a |
-| <a name="module_storageaccount"></a> [storageaccount](#module\_storageaccount) | ./modules/storageaccount | n/a |
+| <a name="module_imgfunction"></a> [imgfunction](#module\_imgfunction) | ./modules/function | n/a |
+| <a name="module_imgstorageaccount"></a> [imgstorageaccount](#module\_imgstorageaccount) | ./modules/storageaccount | n/a |
 
 ## Resources
 

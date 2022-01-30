@@ -8,6 +8,8 @@ resource "azurerm_app_service_plan" "functionappservice" {
     tier = "Dynamic"
     size = "Y1"
   }
+
+  tags = var.tags
 }
 
 resource "azurerm_function_app" "imagefunction" {
@@ -17,4 +19,5 @@ resource "azurerm_function_app" "imagefunction" {
   app_service_plan_id        = azurerm_app_service_plan.functionappservice.id
   storage_account_name       = var.storageaccount.name
   storage_account_access_key = var.storageaccount.primary_access_key
+  tags                       = var.tags
 }
