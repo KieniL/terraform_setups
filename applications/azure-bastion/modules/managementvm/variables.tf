@@ -7,7 +7,7 @@ variable "location" {
 }
 
 variable "resourcegroupname" {
-    
+
 }
 
 variable "project" {
@@ -23,5 +23,5 @@ variable "mgmtsubnetId" {
 }
 
 variable "mgmtvm" {
-    
+
 }

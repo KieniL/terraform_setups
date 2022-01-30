@@ -7,7 +7,7 @@ variable "location" {
 }
 
 variable "resourcegroupname" {
-    
+
 }
 
 variable "project" {

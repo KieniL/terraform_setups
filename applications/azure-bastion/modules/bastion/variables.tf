@@ -7,7 +7,7 @@ variable "location" {
 }
 
 variable "resourcegroupname" {
-    
+
 }
 
 variable "project" {
@@ -15,5 +15,5 @@ variable "project" {
 }
 
 variable "bastionsubnetid" {
-    
+
 }

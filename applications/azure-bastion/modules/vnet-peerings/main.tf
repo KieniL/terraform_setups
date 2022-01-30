@@ -28,7 +28,7 @@
 #   provider                  = azurerm.vnettest
 #   name                      = "PeerWith${var.project}-vnet"
 #   resource_group_name       = TARGET_RESOURCEGROUP
-  
+
 #   virtual_network_name      = TARGET_VNETNAME
 #   remote_virtual_network_id = var.bastionmgmtvnet.id
 # }
@@ -52,7 +52,7 @@
 # resource "azurerm_virtual_network_peering" "vnet-peering-dest-1" {
 #   name                      = "PeerWith${var.project}-vnet"
 #   resource_group_name       = "test-rg"
-  
+
 #   virtual_network_name      = "testvnet"
 #   remote_virtual_network_id = var.bastionmgmtvnet.id
 # }
@@ -75,7 +75,7 @@
 # resource "azurerm_virtual_network_peering" "vnet-peering-dest-2" {
 #   name                      = "PeerWith${var.project}-vnet"
 #   resource_group_name       = "webserver-rg"
-  
+
 #   virtual_network_name      = "webserver-network"
 #   remote_virtual_network_id = var.bastionmgmtvnet.id
 # }

@@ -32,8 +32,8 @@ resource "azurerm_network_interface_security_group_association" "mgmtnic_sg_ass"
 # Create virtual machine
 resource "azurerm_windows_virtual_machine" "mgmtvm" {
   name                  = "${var.project}-mgmtvm"
-  location            = var.location
-  resource_group_name = var.resourcegroupname
+  location              = var.location
+  resource_group_name   = var.resourcegroupname
   network_interface_ids = [azurerm_network_interface.mgmtnic.id]
   size                  = var.mgmtvm.size
 
@@ -41,7 +41,7 @@ resource "azurerm_windows_virtual_machine" "mgmtvm" {
   admin_username = var.mgmtvm.username
   admin_password = var.mgmtvm.password
 
-  timezone              = "Central European Standard Time"
+  timezone = "Central European Standard Time"
 
   os_disk {
     caching              = "ReadWrite"
@@ -67,14 +67,14 @@ resource "azurerm_windows_virtual_machine" "mgmtvm" {
 
 resource "azurerm_dev_test_global_vm_shutdown_schedule" "mgmtvm" {
   virtual_machine_id = azurerm_windows_virtual_machine.mgmtvm.id
-  location            = var.location
+  location           = var.location
   enabled            = true
 
   daily_recurrence_time = var.mgmtvm.autoshutdowntime #time in format 1600 on which the vm is shutdown automatically
   timezone              = "Central European Standard Time"
 
   notification_settings {
-    enabled         = false
+    enabled = false
   }
 
   tags = var.tags

@@ -1,6 +1,6 @@
 
 variable "resourcegroupname" {
-    
+
 }
 
 variable "bastionmgmtvnet" {
