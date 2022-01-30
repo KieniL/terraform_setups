@@ -38,3 +38,21 @@ module "imgfunction" {
   project           = var.resource.project
   storageaccount    = module.imgstorageaccount.storageaccount
 }
+
+module "imgnotification" {
+  source = "./modules/notification"
+
+  tags              = azurerm_resource_group.rg.tags
+  location          = azurerm_resource_group.rg.location
+  resourcegroupname = azurerm_resource_group.rg.name
+  project           = var.resource.project
+}
+
+module "imglocicappserviceapp" {
+  source = "./modules/appserviceplan"
+
+  tags              = azurerm_resource_group.rg.tags
+  location          = azurerm_resource_group.rg.location
+  resourcegroupname = azurerm_resource_group.rg.name
+  project           = var.resource.project
+}

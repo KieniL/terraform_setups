@@ -4,6 +4,8 @@ An azure module which creates the components for image processing with logic app
 These include:
 * a storageaccount
 * a function for processing
+* an eventgrid for notification
+* an appserviceplan for the logic apps
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -23,6 +25,8 @@ These include:
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_imgfunction"></a> [imgfunction](#module\_imgfunction) | ./modules/function | n/a |
+| <a name="module_imglocicappserviceapp"></a> [imglocicappserviceapp](#module\_imglocicappserviceapp) | ./modules/appserviceplan | n/a |
+| <a name="module_imgnotification"></a> [imgnotification](#module\_imgnotification) | ./modules/notification | n/a |
 | <a name="module_imgstorageaccount"></a> [imgstorageaccount](#module\_imgstorageaccount) | ./modules/storageaccount | n/a |
 
 ## Resources
