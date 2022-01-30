@@ -27,6 +27,7 @@ module "vnet" {
   location          = azurerm_resource_group.rg.location
   resourcegroupname = azurerm_resource_group.rg.name
   project           = var.resource.project
+  source_ip         = var.source_ip
 }
 
 

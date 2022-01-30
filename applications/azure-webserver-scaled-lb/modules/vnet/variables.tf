@@ -14,3 +14,7 @@ variable "location" {
 variable "resourcegroupname" {
 
 }
+
+variable "source_ip" {
+
+}

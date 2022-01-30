@@ -1,6 +1,6 @@
 # Create Network Security Group and rule
 resource "azurerm_network_security_group" "nsg" {
-  name                = "${var.project}-nsg"
+  name                = "${var.project}-nic-nsg"
   location            = var.location
   resource_group_name = var.resourcegroupname
 
