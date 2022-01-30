@@ -1,6 +1,6 @@
 # Create Network Security Group and rule
-resource "azurerm_network_security_group" "sg" {
-  name                = "${var.project}-sg"
+resource "azurerm_network_security_group" "nsg" {
+  name                = "${var.project}-nsg"
   location            = var.location
   resource_group_name = var.resourcegroupname
 
@@ -53,7 +53,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "scaleset" {
     name    = "nic"
     primary = true
 
-    network_security_group_id = azurerm_network_security_group.sg.id
+    network_security_group_id = azurerm_network_security_group.nsg.id
 
     ip_configuration {
       name                                         = "internal"
