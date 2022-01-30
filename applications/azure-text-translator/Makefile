@@ -7,8 +7,7 @@ test:
 	
 doc:
 	terraform fmt --recursive
-	terraform-docs markdown table --output-file README.md --output-mode inject ./ --recursive
-	terraform graph -draw-cycles | dot -Tsvg > graph.svg
+	terraform-docs markdown table --output-file README.md --output-mode inject ./
 
 plan:
 	terraform fmt --recursive
