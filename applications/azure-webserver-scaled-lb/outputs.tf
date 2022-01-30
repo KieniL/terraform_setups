@@ -1,7 +1,7 @@
 output "gateway_ip" {
-  value = azurerm_public_ip.gatewayip.ip_address
+  value = module.appgateway.gateway_ip.ip_address
 }
 
 output "vnet" {
-  value = azurerm_virtual_network.vnet
+  value = module.vnet.vnet
 }
