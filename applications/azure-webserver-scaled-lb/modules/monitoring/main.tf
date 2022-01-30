@@ -80,7 +80,27 @@ resource "azurerm_monitor_diagnostic_setting" "gatewaydiagnosticsettings" {
   log_analytics_workspace_id = azurerm_log_analytics_workspace.gatewayloganalyticsworkspace.id
 
   log {
-    category = "AllLogs"
+    category = "ApplicationGatewayAccessLog"
+    enabled  = true
+
+    retention_policy {
+      enabled = true
+      days    = 3
+    }
+  }
+
+  log {
+    category = "ApplicationGatewayPerformanceLog"
+    enabled  = true
+
+    retention_policy {
+      enabled = true
+      days    = 3
+    }
+  }
+
+  log {
+    category = "ApplicationGatewayFirewallLog"
     enabled  = true
 
     retention_policy {
