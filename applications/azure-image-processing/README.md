@@ -6,6 +6,8 @@ These include:
 * a function for processing
 * an eventgrid for notification
 * an appserviceplan for the logic apps
+* an app insight which needs to be added manually to the logicapp (no resource available in provider)
+* a loganalytics workspace
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements

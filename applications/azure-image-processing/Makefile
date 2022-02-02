@@ -6,6 +6,7 @@ test:
 	checkov -d ./ --compact --quiet
 	
 doc:
+	tflint .
 	terraform fmt --recursive
 	terraform-docs markdown table --output-file README.md --output-mode inject ./ --recursive
 
