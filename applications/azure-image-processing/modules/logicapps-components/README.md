@@ -33,5 +33,7 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_appserviceplan"></a> [appserviceplan](#output\_appserviceplan) | n/a |
 <!-- END_TF_DOCS -->

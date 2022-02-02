@@ -56,3 +56,14 @@ module "imglocicappcomponents" {
   resourcegroupname = azurerm_resource_group.rg.name
   project           = var.resource.project
 }
+
+module "imglocicappstandard" {
+  source = "./modules/logicapp-standard"
+
+  tags              = azurerm_resource_group.rg.tags
+  location          = azurerm_resource_group.rg.location
+  resourcegroupname = azurerm_resource_group.rg.name
+  project           = var.resource.project
+  appserviceplan    = module.imglocicappcomponents.appserviceplan
+  storageaccount    = module.imgstorageaccount.storageaccount
+}

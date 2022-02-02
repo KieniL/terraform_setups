@@ -148,16 +148,6 @@ resource "azurerm_monitor_diagnostic_setting" "appinsightdiagnosticsettings" {
     }
   }
 
-  log {
-    category = "AllMetrics"
-    enabled  = true
-
-    retention_policy {
-      enabled = true
-      days    = 3
-    }
-  }
-
   metric {
     category = "AllMetrics"
     enabled  = true

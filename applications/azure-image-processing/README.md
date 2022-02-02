@@ -26,6 +26,7 @@ These include:
 |------|--------|---------|
 | <a name="module_imgfunction"></a> [imgfunction](#module\_imgfunction) | ./modules/function | n/a |
 | <a name="module_imglocicappcomponents"></a> [imglocicappcomponents](#module\_imglocicappcomponents) | ./modules/logicapps-components | n/a |
+| <a name="module_imglocicappstandard"></a> [imglocicappstandard](#module\_imglocicappstandard) | ./modules/logicapp-standard | n/a |
 | <a name="module_imgnotification"></a> [imgnotification](#module\_imgnotification) | ./modules/notification | n/a |
 | <a name="module_imgstorageaccount"></a> [imgstorageaccount](#module\_imgstorageaccount) | ./modules/storageaccount | n/a |
 
