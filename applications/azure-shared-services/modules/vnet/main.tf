@@ -1,5 +1,5 @@
 resource "azurerm_virtual_network" "bastionmgmtvnet" {
-  name                = "${var.project}-vnet"
+  name                = "${var.project}-vnethub"
   address_space       = ["10.255.255.0/24"]
   location            = var.location
   resource_group_name = var.resourcegroupname

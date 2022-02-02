@@ -26,7 +26,7 @@
 
 # resource "azurerm_virtual_network_peering" "vnet-peering-dest-1" {
 #   provider                  = azurerm.vnettest
-#   name                      = "PeerWith${var.project}-vnet"
+#   name                      = "PeerWith${var.project}-vnethub"
 #   resource_group_name       = TARGET_RESOURCEGROUP
 
 #   virtual_network_name      = TARGET_VNETNAME
@@ -50,7 +50,7 @@
 # }
 
 # resource "azurerm_virtual_network_peering" "vnet-peering-dest-1" {
-#   name                      = "PeerWith${var.project}-vnet"
+#   name                      = "PeerWith${var.project}-vnethub"
 #   resource_group_name       = "test-rg"
 
 #   virtual_network_name      = "testvnet"
