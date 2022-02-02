@@ -44,5 +44,7 @@ These include:
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_logicapphostname"></a> [logicapphostname](#output\_logicapphostname) | n/a |
 <!-- END_TF_DOCS -->
