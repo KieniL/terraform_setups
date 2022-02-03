@@ -49,21 +49,21 @@ No outputs.
 This is manual task
 
 ## Bastion
-**[README](./modules/bastion/file-name.md)**
+**[README](./modules/bastion/README.md)**
 
 ![Diagram](./modules/bastion/graph.svg)
 
 ---
 
 ## Management
-**[README](./modules/managementvm/file-name.md)**
+**[README](./modules/managementvm/README.md)**
 
 ![Diagram](./modules/managementvm/graph.svg)
 
 ---
 
 ## VNET
-**[README](./modules/vnet/file-name.md)**
+**[README](./modules/vnet/README.md)**
 
 ![Diagramt](./modules/vnet/graph.svg)
 
@@ -71,6 +71,6 @@ This is manual task
 ---
 
 ## VNET-Peerings
-**[README](./modules/vnet-peerings/file-name.md)**
+**[README](./modules/vnet-peerings/README.md)**
 
 ![Diagram](./modules/vnet-peerings/graph.svg)
