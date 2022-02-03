@@ -4,12 +4,13 @@ test:
 	tflint
 	tfsec --concise-output
 	checkov -d ./ --compact --quiet
-	
-doc: graph
-	terraform fmt --recursive
-	terraform-docs markdown table --output-file README.md --output-mode inject  --recursive  --show all ./ 
 
-SUBDIRS = ./modules/bastion modules/managementvm modules/vnet
+
+doc:
+	terraform fmt --recursive
+	terraform-docs markdown table --output-file README.md --output-mode inject  --recursive  --show all ./
+
+SUBDIRS = ./modules/bastion modules/managementvm modules/vnet modules/vnet-peerings
 
 graph:
 	for dir in $(SUBDIRS); do \

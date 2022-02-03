@@ -42,3 +42,30 @@ This is the readme of the example repository for terraform-docs poc.
 
 No outputs.
 <!-- END_TF_DOCS -->
+
+
+
+# Graphs
+This is manual task
+
+## Bastion
+[README](./modules/bastion/file-name.md)
+![Diagram](./modules/bastion/graph.svg)
+
+---
+
+## Management
+[README](./modules/managementvm/file-name.md)
+![Diagram](./modules/managementvm/graph.svg)
+
+---
+
+## VNET
+[README](./modules/vnet/file-name.md)
+![Diagramt](./modules/vnet/graph.svg)
+
+---
+
+## VNET-Peerings
+[README](./modules/vnet-peerings/file-name.md)
+![Diagram](./modules/vnet-peerings/graph.svg)
