@@ -1,3 +1,9 @@
+/**
+  * # README.md
+  *
+  * This is the readme of the example repository for terraform-docs poc.
+  */
+
 terraform {
   required_providers {
     azurerm = {
@@ -58,3 +64,14 @@ module "vnetpeerings" {
   project           = var.resource.project
   bastionmgmtvnet   = module.vnet.bastionmgmtvnet
 }
+
+/**
+ * # Footer
+ *
+ * Everything in this comment block will get extracted.
+ *
+ * You can put simple text or complete Markdown content
+ * here. Subsequently if you want to render AsciiDoc format
+ * you can put AsciiDoc compatible content in this comment
+ * block.
+ */
