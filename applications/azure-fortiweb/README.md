@@ -1,7 +1,9 @@
 <!-- BEGIN_TF_DOCS -->
-# ARMTemplate
+# Fortiweb
 
-A terraform module which runs an arm template inside of terraform to deploy fortiweb
+A terraform module which deploys Fortiweb with Terraform Modules based on these two documentations
+* [FortiwebDocumentationARM](https://docs.fortinet.com/document/fortiweb-public-cloud/latest/deploying-fortiweb-on-azure/403009/deploying-fortiweb-vm-from-arm-template)
+* [ARMTemplateForConversion](https://ftnt.blob.core.windows.net/fortiweb-bootstrap-template/azure_bootstrap.json?sv=2020-04-08&st=2022-01-06T01%3A40%3A00Z&se=2025-01-08T01%3A40%3A00Z&sr=b&sp=r&sig=0aRrMzy6zHwbeXQPAvRoE0wjBOnT2ejaeWEv99NrogI%3D)
 
 ## Requirements
 
@@ -17,7 +19,9 @@ A terraform module which runs an arm template inside of terraform to deploy fort
 
 ## Modules
 
-No modules.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_vnet"></a> [vnet](#module\_vnet) | ./modules/vnet | n/a |
 
 ## Resources
 
@@ -29,7 +33,12 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_resource"></a> [resource](#input\_resource) | Resource parameters | `map` | <pre>{<br>  "location": "Germany West Central",<br>  "project": "azurecli-armtest",<br>  "templateuri": "https://raw.githubusercontent.com/fortinet/fortiweb-ha/main/azure/templates/deploy_fwb_ha.json"<br>}</pre> | no |
+| <a name="input_adminPassword"></a> [adminPassword](#input\_adminPassword) | Admin password | `string` | `"5btCB9BESSvq0rDWvEDw"` | no |
+| <a name="input_adminUserName"></a> [adminUserName](#input\_adminUserName) | Admin username for the FortiWeb instance. | `string` | `"azureuser"` | no |
+| <a name="input_location"></a> [location](#input\_location) | location to deploy to | `string` | `"Germany West Central"` | no |
+| <a name="input_project"></a> [project](#input\_project) | the project tag to set for the resources | `string` | `"azureforti"` | no |
+| <a name="input_vmNamePrefix"></a> [vmNamePrefix](#input\_vmNamePrefix) | Name prefix for FortiWeb set VM instances. | `string` | `"FortiAzure"` | no |
+| <a name="input_vmSku"></a> [vmSku](#input\_vmSku) | Size of VM in the FortiWeb set VM instances. | `string` | `"Standard_F2s"` | no |
 
 ## Outputs
 
@@ -41,19 +50,6 @@ No outputs.
 # Graphs
 This is manual task
 
-## Bastion
-**[README](./modules/bastion/README.md)**
-
-![Diagram](./modules/bastion/graph.svg)
-
----
-
-## Management
-**[README](./modules/managementvm/README.md)**
-
-![Diagram](./modules/managementvm/graph.svg)
-
----
 
 ## VNET
 **[README](./modules/vnet/README.md)**
@@ -62,8 +58,3 @@ This is manual task
 
 <br/>
 ---
-
-## VNET-Peerings
-**[README](./modules/vnet-peerings/README.md)**
-
-![Diagram](./modules/vnet-peerings/graph.svg)

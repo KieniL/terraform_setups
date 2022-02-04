@@ -8,8 +8,14 @@ test:
 
 doc:
 	terraform fmt --recursive
-	terraform-docs markdown table --output-file README.md --output-mode inject --show all ./
+	terraform-docs markdown table --output-file README.md --output-mode inject  --recursive  --show all ./
 
+SUBDIRS = modules/vnet
+
+graph:
+	for dir in $(SUBDIRS); do \
+        $(MAKE) -C $$dir graph; \
+    done
 
 plan:
 	terraform fmt --recursive
