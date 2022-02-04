@@ -48,5 +48,5 @@ module "fortiwebvm" {
   vmsize            = var.vmSku
   username          = var.adminUserName
   password          = var.adminPassword
-  source_ip = var.source_ip
+  source_ip         = var.source_ip
 }

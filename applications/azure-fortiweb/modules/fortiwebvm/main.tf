@@ -41,7 +41,7 @@ resource "azurerm_network_security_group" "fortinsg" {
   location            = var.location
   resource_group_name = var.resourcegroupname
 
-    security_rule {
+  security_rule {
     name                       = "ALLOW_INCOMING_FROM_MY_IP"
     priority                   = 100
     direction                  = "Inbound"
@@ -74,7 +74,7 @@ resource "azurerm_linux_virtual_machine" "fortivm" {
   disable_password_authentication = false
 
 
-  custom_data = base64encode(local.user_data)
+  custom_data = base64encode("${path.module}/customdata.json")
 
 
   network_interface_ids = [
@@ -82,18 +82,17 @@ resource "azurerm_linux_virtual_machine" "fortivm" {
     azurerm_network_interface.internalnic.id
   ]
 
-  storage_os_disk {
-    name              = "disk1"
-    caching           = "ReadWrite"
-    create_option     = "FromImage"
-    managed_disk_type = "Standard_LRS"
+  os_disk {
+    name                 = "disk1"
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
   }
 
   source_image_reference {
     publisher = "fortinet"
     offer     = "fortinet_fortiweb-vm_v5"
     sku       = "fortinet_fw-vm"
-    version   = "6.3.11"
+    version   = "6.3.17"
   }
 
   tags = var.tags
