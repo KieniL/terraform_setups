@@ -8,13 +8,13 @@ A repo to store policies for azure in terraform (allowedLocation and require tag
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | =2.46.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >=2.94.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 2.46.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 2.95.0 |
 
 ## Modules
 
@@ -24,17 +24,17 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [azurerm_policy_assignment.allowedImagesPolicyAssignment](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/policy_assignment) | resource |
-| [azurerm_policy_assignment.allowedLocationPolicyAssignment](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/policy_assignment) | resource |
-| [azurerm_policy_assignment.allowedSkuPolicyAssignment](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/policy_assignment) | resource |
-| [azurerm_policy_assignment.requireTagPolicyAssignment](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/policy_assignment) | resource |
-| [azurerm_policy_definition.allowedimagespolicy](https://registry.terraform.io/providers/hashicorp/azurerm/2.46.0/docs/resources/policy_definition) | resource |
+| [azurerm_policy_definition.allowedimagespolicy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_definition) | resource |
+| [azurerm_subscription_policy_assignment.allowedImagesPolicyAssignment](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subscription_policy_assignment) | resource |
+| [azurerm_subscription_policy_assignment.allowedLocationPolicyAssignment](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subscription_policy_assignment) | resource |
+| [azurerm_subscription_policy_assignment.allowedSkuPolicyAssignment](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subscription_policy_assignment) | resource |
+| [azurerm_subscription_policy_assignment.requireTagPolicyAssignment](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subscription_policy_assignment) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_allowedImages"></a> [allowedImages](#input\_allowedImages) | Map of images names for configuration. | <pre>list(object({<br>    publisher = string<br>    offer     = string<br>    sku       = string<br>    version   = string<br>  }))</pre> | n/a | yes |
+| <a name="input_allowedImages"></a> [allowedImages](#input\_allowedImages) | Map of images for configuration. | <pre>object({<br>    publishers = list(string)<br>    offers     = list(string)<br>    skus       = list(string)<br>    versions   = list(string)<br>  })</pre> | n/a | yes |
 | <a name="input_allowedLocationSubPolicyId"></a> [allowedLocationSubPolicyId](#input\_allowedLocationSubPolicyId) | The PolicyId for the default allowedLocation Definition | `string` | `"PolId"` | no |
 | <a name="input_allowedLocations"></a> [allowedLocations](#input\_allowedLocations) | The allowed Locations | `list(string)` | <pre>[<br>  "Germany West Central",<br>  "West Europe"<br>]</pre> | no |
 | <a name="input_allowedSkuPolicyId"></a> [allowedSkuPolicyId](#input\_allowedSkuPolicyId) | The PolicyId for the default allowedSku Definition | `string` | `"PolId"` | no |

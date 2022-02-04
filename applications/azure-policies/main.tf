@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "=2.46.0"
+      version = ">=2.94.0"
     }
   }
 }
@@ -12,9 +12,9 @@ provider "azurerm" {
 }
 
 
-resource "azurerm_policy_assignment" "allowedLocationPolicyAssignment" {
+resource "azurerm_subscription_policy_assignment" "allowedLocationPolicyAssignment" {
   name                 = "${var.resource.prefix}-allowedlocation-policy-assignment"
-  scope                = var.subscriptionId
+  subscription_id      = var.subscriptionId
   policy_definition_id = var.allowedLocationSubPolicyId
   description          = "Policy Assignment for allowed Location"
   display_name         = "Allowed Location Policy Assignment"
@@ -35,9 +35,9 @@ resource "azurerm_policy_assignment" "allowedLocationPolicyAssignment" {
 
 }
 
-resource "azurerm_policy_assignment" "requireTagPolicyAssignment" {
+resource "azurerm_subscription_policy_assignment" "requireTagPolicyAssignment" {
   name                 = "${var.resource.prefix}-requireTag-policy-assignment"
-  scope                = var.subscriptionId
+  subscription_id      = var.subscriptionId
   policy_definition_id = var.tagPolicyId
   description          = "Policy Assignment for require Tag"
   display_name         = "Require Tag Policy Assignment"
@@ -59,9 +59,9 @@ resource "azurerm_policy_assignment" "requireTagPolicyAssignment" {
 
 }
 
-resource "azurerm_policy_assignment" "allowedSkuPolicyAssignment" {
+resource "azurerm_subscription_policy_assignment" "allowedSkuPolicyAssignment" {
   name                 = "${var.resource.prefix}-allowedSku-policy-assignment"
-  scope                = var.subscriptionId
+  subscription_id      = var.subscriptionId
   policy_definition_id = var.allowedSkuPolicyId
   description          = "Policy Assignment for allowedSku"
   display_name         = "Allowed Sku Policy Assignment"
@@ -178,9 +178,9 @@ PARAMETERS
 }
 
 
-resource "azurerm_policy_assignment" "allowedImagesPolicyAssignment" {
+resource "azurerm_subscription_policy_assignment" "allowedImagesPolicyAssignment" {
   name                 = "${var.resource.prefix}-allowedImages-policy-assignment"
-  scope                = var.subscriptionId
+  subscription_id      = var.subscriptionId
   policy_definition_id = azurerm_policy_definition.allowedimagespolicy.id
   description          = "Policy Assignment for allowedImages"
   display_name         = "Allowed Images Policy Assignment"
