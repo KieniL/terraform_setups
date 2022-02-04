@@ -45,4 +45,8 @@ module "fortiwebvm" {
   project           = var.project
   subnetexternal    = module.vnet.subnetexternal
   subnetinternal    = module.vnet.subnetinternal
+  vmsize            = var.vmSku
+  username          = var.adminUserName
+  password          = var.adminPassword
+  source_ip = var.source_ip
 }

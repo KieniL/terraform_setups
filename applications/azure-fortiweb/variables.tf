@@ -23,3 +23,7 @@ variable "adminPassword" {
   description = "Admin password"
   default     = "5btCB9BESSvq0rDWvEDw"
 }
+
+variable "source_ip" {
+  description = "Your external IP"
+}

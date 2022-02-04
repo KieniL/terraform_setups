@@ -21,3 +21,19 @@ variable "subnetexternal" {
 variable "subnetinternal" {
 
 }
+
+variable "vmsize" {
+
+}
+
+variable "username" {
+
+}
+
+variable "password" {
+
+}
+
+variable "source_ip" {
+
+}
