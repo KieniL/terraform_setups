@@ -23,3 +23,12 @@ variable "mgmtvm" {
   })
 }
 
+variable "remote_resourcegroup" {
+  description = "the resourcegroup to peer to"
+  default     = "azureforti-rg"
+}
+
+variable "remote_vnet" {
+  description = "the vnet to peer to"
+  default     = "azureforti-vnet"
+}

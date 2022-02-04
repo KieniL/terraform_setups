@@ -59,10 +59,12 @@ module "managementvm" {
 }
 
 module "vnetpeerings" {
-  source            = "./modules/vnet-peerings"
-  resourcegroupname = azurerm_resource_group.rg.name
-  project           = var.resource.project
-  bastionmgmtvnet   = module.vnet.bastionmgmtvnet
+  source               = "./modules/vnet-peerings"
+  resourcegroupname    = azurerm_resource_group.rg.name
+  project              = var.resource.project
+  bastionmgmtvnet      = module.vnet.bastionmgmtvnet
+  remote_resourcegroup = var.remote_resourcegroup
+  remote_vnet          = var.remote_vnet
 }
 
 /**

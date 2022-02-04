@@ -36,6 +36,8 @@ This is the readme of the example repository for terraform-docs poc.
 |------|-------------|------|---------|:--------:|
 | <a name="input_deploy_management"></a> [deploy\_management](#input\_deploy\_management) | Boolean to deploy management subnet and vm | `bool` | `false` | no |
 | <a name="input_mgmtvm"></a> [mgmtvm](#input\_mgmtvm) | Definition of the managementvm | <pre>object({<br>    size             = string<br>    username         = string<br>    password         = string<br>    autoshutdowntime = string<br>  })</pre> | n/a | yes |
+| <a name="input_remote_resourcegroup"></a> [remote\_resourcegroup](#input\_remote\_resourcegroup) | the resourcegroup to peer to | `string` | `"azureforti-rg"` | no |
+| <a name="input_remote_vnet"></a> [remote\_vnet](#input\_remote\_vnet) | the vnet to peer to | `string` | `"azureforti-vnet"` | no |
 | <a name="input_resource"></a> [resource](#input\_resource) | Resource parameters | `map` | <pre>{<br>  "location": "Germany West Central",<br>  "project": "sharedservices"<br>}</pre> | no |
 
 ## Outputs

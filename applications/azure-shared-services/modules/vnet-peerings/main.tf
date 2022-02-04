@@ -60,22 +60,22 @@
 
 
 
-# data "azurerm_virtual_network" "vnetdest-2" {
-#   name                = "scaled-webserver-network"
-#   resource_group_name = "webserver-rg"
-# }
+data "azurerm_virtual_network" "vnetdest" {
+  name                = var.remote_vnet
+  resource_group_name = var.remote_resourcegroup
+}
 
-# resource "azurerm_virtual_network_peering" "vnet-peering-source-2" {
-#   name                      = "PeerWithscaled-webserver-network"
-#   resource_group_name       = var.resourcegroupname
-#   virtual_network_name      = var.bastionmgmtvnet.name
-#   remote_virtual_network_id = data.azurerm_virtual_network.vnetdest-2.id
-# }
+resource "azurerm_virtual_network_peering" "vnet-peering-source" {
+  name                      = "PeerWith${var.remote_vnet}"
+  resource_group_name       = var.resourcegroupname
+  virtual_network_name      = var.bastionmgmtvnet.name
+  remote_virtual_network_id = data.azurerm_virtual_network.vnetdest.id
+}
 
-# resource "azurerm_virtual_network_peering" "vnet-peering-dest-2" {
-#   name                = "PeerWith${var.project}-vnet"
-#   resource_group_name = "webserver-rg"
+resource "azurerm_virtual_network_peering" "vnet-peering-dest" {
+  name                = "PeerWith${var.project}-vnet"
+  resource_group_name = data.azurerm_virtual_network.vnetdest.resource_group_name
 
-#   virtual_network_name      = "scaled-webserver-network"
-#   remote_virtual_network_id = var.bastionmgmtvnet.id
-# }
+  virtual_network_name      = data.azurerm_virtual_network.vnetdest.name
+  remote_virtual_network_id = var.bastionmgmtvnet.id
+}
