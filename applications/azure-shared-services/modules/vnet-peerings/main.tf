@@ -22,6 +22,8 @@
 #   resource_group_name       = var.resourcegroupname
 #   virtual_network_name      = var.bastionmgmtvnet.name
 #   remote_virtual_network_id = data.azurerm_virtual_network.vnetdest.id
+#   allow_virtual_network_access = true
+#   allow_forwarded_traffic = true
 # }
 
 # resource "azurerm_virtual_network_peering" "vnet-peering-dest-1" {
@@ -31,6 +33,8 @@
 
 #   virtual_network_name      = TARGET_VNETNAME
 #   remote_virtual_network_id = var.bastionmgmtvnet.id
+#   allow_virtual_network_access = true
+#   allow_forwarded_traffic = true
 # }
 #Block End
 
@@ -47,6 +51,8 @@
 #   resource_group_name       = var.resourcegroupname
 #   virtual_network_name      = var.bastionmgmtvnet.name
 #   remote_virtual_network_id = data.azurerm_virtual_network.vnetdest-1.id
+#   allow_virtual_network_access = true
+#   allow_forwarded_traffic = true
 # }
 
 # resource "azurerm_virtual_network_peering" "vnet-peering-dest-1" {
@@ -55,6 +61,8 @@
 
 #   virtual_network_name      = "testvnet"
 #   remote_virtual_network_id = var.bastionmgmtvnet.id
+#   allow_virtual_network_access = true
+#   allow_forwarded_traffic = true
 # }
 
 
@@ -66,16 +74,20 @@ data "azurerm_virtual_network" "vnetdest" {
 }
 
 resource "azurerm_virtual_network_peering" "vnet-peering-source" {
-  name                      = "PeerWith${var.remote_vnet}"
-  resource_group_name       = var.resourcegroupname
-  virtual_network_name      = var.bastionmgmtvnet.name
-  remote_virtual_network_id = data.azurerm_virtual_network.vnetdest.id
+  name                         = "PeerWith${var.remote_vnet}"
+  resource_group_name          = var.resourcegroupname
+  virtual_network_name         = var.bastionmgmtvnet.name
+  remote_virtual_network_id    = data.azurerm_virtual_network.vnetdest.id
+  allow_virtual_network_access = true
+  allow_forwarded_traffic      = true
 }
 
 resource "azurerm_virtual_network_peering" "vnet-peering-dest" {
   name                = "PeerWith${var.project}-vnet"
   resource_group_name = data.azurerm_virtual_network.vnetdest.resource_group_name
 
-  virtual_network_name      = data.azurerm_virtual_network.vnetdest.name
-  remote_virtual_network_id = var.bastionmgmtvnet.id
+  virtual_network_name         = data.azurerm_virtual_network.vnetdest.name
+  remote_virtual_network_id    = var.bastionmgmtvnet.id
+  allow_virtual_network_access = true
+  allow_forwarded_traffic      = true
 }
