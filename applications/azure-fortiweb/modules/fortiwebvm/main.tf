@@ -19,6 +19,8 @@ resource "azurerm_network_interface" "externalnic" {
     private_ip_address            = "10.0.1.10"
     primary                       = false
   }
+
+  tags = var.tags
 }
 
 resource "azurerm_network_interface" "internalnic" {
@@ -34,6 +36,7 @@ resource "azurerm_network_interface" "internalnic" {
     private_ip_address_allocation = "Dynamic"
   }
 
+  tags = var.tags
 }
 
 resource "azurerm_network_security_group" "fortinsg" {
@@ -83,7 +86,7 @@ resource "azurerm_linux_virtual_machine" "fortivm" {
   ]
 
   os_disk {
-    name                 = "disk1"
+    name                 = "fortidisk1"
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }
@@ -93,6 +96,12 @@ resource "azurerm_linux_virtual_machine" "fortivm" {
     offer     = "fortinet_fortiweb-vm_v5"
     sku       = "fortinet_fw-vm"
     version   = "6.3.17"
+  }
+
+  plan {
+    name      = "fortinet_fw-vm"
+    product   = "fortinet_fortiweb-vm_v5"
+    publisher = "fortinet"
   }
 
   tags = var.tags
