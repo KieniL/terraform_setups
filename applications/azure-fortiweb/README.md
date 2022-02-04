@@ -21,6 +21,7 @@ A terraform module which deploys Fortiweb with Terraform Modules based on these 
 
 | Name | Source | Version |
 |------|--------|---------|
+| <a name="module_fortiwebvm"></a> [fortiwebvm](#module\_fortiwebvm) | ./modules/fortiwebvm | n/a |
 | <a name="module_vnet"></a> [vnet](#module\_vnet) | ./modules/vnet | n/a |
 
 ## Resources
@@ -37,7 +38,6 @@ A terraform module which deploys Fortiweb with Terraform Modules based on these 
 | <a name="input_adminUserName"></a> [adminUserName](#input\_adminUserName) | Admin username for the FortiWeb instance. | `string` | `"azureuser"` | no |
 | <a name="input_location"></a> [location](#input\_location) | location to deploy to | `string` | `"Germany West Central"` | no |
 | <a name="input_project"></a> [project](#input\_project) | the project tag to set for the resources | `string` | `"azureforti"` | no |
-| <a name="input_vmNamePrefix"></a> [vmNamePrefix](#input\_vmNamePrefix) | Name prefix for FortiWeb set VM instances. | `string` | `"FortiAzure"` | no |
 | <a name="input_vmSku"></a> [vmSku](#input\_vmSku) | Size of VM in the FortiWeb set VM instances. | `string` | `"Standard_F2s"` | no |
 
 ## Outputs
@@ -55,6 +55,14 @@ This is manual task
 **[README](./modules/vnet/README.md)**
 
 ![Diagramt](./modules/vnet/graph.svg)
+
+<br/>
+---
+
+## Fortiwebvm
+**[README](./modules/fortiwebvm/README.md)**
+
+![Diagramt](./modules/fortiwebvm/graph.svg)
 
 <br/>
 ---

@@ -9,11 +9,6 @@ variable "project" {
   default     = "azureforti"
 }
 
-variable "vmNamePrefix" {
-  description = "Name prefix for FortiWeb set VM instances."
-  default     = "FortiAzure"
-}
-
 variable "vmSku" {
   description = "Size of VM in the FortiWeb set VM instances."
   default     = "Standard_F2s"

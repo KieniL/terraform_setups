@@ -35,3 +35,14 @@ module "vnet" {
   resourcegroupname = azurerm_resource_group.rg.name
   project           = var.project
 }
+
+module "fortiwebvm" {
+  source = "./modules/fortiwebvm"
+
+  tags              = azurerm_resource_group.rg.tags
+  location          = azurerm_resource_group.rg.location
+  resourcegroupname = azurerm_resource_group.rg.name
+  project           = var.project
+  subnetexternal    = module.vnet.subnetexternal
+  subnetinternal    = module.vnet.subnetinternal
+}
