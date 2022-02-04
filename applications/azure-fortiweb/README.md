@@ -1,4 +1,8 @@
 <!-- BEGIN_TF_DOCS -->
+# ARMTemplate
+
+A terraform module which runs an arm template inside of terraform to deploy fortiweb
+
 ## Requirements
 
 | Name | Version |
@@ -25,7 +29,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_resource"></a> [resource](#input\_resource) | Resource parameters | `map` | <pre>{<br>  "location": "Germany West Central",<br>  "project": "sharedservices"<br>}</pre> | no |
+| <a name="input_resource"></a> [resource](#input\_resource) | Resource parameters | `map` | <pre>{<br>  "location": "Germany West Central",<br>  "project": "azurecli-armtest",<br>  "templateuri": "https://raw.githubusercontent.com/fortinet/fortiweb-ha/main/azure/templates/deploy_fwb_ha.json"<br>}</pre> | no |
 
 ## Outputs
 
