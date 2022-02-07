@@ -34,6 +34,5 @@ variable "publisher" {
 }
 
 variable "providertag" {
-  default     = "6EB3B02F-50E5-4A3E-8CB8-2E12925831FWBVM"
   description = "The Provider tag value to set"
 }
