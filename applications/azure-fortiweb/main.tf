@@ -5,7 +5,7 @@
 * * [FortiwebDocumentationARM](https://docs.fortinet.com/document/fortiweb-public-cloud/latest/deploying-fortiweb-on-azure/403009/deploying-fortiweb-vm-from-arm-template)
 * * [ARMTemplateForConversion](https://ftnt.blob.core.windows.net/fortiweb-bootstrap-template/azure_bootstrap.json?sv=2020-04-08&st=2022-01-06T01%3A40%3A00Z&se=2025-01-08T01%3A40%3A00Z&sr=b&sp=r&sig=0aRrMzy6zHwbeXQPAvRoE0wjBOnT2ejaeWEv99NrogI%3D)
 * <br/><br/>
-* The Marketplace terms needs to be accepted with: <code>az vm image terms accept --urn fortinet:fortinet_fortiweb-vm_v5:fortinet_fw-vm:6.3.17</code>
+* The Marketplace terms needs to be accepted with: <code>az vm image terms accept --urn fortinet:fortinet_fortiweb-vm_v5:fortinet_fw-vm_payg:6.3.17</code>
 */
 
 terraform {

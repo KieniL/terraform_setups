@@ -96,18 +96,18 @@ resource "azurerm_linux_virtual_machine" "fortivm" {
   os_disk {
     name                 = "fortidisk1"
     caching              = "ReadWrite"
-    storage_account_type = "Standard_LRS"
+    storage_account_type = "Premium_LRS"
   }
 
   source_image_reference {
     publisher = "fortinet"
     offer     = "fortinet_fortiweb-vm_v5"
-    sku       = "fortinet_fw-vm"
+    sku       = "fortinet_fw-vm_payg"
     version   = "6.3.17"
   }
 
   plan {
-    name      = "fortinet_fw-vm"
+    name      = "fortinet_fw-vm_payg"
     product   = "fortinet_fortiweb-vm_v5"
     publisher = "fortinet"
   }
@@ -119,7 +119,7 @@ resource "azurerm_managed_disk" "fortidisk" {
   name                 = azurerm_linux_virtual_machine.fortivm.name
   location             = var.location
   resource_group_name  = var.resourcegroupname
-  storage_account_type = "Standard_LRS"
+  storage_account_type = "Premium_LRS"
   create_option        = "Empty"
   disk_size_gb         = 30
 
