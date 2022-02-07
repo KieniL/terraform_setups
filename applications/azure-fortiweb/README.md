@@ -6,6 +6,7 @@
 A terraform module which deploys Fortiweb with Terraform Modules based on these two documentations
 * [FortiwebDocumentationARM](https://docs.fortinet.com/document/fortiweb-public-cloud/latest/deploying-fortiweb-on-azure/403009/deploying-fortiweb-vm-from-arm-template)
 * [ARMTemplateForConversion](https://ftnt.blob.core.windows.net/fortiweb-bootstrap-template/azure_bootstrap.json?sv=2020-04-08&st=2022-01-06T01%3A40%3A00Z&se=2025-01-08T01%3A40%3A00Z&sr=b&sp=r&sig=0aRrMzy6zHwbeXQPAvRoE0wjBOnT2ejaeWEv99NrogI%3D)
+<br/><br/>
 The Marketplace terms needs to be accepted with: <code>az vm image terms accept --urn fortinet:fortinet\_fortiweb-vm\_v5:fortinet\_fw-vm:6.3.17</code>
 
 ## Requirements
@@ -18,7 +19,7 @@ The Marketplace terms needs to be accepted with: <code>az vm image terms accept 
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 2.95.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >=2.94.0 |
 
 ## Modules
 
