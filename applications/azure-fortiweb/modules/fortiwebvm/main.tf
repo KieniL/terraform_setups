@@ -8,7 +8,8 @@ resource "azurerm_network_interface" "externalnic" {
   ip_configuration {
     name                          = "ipconfig1"
     subnet_id                     = var.subnetexternal.id
-    private_ip_address_allocation = "Dynamic"
+    private_ip_address_allocation = "Static"
+    private_ip_address            = var.subnetexternalstartadress
     primary                       = true
   }
 
@@ -33,7 +34,8 @@ resource "azurerm_network_interface" "internalnic" {
   ip_configuration {
     name                          = "ipconfig1"
     subnet_id                     = var.subnetinternal.id
-    private_ip_address_allocation = "Dynamic"
+    private_ip_address_allocation = "Static"
+    private_ip_address            = var.subnetinternalstartadress
   }
 
   tags = var.tags
@@ -64,6 +66,11 @@ resource "azurerm_network_interface_security_group_association" "externalnic_for
   network_security_group_id = azurerm_network_security_group.fortinsg.id
 }
 
+resource "azurerm_network_interface_security_group_association" "internalnic_fortinsg_ass" {
+  network_interface_id      = azurerm_network_interface.internalnic.id
+  network_security_group_id = azurerm_network_security_group.fortinsg.id
+}
+
 resource "azurerm_linux_virtual_machine" "fortivm" {
   name                = "${var.project}-fortivm"
   location            = var.location
@@ -76,8 +83,9 @@ resource "azurerm_linux_virtual_machine" "fortivm" {
   admin_password                  = var.password
   disable_password_authentication = false
 
-
-  custom_data = base64encode("${path.module}/customdata.json")
+  identity {
+    type = "SystemAssigned"
+  }
 
 
   network_interface_ids = [

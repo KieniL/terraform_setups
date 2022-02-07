@@ -25,7 +25,9 @@ resource "azurerm_resource_group" "rg" {
   name     = "${var.project}-rg"
   location = var.location
   tags = {
-    project = var.project
+    project   = var.project
+    publisher = upper("${var.publisher}")
+    provider  = upper("${var.providertag}")
   }
 }
 
@@ -51,4 +53,8 @@ module "fortiwebvm" {
   username          = var.adminUserName
   password          = var.adminPassword
   source_ip         = var.source_ip
+
+  subnetexternalstartadress = module.vnet.subnetexternalstartadress
+
+  subnetinternalstartadress = module.vnet.subnetinternalstartadress
 }

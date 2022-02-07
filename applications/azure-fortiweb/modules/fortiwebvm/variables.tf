@@ -37,3 +37,11 @@ variable "password" {
 variable "source_ip" {
 
 }
+
+variable "subnetexternalstartadress" {
+
+}
+
+variable "subnetinternalstartadress" {
+
+}

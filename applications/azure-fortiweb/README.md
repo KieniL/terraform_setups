@@ -19,7 +19,7 @@ The Marketplace terms needs to be accepted with: <code>az vm image terms accept 
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >=2.94.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 2.95.0 |
 
 ## Modules
 
@@ -42,6 +42,8 @@ The Marketplace terms needs to be accepted with: <code>az vm image terms accept 
 | <a name="input_adminUserName"></a> [adminUserName](#input\_adminUserName) | Admin username for the FortiWeb instance. | `string` | `"azureuser"` | no |
 | <a name="input_location"></a> [location](#input\_location) | location to deploy to | `string` | `"Germany West Central"` | no |
 | <a name="input_project"></a> [project](#input\_project) | the project tag to set for the resources | `string` | `"azureforti"` | no |
+| <a name="input_providertag"></a> [providertag](#input\_providertag) | The Provider tag value to set | `string` | `"6EB3B02F-50E5-4A3E-8CB8-2E12925831FWBVM"` | no |
+| <a name="input_publisher"></a> [publisher](#input\_publisher) | The Publisher tag value to set | `string` | `"Fortinet"` | no |
 | <a name="input_source_ip"></a> [source\_ip](#input\_source\_ip) | Your external IP | `any` | n/a | yes |
 | <a name="input_vmSku"></a> [vmSku](#input\_vmSku) | Size of VM in the FortiWeb set VM instances. | `string` | `"Standard_F2s"` | no |
 

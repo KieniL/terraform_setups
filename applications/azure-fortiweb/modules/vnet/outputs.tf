@@ -10,4 +10,10 @@ output "subnetinternal" {
   value = azurerm_subnet.subnetinternal
 }
 
+output "subnetexternalstartadress" {
+  value = "10.0.1.4"
+}
 
+output "subnetinternalstartadress" {
+  value = "10.0.2.4"
+}
