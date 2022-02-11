@@ -12,5 +12,10 @@ resource "aws_dynamodb_table" "lock-table" {
     type = "S"
   }
 
+  ttl {
+    attribute_name = "TimeToExist"
+    enabled        = true
+  }
+
   tags = var.tags
 }

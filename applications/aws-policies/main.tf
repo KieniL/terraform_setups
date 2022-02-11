@@ -8,6 +8,7 @@ terraform {
 }
 
 provider "aws" {
+  region = "eu-central-1"
 }
 
 resource "aws_organizations_policy" "requiretag" {
