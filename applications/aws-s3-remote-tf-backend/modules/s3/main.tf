@@ -6,7 +6,7 @@ resource "random_string" "bucketname" {
 }
 
 resource "aws_s3_bucket" "statestorage" {
-  bucket = "statebucket${random_string.bucketname.result}"
+  bucket = "statebucket-${random_string.bucketname.result}"
   tags   = var.tags
 }
 
@@ -24,6 +24,7 @@ data "aws_iam_policy_document" "allow_access" {
 
     actions = [
       "s3:GetObject",
+      "s3:PutObject"
     ]
 
     resources = [
@@ -41,8 +42,10 @@ resource "aws_s3_bucket_policy" "allow_access" {
 resource "aws_s3_bucket_public_access_block" "blockpublic" {
   bucket = aws_s3_bucket.statestorage.id
 
-  block_public_acls   = true
-  block_public_policy = true
+  block_public_acls       = true
+  block_public_policy     = true
+  restrict_public_buckets = true
+  ignore_public_acls      = true
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "bucketsse" {
@@ -59,6 +62,5 @@ resource "aws_s3_bucket_versioning" "versioning_state" {
   bucket = aws_s3_bucket.statestorage.id
   versioning_configuration {
     status = "Enabled"
-    mfa_delete = "Enable"
   }
 }

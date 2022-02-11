@@ -35,6 +35,7 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_mfa_device"></a> [mfa\_device](#input\_mfa\_device) | the devicenumber of the mfa device | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | The tags to set on the resources | <pre>object({<br>    project = string<br>  })</pre> | <pre>{<br>  "project": "remotestage"<br>}</pre> | no |
 
 ## Outputs
