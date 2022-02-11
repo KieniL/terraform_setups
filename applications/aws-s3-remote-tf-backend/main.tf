@@ -11,3 +11,11 @@
 * **[README](./modules/dynamodb/README.md)**<br/>
 * ![Diagram](./modules/dynamodb/graph.svg)
 */
+
+
+
+module "s3" {
+  source = "./modules/s3"
+
+  tags = var.tags
+}
