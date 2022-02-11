@@ -1,5 +1,7 @@
+data "aws_caller_identity" "current" {}
+
 resource "aws_s3_bucket" "statestorage" {
-  bucket = "tftate-${var.random_string}"
+  bucket = "tfstate-${var.random_string}"
   tags   = var.tags
 }
 
@@ -12,7 +14,7 @@ data "aws_iam_policy_document" "restrict_access" {
   statement {
     principals {
       type        = "AWS"
-      identifiers = ["*"]
+      identifiers = [data.aws_caller_identity.current.arn]
     }
 
     actions = [
@@ -29,7 +31,7 @@ data "aws_iam_policy_document" "restrict_access" {
   statement {
     principals {
       type        = "AWS"
-      identifiers = ["*"]
+      identifiers = [data.aws_caller_identity.current.arn]
     }
 
     not_actions = [
