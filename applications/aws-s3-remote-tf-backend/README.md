@@ -47,4 +47,5 @@ A terraform module which deploys S3 and dynamodb which will then be used for ter
 | Name | Description |
 |------|-------------|
 | <a name="output_bucketname"></a> [bucketname](#output\_bucketname) | the name of the bucket for the state storage |
+| <a name="output_statelock_id"></a> [statelock\_id](#output\_statelock\_id) | The id of the state lock dynamotable |
 <!-- END_TF_DOCS -->

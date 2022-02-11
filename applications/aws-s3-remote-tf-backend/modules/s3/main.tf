@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "statestorage" {
-  bucket = "statebucket-${var.random_string}"
+  bucket = "tftate-${var.random_string}"
   tags   = var.tags
 }
 
