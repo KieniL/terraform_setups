@@ -4,3 +4,8 @@ variable "tags" {
     project = string
   })
 }
+
+variable "random_string" {
+  type        = string
+  description = "a random string to have kind of uniqueness"
+}

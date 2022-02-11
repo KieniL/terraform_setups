@@ -3,8 +3,6 @@
 
 A terraform module which deploys S3 and dynamodb which will then be used for terraform remote state
 * [Terraform S3 Backend Documentation](https://www.terraform.io/language/settings/backends/s3)
-You need to set mfa deletion prevention yourself since it needs to be done with rootaccount
-<code>aws s3api put-bucket-versioning --bucket DOC-EXAMPLE-BUCKET1 --versioning-configuration Status=Enabled,MFADelete=Enabled --mfa "SERIAL 123456"</code>
 <br/><br/>
 ## S3
 **[README](./modules/s3/README.md)**<br/>
@@ -21,17 +19,22 @@ You need to set mfa deletion prevention yourself since it needs to be done with 
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_random"></a> [random](#provider\_random) | 3.1.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
+| <a name="module_dynamodb"></a> [dynamodb](#module\_dynamodb) | ./modules/dynamodb | n/a |
 | <a name="module_s3"></a> [s3](#module\_s3) | ./modules/s3 | n/a |
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [random_string.bucketname](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
 
 ## Inputs
 
