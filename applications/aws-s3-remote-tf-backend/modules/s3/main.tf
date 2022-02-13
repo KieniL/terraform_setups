@@ -53,6 +53,32 @@ data "aws_iam_policy_document" "restrict_access" {
       ]
     }
   }
+
+  statement {
+    principals {
+      type        = "AWS"
+      identifiers = [data.aws_caller_identity.current.arn]
+    }
+
+    not_actions = [
+      "s3:GetObject",
+      "s3:PutObject"
+    ]
+
+    resources = [
+      aws_s3_bucket.statestorage.arn,
+      "${aws_s3_bucket.statestorage.arn}/*",
+    ]
+
+    condition {
+      test     = "Bool"
+      variable = "aws:MultiFactorAuthPresent"
+
+      values = [
+        true,
+      ]
+    }
+  }
 }
 
 resource "aws_s3_bucket_policy" "restrict_access" {
