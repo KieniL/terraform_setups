@@ -58,22 +58,11 @@ module "managementvm" {
   mgmtvm            = var.mgmtvm
 }
 
-module "vnetpeerings" {
-  source               = "./modules/vnet-peerings"
-  resourcegroupname    = azurerm_resource_group.rg.name
-  project              = var.resource.project
-  bastionmgmtvnet      = module.vnet.bastionmgmtvnet
-  remote_resourcegroup = var.remote_resourcegroup
-  remote_vnet          = var.remote_vnet
-}
-
-/**
- * # Footer
- *
- * Everything in this comment block will get extracted.
- *
- * You can put simple text or complete Markdown content
- * here. Subsequently if you want to render AsciiDoc format
- * you can put AsciiDoc compatible content in this comment
- * block.
- */
+# module "vnetpeerings" {
+#   source               = "./modules/vnet-peerings"
+#   resourcegroupname    = azurerm_resource_group.rg.name
+#   project              = var.resource.project
+#   bastionmgmtvnet      = module.vnet.bastionmgmtvnet
+#   remote_resourcegroup = var.remote_resourcegroup
+#   remote_vnet          = var.remote_vnet
+# }

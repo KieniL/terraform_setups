@@ -1,34 +1,3 @@
-
-variable "subscriptionId" {
-  type        = string
-  description = "The subscriptionId"
-  default     = "SubId"
-}
-
-variable "networkwatcher_rg_Id" {
-  type        = string
-  description = "The ResourceGroupId for the networkwatcher resourcegroup"
-  default     = "rg"
-}
-
-variable "allowedLocationSubPolicyId" {
-  type        = string
-  description = "The PolicyId for the default allowedLocation Definition"
-  default     = "PolId"
-}
-
-variable "allowedSkuPolicyId" {
-  type        = string
-  description = "The PolicyId for the default allowedSku Definition"
-  default     = "PolId"
-}
-
-variable "tagPolicyId" {
-  type        = string
-  description = "The PolicyDefinition Id for the default require tag Policy"
-  default     = "PolId"
-}
-
 variable "tagName" {
   default     = "project"
   type        = string
@@ -52,6 +21,7 @@ variable "resource" {
     location = "Germany West Central"
     project  = "az-900-prep"
   }
+  description = "Some resource variables"
 }
 
 variable "allowedImages" {

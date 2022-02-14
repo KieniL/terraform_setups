@@ -8,7 +8,7 @@ test:
 doc:
 	terraform fmt
 	terraform-docs markdown table --output-file README.md --output-mode inject ./
-	terraform graph -draw-cycles | dot -Tsvg > graph.svg
+	terraform graph | /home/lukas/.local/bin/blast-radius --svg > graph.svg
 
 plan:
 	terraform fmt

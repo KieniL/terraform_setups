@@ -1,3 +1,10 @@
+/*
+* # azure-policy
+* A repo to store policies for azure in terraform (allowedLocation, require tag, allowed vm sizes, allowed images)
+* ![Alt text](./graph.svg)
+*
+*/
+
 terraform {
   required_providers {
     azurerm = {
@@ -11,11 +18,25 @@ provider "azurerm" {
   features {}
 }
 
+data "azurerm_client_config" "current" {
+}
+
+data "azurerm_policy_definition" "allowedLocationPolicyDefinition" {
+  name = "Allowed locations"
+}
+
+data "azurerm_resource_group" "networkwatcherRG" {
+  name = "NetworkWatcherRG"
+}
+
+data "azurerm_resource_group" "defaultRG" {
+  name = "DefaultResourceGroup-DEWC"
+}
 
 resource "azurerm_subscription_policy_assignment" "allowedLocationPolicyAssignment" {
   name                 = "${var.resource.prefix}-allowedlocation-policy-assignment"
-  subscription_id      = var.subscriptionId
-  policy_definition_id = var.allowedLocationSubPolicyId
+  subscription_id      = data.azurerm_client_config.current.subscription_id
+  policy_definition_id = data.azurerm_policy_definition.allowedLocationPolicyDefinition.id
   description          = "Policy Assignment for allowed Location"
   display_name         = "Allowed Location Policy Assignment"
 
@@ -35,13 +56,17 @@ resource "azurerm_subscription_policy_assignment" "allowedLocationPolicyAssignme
 
 }
 
+data "azurerm_policy_definition" "requireTagPolicyDefinition" {
+  display_name = "Require a tag on resources"
+}
+
 resource "azurerm_subscription_policy_assignment" "requireTagPolicyAssignment" {
   name                 = "${var.resource.prefix}-requireTag-policy-assignment"
-  subscription_id      = var.subscriptionId
-  policy_definition_id = var.tagPolicyId
+  subscription_id      = data.azurerm_client_config.current.subscription_id
+  policy_definition_id = data.azurerm_policy_definition.requireTagPolicyDefinition.id
   description          = "Policy Assignment for require Tag"
   display_name         = "Require Tag Policy Assignment"
-  not_scopes           = [var.networkwatcher_rg_Id]
+  not_scopes           = [data.azurerm_resource_group.networkwatcherRG.id, data.azurerm_resource_group.defaultRG.id]
 
   metadata = <<METADATA
     {
@@ -59,13 +84,17 @@ resource "azurerm_subscription_policy_assignment" "requireTagPolicyAssignment" {
 
 }
 
+data "azurerm_policy_definition" "allowedSkuPolicyDefinition" {
+  display_name = "Allowed virtual machine size SKUs"
+}
+
 resource "azurerm_subscription_policy_assignment" "allowedSkuPolicyAssignment" {
   name                 = "${var.resource.prefix}-allowedSku-policy-assignment"
-  subscription_id      = var.subscriptionId
-  policy_definition_id = var.allowedSkuPolicyId
+  subscription_id      = data.azurerm_client_config.current.subscription_id
+  policy_definition_id = data.azurerm_policy_definition.allowedSkuPolicyDefinition.id
   description          = "Policy Assignment for allowedSku"
   display_name         = "Allowed Sku Policy Assignment"
-  not_scopes           = [var.networkwatcher_rg_Id]
+  not_scopes           = [data.azurerm_resource_group.networkwatcherRG.id, data.azurerm_resource_group.defaultRG.id]
 
   metadata = <<METADATA
     {
@@ -180,11 +209,11 @@ PARAMETERS
 
 resource "azurerm_subscription_policy_assignment" "allowedImagesPolicyAssignment" {
   name                 = "${var.resource.prefix}-allowedImages-policy-assignment"
-  subscription_id      = var.subscriptionId
+  subscription_id      = data.azurerm_client_config.current.subscription_id
   policy_definition_id = azurerm_policy_definition.allowedimagespolicy.id
   description          = "Policy Assignment for allowedImages"
   display_name         = "Allowed Images Policy Assignment"
-  not_scopes           = [var.networkwatcher_rg_Id]
+  not_scopes           = [data.azurerm_resource_group.networkwatcherRG.id, data.azurerm_resource_group.defaultRG.id]
 
   metadata = <<METADATA
     {
