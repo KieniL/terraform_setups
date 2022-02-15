@@ -18,11 +18,11 @@ provider "azurerm" {
   features {}
 }
 
-data "azurerm_client_config" "current" {
-}
+data "azurerm_subscription" "current" {}
+
 
 data "azurerm_policy_definition" "allowedLocationPolicyDefinition" {
-  name = "Allowed locations"
+  display_name = "Allowed locations"
 }
 
 data "azurerm_resource_group" "networkwatcherRG" {
@@ -35,7 +35,7 @@ data "azurerm_resource_group" "defaultRG" {
 
 resource "azurerm_subscription_policy_assignment" "allowedLocationPolicyAssignment" {
   name                 = "${var.resource.prefix}-allowedlocation-policy-assignment"
-  subscription_id      = data.azurerm_client_config.current.subscription_id
+  subscription_id      = data.azurerm_subscription.current.id
   policy_definition_id = data.azurerm_policy_definition.allowedLocationPolicyDefinition.id
   description          = "Policy Assignment for allowed Location"
   display_name         = "Allowed Location Policy Assignment"
@@ -62,7 +62,7 @@ data "azurerm_policy_definition" "requireTagPolicyDefinition" {
 
 resource "azurerm_subscription_policy_assignment" "requireTagPolicyAssignment" {
   name                 = "${var.resource.prefix}-requireTag-policy-assignment"
-  subscription_id      = data.azurerm_client_config.current.subscription_id
+  subscription_id      = data.azurerm_subscription.current.id
   policy_definition_id = data.azurerm_policy_definition.requireTagPolicyDefinition.id
   description          = "Policy Assignment for require Tag"
   display_name         = "Require Tag Policy Assignment"
@@ -90,7 +90,7 @@ data "azurerm_policy_definition" "allowedSkuPolicyDefinition" {
 
 resource "azurerm_subscription_policy_assignment" "allowedSkuPolicyAssignment" {
   name                 = "${var.resource.prefix}-allowedSku-policy-assignment"
-  subscription_id      = data.azurerm_client_config.current.subscription_id
+  subscription_id      = data.azurerm_subscription.current.id
   policy_definition_id = data.azurerm_policy_definition.allowedSkuPolicyDefinition.id
   description          = "Policy Assignment for allowedSku"
   display_name         = "Allowed Sku Policy Assignment"
@@ -209,7 +209,7 @@ PARAMETERS
 
 resource "azurerm_subscription_policy_assignment" "allowedImagesPolicyAssignment" {
   name                 = "${var.resource.prefix}-allowedImages-policy-assignment"
-  subscription_id      = data.azurerm_client_config.current.subscription_id
+  subscription_id      = data.azurerm_subscription.current.id
   policy_definition_id = azurerm_policy_definition.allowedimagespolicy.id
   description          = "Policy Assignment for allowedImages"
   display_name         = "Allowed Images Policy Assignment"
