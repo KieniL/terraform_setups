@@ -14,3 +14,7 @@ variable "prefix" {
 variable "resourcegroupname" {
   description = "the resourcegroupname to set for the resources"
 }
+
+variable "subnet_id" {
+  description = "the subnetId in which to deploy to"
+}

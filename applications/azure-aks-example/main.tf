@@ -29,6 +29,7 @@ module "cluster" {
   tags              = azurerm_resource_group.rg.tags
   location          = azurerm_resource_group.rg.location
   resourcegroupname = azurerm_resource_group.rg.name
+  subnet_id         = module.vnet.subnet_id
 }
 
 
