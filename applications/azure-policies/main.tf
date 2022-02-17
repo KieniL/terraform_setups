@@ -24,6 +24,13 @@ data "azurerm_subscription" "current" {}
 data "azurerm_policy_definition" "allowedLocationPolicyDefinition" {
   display_name = "Allowed locations"
 }
+data "azurerm_policy_definition" "requireTagPolicyDefinition" {
+  display_name = "Require a tag on resources"
+}
+
+data "azurerm_policy_definition" "inheritTagFromRGIFMissingPolicyDefinition" {
+  display_name = "Inherit a tag from the resource group if missing"
+}
 
 data "azurerm_resource_group" "networkwatcherRG" {
   name = "NetworkWatcherRG"
@@ -56,9 +63,36 @@ resource "azurerm_subscription_policy_assignment" "allowedLocationPolicyAssignme
 
 }
 
-data "azurerm_policy_definition" "requireTagPolicyDefinition" {
-  display_name = "Require a tag on resources"
+
+resource "azurerm_subscription_policy_assignment" "inheritTagFromRGIFMissingPolicyAssignment" {
+  name                 = "${var.resource.prefix}-inheritTagFromRGIFMissing-policy-assignment"
+  subscription_id      = data.azurerm_subscription.current.id
+  policy_definition_id = data.azurerm_policy_definition.inheritTagFromRGIFMissingPolicyDefinition.id
+  description          = "Inherit Tag from ResourceGroup if missing"
+  display_name         = "Inherit Tag from ResourceGroup if missing"
+  not_scopes           = [data.azurerm_resource_group.networkwatcherRG.id, data.azurerm_resource_group.defaultRG.id]
+  location             = var.location
+
+  identity {
+    type = "SystemAssigned"
+  }
+
+  metadata = <<METADATA
+    {
+    "category": "General"
+    }
+  METADATA
+
+  parameters = <<PARAMETERS
+  {
+    "tagName": {
+      "value": "${var.tagName}"
+    }
+  }
+  PARAMETERS
+
 }
+
 
 resource "azurerm_subscription_policy_assignment" "requireTagPolicyAssignment" {
   name                 = "${var.resource.prefix}-requireTag-policy-assignment"

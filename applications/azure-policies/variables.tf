@@ -1,3 +1,8 @@
+variable "location" {
+  description = "location to deploy to"
+  default     = "Germany West Central"
+}
+
 variable "tagName" {
   default     = "project"
   type        = string

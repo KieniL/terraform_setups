@@ -27,9 +27,11 @@ No modules.
 | [azurerm_subscription_policy_assignment.allowedImagesPolicyAssignment](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subscription_policy_assignment) | resource |
 | [azurerm_subscription_policy_assignment.allowedLocationPolicyAssignment](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subscription_policy_assignment) | resource |
 | [azurerm_subscription_policy_assignment.allowedSkuPolicyAssignment](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subscription_policy_assignment) | resource |
+| [azurerm_subscription_policy_assignment.inheritTagFromRGIFMissingPolicyAssignment](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subscription_policy_assignment) | resource |
 | [azurerm_subscription_policy_assignment.requireTagPolicyAssignment](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subscription_policy_assignment) | resource |
 | [azurerm_policy_definition.allowedLocationPolicyDefinition](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/policy_definition) | data source |
 | [azurerm_policy_definition.allowedSkuPolicyDefinition](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/policy_definition) | data source |
+| [azurerm_policy_definition.inheritTagFromRGIFMissingPolicyDefinition](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/policy_definition) | data source |
 | [azurerm_policy_definition.requireTagPolicyDefinition](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/policy_definition) | data source |
 | [azurerm_resource_group.defaultRG](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) | data source |
 | [azurerm_resource_group.networkwatcherRG](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) | data source |
@@ -42,6 +44,7 @@ No modules.
 | <a name="input_allowedImages"></a> [allowedImages](#input\_allowedImages) | Map of images for configuration. | <pre>object({<br>    publishers = list(string)<br>    offers     = list(string)<br>    skus       = list(string)<br>    versions   = list(string)<br>  })</pre> | n/a | yes |
 | <a name="input_allowedLocations"></a> [allowedLocations](#input\_allowedLocations) | The allowed Locations | `list(string)` | <pre>[<br>  "Germany West Central",<br>  "West Europe"<br>]</pre> | no |
 | <a name="input_allowedSkus"></a> [allowedSkus](#input\_allowedSkus) | The allowed skus | `list(string)` | n/a | yes |
+| <a name="input_location"></a> [location](#input\_location) | location to deploy to | `string` | `"Germany West Central"` | no |
 | <a name="input_resource"></a> [resource](#input\_resource) | Some resource variables | `map` | <pre>{<br>  "location": "Germany West Central",<br>  "prefix": "tf-managed-policy",<br>  "project": "az-900-prep"<br>}</pre> | no |
 | <a name="input_tagName"></a> [tagName](#input\_tagName) | the tagName to require on all resources | `string` | `"project"` | no |
 
