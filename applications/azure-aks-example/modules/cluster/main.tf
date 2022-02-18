@@ -28,10 +28,12 @@ resource "azurerm_kubernetes_cluster_node_pool" "akspool" {
   kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
   vm_size               = var.vm_size
   vnet_subnet_id        = var.subnet_id
-  node_count            = var.spot_node_count
+  min_count             = var.spot_node_count
+  max_count             = var.spot_max_node_count
   priority              = "Spot"
   eviction_policy       = "Delete"
   spot_max_price        = -1 # note: the maximum price to pay is the on demand price
+  enable_auto_scaling   = true
   node_labels = {
     "kubernetes.azure.com/scalesetpriority" = "spot"
   }

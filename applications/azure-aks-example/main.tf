@@ -24,15 +24,16 @@ module "vnet" {
 
 
 module "cluster" {
-  source             = "./modules/cluster"
-  prefix             = var.prefix
-  tags               = azurerm_resource_group.rg.tags
-  location           = azurerm_resource_group.rg.location
-  resourcegroupname  = azurerm_resource_group.rg.name
-  subnet_id          = module.vnet.subnet_id
-  vm_size            = var.vm_size
-  default_node_count = var.default_node_count
-  spot_node_count    = var.spot_node_count
+  source              = "./modules/cluster"
+  prefix              = var.prefix
+  tags                = azurerm_resource_group.rg.tags
+  location            = azurerm_resource_group.rg.location
+  resourcegroupname   = azurerm_resource_group.rg.name
+  subnet_id           = module.vnet.subnet_id
+  vm_size             = var.vm_size
+  default_node_count  = var.default_node_count
+  spot_node_count     = var.spot_node_count
+  spot_max_node_count = var.spot_max_node_count
 }
 
 module "awx" {

@@ -39,6 +39,7 @@ AKS deployment with terraform and following example applications: <br/>
 | <a name="input_location"></a> [location](#input\_location) | location to deploy to | `string` | `"Germany West Central"` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | the project tag to set for the resources | `string` | `"tfaks"` | no |
 | <a name="input_project"></a> [project](#input\_project) | the project tag to set for the resources | `string` | `"aks"` | no |
+| <a name="input_spot_max_node_count"></a> [spot\_max\_node\_count](#input\_spot\_max\_node\_count) | the max nodecount for the spot nodepool | `number` | `3` | no |
 | <a name="input_spot_node_count"></a> [spot\_node\_count](#input\_spot\_node\_count) | the nodecount for the spot nodepool | `number` | `1` | no |
 | <a name="input_vm_size"></a> [vm\_size](#input\_vm\_size) | the vm size to use | `string` | `"Standard_D2s_v3"` | no |
 

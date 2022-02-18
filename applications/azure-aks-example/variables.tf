@@ -33,3 +33,9 @@ variable "spot_node_count" {
   description = "the nodecount for the spot nodepool"
   default     = 1
 }
+
+
+variable "spot_max_node_count" {
+  description = "the max nodecount for the spot nodepool"
+  default     = 3
+}
