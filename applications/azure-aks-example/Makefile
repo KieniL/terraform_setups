@@ -10,7 +10,7 @@ doc:
 	terraform fmt --recursive
 	terraform-docs markdown table --output-file README.md --output-mode inject  --recursive  --show all ./
 
-SUBDIRS = modules/vnet modules/cluster
+SUBDIRS = modules/vnet modules/cluster modules/cluster-workloads-awx
 
 graph:
 	for dir in $(SUBDIRS); do \

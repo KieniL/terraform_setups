@@ -13,3 +13,8 @@ variable "prefix" {
   description = "the project tag to set for the resources"
   default     = "tfaks"
 }
+
+variable "awx_version" {
+  description = "the awx version to deploy"
+  default     = "0.17.0"
+}

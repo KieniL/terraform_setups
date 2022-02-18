@@ -27,6 +27,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "akspool" {
   name                  = "${var.prefix}pool"
   kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
   vm_size               = "Standard_DS2_v2"
+  vnet_subnet_id        = var.subnet_id
   node_count            = 1
   priority              = "Spot"
   eviction_policy       = "Delete"
@@ -38,4 +39,11 @@ resource "azurerm_kubernetes_cluster_node_pool" "akspool" {
     "kubernetes.azure.com/scalesetpriority=spot:NoSchedule"
   ]
   tags = var.tags
+
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags since there is an API error 
+      tags,
+    ]
+  }
 }
