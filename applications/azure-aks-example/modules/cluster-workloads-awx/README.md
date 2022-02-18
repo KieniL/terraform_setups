@@ -23,8 +23,10 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [kubectl_manifest.awx](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs/resources/manifest) | resource |
 | [kubectl_manifest.awxoperatormanifest](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs/resources/manifest) | resource |
 | [http_http.awxoperatormanifestfile](https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/http) | data source |
+| [kubectl_file_documents.awxoperatordocs](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs/data-sources/file_documents) | data source |
 
 ## Inputs
 

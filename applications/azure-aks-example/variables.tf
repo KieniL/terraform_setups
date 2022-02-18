@@ -19,19 +19,24 @@ variable "awx_version" {
   default     = "0.13.0"
 }
 
-variable "vm_size" {
+variable "default_vm_size" {
   description = "the vm size to use"
+  default     = "Standard_D2s_v3"
+}
+
+variable "spot_vm_size" {
+  description = "the spot vm size to use"
   default     = "Standard_D2s_v3"
 }
 
 variable "default_node_count" {
   description = "the nodecount for the default nodepool"
-  default     = 1
+  default     = 2
 }
 
 variable "spot_node_count" {
   description = "the nodecount for the spot nodepool"
-  default     = 1
+  default     = 2
 }
 
 

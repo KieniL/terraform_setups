@@ -30,7 +30,8 @@ module "cluster" {
   location            = azurerm_resource_group.rg.location
   resourcegroupname   = azurerm_resource_group.rg.name
   subnet_id           = module.vnet.subnet_id
-  vm_size             = var.vm_size
+  default_vm_size     = var.default_vm_size
+  spot_vm_size        = var.spot_vm_size
   default_node_count  = var.default_node_count
   spot_node_count     = var.spot_node_count
   spot_max_node_count = var.spot_max_node_count

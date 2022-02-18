@@ -19,8 +19,12 @@ variable "subnet_id" {
   description = "the subnetId in which to deploy to"
 }
 
-variable "vm_size" {
-  description = "the vm size to use"
+variable "default_vm_size" {
+  description = "the default vm size to use"
+}
+
+variable "spot_vm_size" {
+  description = "the spot vm size to use"
 }
 
 variable "default_node_count" {

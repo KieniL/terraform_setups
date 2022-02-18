@@ -12,7 +12,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   default_node_pool {
     name           = "default"
     node_count     = var.default_node_count
-    vm_size        = var.vm_size
+    vm_size        = var.default_vm_size
     vnet_subnet_id = var.subnet_id
   }
 
@@ -26,7 +26,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
 resource "azurerm_kubernetes_cluster_node_pool" "akspool" {
   name                  = "${var.prefix}pool"
   kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
-  vm_size               = var.vm_size
+  vm_size               = var.spot_vm_size
   vnet_subnet_id        = var.subnet_id
   min_count             = var.spot_node_count
   max_count             = var.spot_max_node_count
