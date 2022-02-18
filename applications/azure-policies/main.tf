@@ -32,6 +32,10 @@ data "azurerm_policy_definition" "inheritTagFromRGIFMissingPolicyDefinition" {
   display_name = "Inherit a tag from the resource group if missing"
 }
 
+data "azurerm_policy_definition" "allowedSkuPolicyDefinition" {
+  display_name = "Allowed virtual machine size SKUs"
+}
+
 data "azurerm_resource_group" "networkwatcherRG" {
   name = "NetworkWatcherRG"
 }
@@ -118,10 +122,6 @@ resource "azurerm_subscription_policy_assignment" "requireTagPolicyAssignment" {
 
 }
 
-data "azurerm_policy_definition" "allowedSkuPolicyDefinition" {
-  display_name = "Allowed virtual machine size SKUs"
-}
-
 resource "azurerm_subscription_policy_assignment" "allowedSkuPolicyAssignment" {
   name                 = "${var.resource.prefix}-allowedSku-policy-assignment"
   subscription_id      = data.azurerm_subscription.current.id
@@ -199,7 +199,7 @@ METADATA
       ]
     },
     "then": {
-      "effect": "deny"
+      "effect": "audit"
     }
   }
 POLICY_RULE

@@ -2,4 +2,3 @@
 .terraform.*
 terraform.tfstate*
 plan.txt
-terraform.tfvars
