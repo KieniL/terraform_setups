@@ -12,8 +12,8 @@
 
 | Name | Version |
 |------|---------|
+| <a name="provider_http"></a> [http](#provider\_http) | 2.1.0 |
 | <a name="provider_kubectl"></a> [kubectl](#provider\_kubectl) | 1.13.1 |
-| <a name="provider_null"></a> [null](#provider\_null) | 3.1.0 |
 
 ## Modules
 
@@ -23,9 +23,8 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [kubectl_manifest.awx_operator](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs/resources/manifest) | resource |
-| [null_resource.awx_operator_download](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
-| [kubectl_path_documents.awx_manifests](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs/data-sources/path_documents) | data source |
+| [kubectl_manifest.awxoperatormanifest](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs/resources/manifest) | resource |
+| [http_http.awxoperatormanifestfile](https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/http) | data source |
 
 ## Inputs
 
