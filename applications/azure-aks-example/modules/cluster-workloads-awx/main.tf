@@ -1,8 +1,13 @@
+/*
+* # awx on aks deployment
+* ![Diagram](./graph.svg)
+*/
+
 resource "null_resource" "awx_operator_download" {
 
   provisioner "local-exec" {
     command = <<EOT
-      echo "Downloading rancher config"
+      echo "Downloading awx config"
       curl -L https://raw.githubusercontent.com/ansible/awx-operator${var.awx_version}/deploy/awx-operator.yaml -o awx.yaml
     EOT
   }
@@ -14,6 +19,7 @@ data "kubectl_path_documents" "awx_manifests" {
 }
 
 resource "kubectl_manifest" "awx_operator" {
-  count     = length(data.kubectl_path_documents.awx_manifests.documents)
-  yaml_body = element(data.kubectl_path_documents.awx_manifests.documents, count.index)
+  count      = length(data.kubectl_path_documents.awx_manifests.documents)
+  yaml_body  = element(data.kubectl_path_documents.awx_manifests.documents, count.index)
+  depends_on = [data.kubectl_path_documents.awx_manifests]
 }

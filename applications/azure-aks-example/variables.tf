@@ -16,5 +16,5 @@ variable "prefix" {
 
 variable "awx_version" {
   description = "the awx version to deploy"
-  default     = "0.17.0"
+  default     = "0.13.0"
 }

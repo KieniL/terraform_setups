@@ -15,7 +15,6 @@ AKS deployment with terraform and following example applications: <br/>
 | Name | Version |
 |------|---------|
 | <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 2.96.0 |
-| <a name="provider_local"></a> [local](#provider\_local) | 2.1.0 |
 
 ## Modules
 
@@ -30,13 +29,12 @@ AKS deployment with terraform and following example applications: <br/>
 | Name | Type |
 |------|------|
 | [azurerm_resource_group.rg](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
-| [local_file.kubeconfig](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_awx_version"></a> [awx\_version](#input\_awx\_version) | the awx version to deploy | `string` | `"0.17.0"` | no |
+| <a name="input_awx_version"></a> [awx\_version](#input\_awx\_version) | the awx version to deploy | `string` | `"0.13.0"` | no |
 | <a name="input_location"></a> [location](#input\_location) | location to deploy to | `string` | `"Germany West Central"` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | the project tag to set for the resources | `string` | `"tfaks"` | no |
 | <a name="input_project"></a> [project](#input\_project) | the project tag to set for the resources | `string` | `"aks"` | no |

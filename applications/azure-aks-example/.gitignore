@@ -3,4 +3,3 @@
 terraform.tfstate*
 plan.txt
 terraform.tfvars
-aksconfig
