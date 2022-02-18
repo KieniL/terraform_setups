@@ -40,7 +40,7 @@ module "awx" {
   awx_version            = var.awx_version
   kubernetes_host        = module.cluster.kube_config.host
   cluster_token          = module.cluster.kube_config.password
-  cluster_ca_certificate = module.cluster.kube_config.cluster_ca_certificate
-  client_certificate     = module.cluster.kube_config.client_certificate
-  client_key             = module.cluster.kube_config.client_key
+  cluster_ca_certificate = base64decode(module.cluster.kube_config.cluster_ca_certificate)
+  client_certificate     = base64decode(module.cluster.kube_config.client_certificate)
+  client_key             = base64decode(module.cluster.kube_config.client_key)
 }

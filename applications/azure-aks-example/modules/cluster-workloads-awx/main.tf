@@ -7,6 +7,11 @@ data "http" "awxoperatormanifestfile" {
   url = "https://raw.githubusercontent.com/ansible/awx-operator/${var.awx_version}/deploy/awx-operator.yaml"
 }
 
-resource "kubectl_manifest" "awxoperatormanifest" {
-  yaml_body = data.http.awxoperatormanifestfile.body
+data "kubectl_file_documents" "docs" {
+  content = data.http.awxoperatormanifestfile.body
+}
+
+resource "kubectl_manifest" "test" {
+  for_each  = data.kubectl_file_documents.docs.manifests
+  yaml_body = each.value
 }
