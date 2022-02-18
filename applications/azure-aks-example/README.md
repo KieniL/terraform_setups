@@ -35,14 +35,16 @@ AKS deployment with terraform and following example applications: <br/>
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_awx_version"></a> [awx\_version](#input\_awx\_version) | the awx version to deploy | `string` | `"0.13.0"` | no |
+| <a name="input_default_node_count"></a> [default\_node\_count](#input\_default\_node\_count) | the nodecount for the default nodepool | `number` | `1` | no |
 | <a name="input_location"></a> [location](#input\_location) | location to deploy to | `string` | `"Germany West Central"` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | the project tag to set for the resources | `string` | `"tfaks"` | no |
 | <a name="input_project"></a> [project](#input\_project) | the project tag to set for the resources | `string` | `"aks"` | no |
+| <a name="input_spot_node_count"></a> [spot\_node\_count](#input\_spot\_node\_count) | the nodecount for the spot nodepool | `number` | `1` | no |
+| <a name="input_vm_size"></a> [vm\_size](#input\_vm\_size) | the vm size to use | `string` | `"Standard_D2s_v3"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | <a name="output_aks_get_credentials"></a> [aks\_get\_credentials](#output\_aks\_get\_credentials) | to receive the kubeconfig in cli run this |
-| <a name="output_client_certificate"></a> [client\_certificate](#output\_client\_certificate) | n/a |
 <!-- END_TF_DOCS -->

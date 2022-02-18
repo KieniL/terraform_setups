@@ -13,3 +13,11 @@ variable "cluster_token" {
 variable "cluster_ca_certificate" {
   description = "the cluster ca certificate to use"
 }
+
+variable "client_certificate" {
+  description = "the client certificate to use"
+}
+
+variable "client_key" {
+  description = "the clientkey  to use"
+}
