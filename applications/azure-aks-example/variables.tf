@@ -11,5 +11,5 @@ variable "project" {
 
 variable "prefix" {
   description = "the project tag to set for the resources"
-  default     = "aks"
+  default     = "tfaks"
 }

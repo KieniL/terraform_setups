@@ -7,12 +7,12 @@ resource "azurerm_kubernetes_cluster" "aks" {
   name                = "${var.prefix}-aks"
   location            = var.location
   resource_group_name = var.resourcegroupname
-  dns_prefix          = "exampleaks1"
+  dns_prefix          = var.prefix
 
   default_node_pool {
     name           = "default"
     node_count     = 1
-    vm_size        = "Standard_D2_v2"
+    vm_size        = "Standard_D2s_v3"
     vnet_subnet_id = var.subnet_id
   }
 
@@ -30,7 +30,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "akspool" {
   node_count            = 1
   priority              = "Spot"
   eviction_policy       = "Delete"
-  spot_max_price        = 0.5 # note: this is the "maximum" price
+  spot_max_price        = -1 # note: the maximum price to pay is the on demand price
   node_labels = {
     "kubernetes.azure.com/scalesetpriority" = "spot"
   }
