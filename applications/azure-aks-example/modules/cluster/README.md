@@ -33,6 +33,7 @@ No modules.
 | <a name="input_location"></a> [location](#input\_location) | location to deploy to | `any` | n/a | yes |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | the project tag to set for the resources | `any` | n/a | yes |
 | <a name="input_resourcegroupname"></a> [resourcegroupname](#input\_resourcegroupname) | the resourcegroupname to set for the resources | `any` | n/a | yes |
+| <a name="input_source_ip"></a> [source\_ip](#input\_source\_ip) | Your external IP | `any` | n/a | yes |
 | <a name="input_spot_max_node_count"></a> [spot\_max\_node\_count](#input\_spot\_max\_node\_count) | the max nodecount for the spot nodepool | `any` | n/a | yes |
 | <a name="input_spot_min_node_count"></a> [spot\_min\_node\_count](#input\_spot\_min\_node\_count) | the min nodecount for the spot nodepool | `any` | n/a | yes |
 | <a name="input_spot_vm_size"></a> [spot\_vm\_size](#input\_spot\_vm\_size) | the spot vm size to use | `any` | n/a | yes |

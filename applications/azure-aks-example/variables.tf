@@ -42,11 +42,15 @@ variable "default_max_node_count" {
 
 variable "spot_min_node_count" {
   description = "the nodecount for the spot nodepool"
-  default     = 2
+  default     = 1
 }
 
 
 variable "spot_max_node_count" {
   description = "the max nodecount for the spot nodepool"
   default     = 3
+}
+
+variable "source_ip" {
+  description = "Your external IP"
 }

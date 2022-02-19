@@ -12,10 +12,11 @@ resource "azurerm_kubernetes_cluster" "aks" {
   auto_scaler_profile {
     balance_similar_node_groups = true
   }
+  api_server_authorized_ip_ranges = [var.source_ip]
 
   default_node_pool {
     name                = "default"
-    node_count          = var.default_min_node_count
+    min_count           = var.default_min_node_count
     max_count           = var.default_max_node_count
     vm_size             = var.default_vm_size
     vnet_subnet_id      = var.subnet_id

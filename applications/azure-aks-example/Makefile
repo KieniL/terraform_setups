@@ -19,7 +19,7 @@ graph:
 
 plan:
 	terraform fmt --recursive
-	terraform plan -out plan.txt
+	terraform plan -out plan.txt -var-file=terraform.tfvars
 
 apply:
 	terraform apply plan.txt

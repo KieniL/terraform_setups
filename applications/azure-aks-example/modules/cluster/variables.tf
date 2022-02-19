@@ -43,4 +43,6 @@ variable "spot_max_node_count" {
   description = "the max nodecount for the spot nodepool"
 }
 
-
+variable "source_ip" {
+  description = "Your external IP"
+}
