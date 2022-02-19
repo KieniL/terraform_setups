@@ -27,8 +27,8 @@ variable "default_vm_size" {
   description = "the default vm size to use"
 }
 
-variable "spot_vm_size" {
-  description = "the spot vm size to use"
+variable "spot_vm_sizes" {
+  description = "the spot vm sizes to use"
 }
 
 variable "default_min_node_count" {

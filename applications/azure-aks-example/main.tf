@@ -38,7 +38,7 @@ module "cluster" {
   internal_subnet_id     = module.vnet.internal_subnet_id
   appgw_subnet_id        = module.vnet.appgw_subnet_id
   default_vm_size        = var.default_vm_size
-  spot_vm_size           = var.spot_vm_size
+  spot_vm_sizes          = var.spot_vm_sizes
   default_min_node_count = var.default_min_node_count
   default_max_node_count = var.default_max_node_count
   spot_min_node_count    = var.spot_min_node_count

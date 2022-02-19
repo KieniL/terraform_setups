@@ -40,9 +40,10 @@ resource "azurerm_kubernetes_cluster" "aks" {
 }
 
 resource "azurerm_kubernetes_cluster_node_pool" "akspool" {
-  name                  = "${var.prefix}pool"
+  for_each              = toset(var.spot_vm_sizes)
+  name                  = "${var.prefix}pool${index(var.spot_vm_sizes, each.key)}"
   kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
-  vm_size               = var.spot_vm_size
+  vm_size               = each.value
   vnet_subnet_id        = var.internal_subnet_id
   min_count             = var.spot_min_node_count
   max_count             = var.spot_max_node_count

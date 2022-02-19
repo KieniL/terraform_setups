@@ -16,14 +16,14 @@ resource "azurerm_subnet" "internal" {
   name                 = "internal"
   virtual_network_name = azurerm_virtual_network.vnet.name
   resource_group_name  = var.resourcegroupname
-  address_prefixes     = ["10.1.0.0/22"]
+  address_prefixes     = ["10.1.0.0/20"]
 }
 
 resource "azurerm_subnet" "appgw" {
   name                 = "appgw"
   virtual_network_name = azurerm_virtual_network.vnet.name
   resource_group_name  = var.resourcegroupname
-  address_prefixes     = ["10.1.4.0/22"]
+  address_prefixes     = ["10.1.16.0/20"]
 }
 
 resource "azurerm_route_table" "podroutetable" {

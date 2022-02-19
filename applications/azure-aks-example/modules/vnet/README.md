@@ -20,10 +20,11 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [azurerm_route_table.podroutetable](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/route_table) | resource |
 | [azurerm_subnet.appgw](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) | resource |
-| [azurerm_subnet.defaultpod](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) | resource |
 | [azurerm_subnet.internal](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) | resource |
-| [azurerm_subnet.nodepoolpod](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) | resource |
+| [azurerm_subnet_route_table_association.podappgwrouteassoc](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_route_table_association) | resource |
+| [azurerm_subnet_route_table_association.podnoderouteassoc](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_route_table_association) | resource |
 | [azurerm_virtual_network.vnet](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network) | resource |
 
 ## Inputs
@@ -40,7 +41,5 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_appgw_subnet_id"></a> [appgw\_subnet\_id](#output\_appgw\_subnet\_id) | n/a |
-| <a name="output_default_pod_subnet_id"></a> [default\_pod\_subnet\_id](#output\_default\_pod\_subnet\_id) | n/a |
 | <a name="output_internal_subnet_id"></a> [internal\_subnet\_id](#output\_internal\_subnet\_id) | n/a |
-| <a name="output_nodepool_pod_subnet_id"></a> [nodepool\_pod\_subnet\_id](#output\_nodepool\_pod\_subnet\_id) | n/a |
 <!-- END_TF_DOCS -->

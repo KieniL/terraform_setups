@@ -51,8 +51,8 @@ see [MicrosoftDoc](https://docs.microsoft.com/en-us/azure/aks/configure-azure-cn
 | <a name="input_project"></a> [project](#input\_project) | the project tag to set for the resources | `string` | `"aks"` | no |
 | <a name="input_source_ip"></a> [source\_ip](#input\_source\_ip) | Your external IP | `any` | n/a | yes |
 | <a name="input_spot_max_node_count"></a> [spot\_max\_node\_count](#input\_spot\_max\_node\_count) | the max nodecount for the spot nodepool | `number` | `3` | no |
-| <a name="input_spot_min_node_count"></a> [spot\_min\_node\_count](#input\_spot\_min\_node\_count) | the nodecount for the spot nodepool | `number` | `1` | no |
-| <a name="input_spot_vm_size"></a> [spot\_vm\_size](#input\_spot\_vm\_size) | the spot vm size to use | `string` | `"Standard_D2s_v3"` | no |
+| <a name="input_spot_min_node_count"></a> [spot\_min\_node\_count](#input\_spot\_min\_node\_count) | the nodecount for the spot nodepool | `number` | `0` | no |
+| <a name="input_spot_vm_sizes"></a> [spot\_vm\_sizes](#input\_spot\_vm\_sizes) | the spot vm sizes to use | `list(string)` | <pre>[<br>  "Standard_D2s_v3",<br>  "Standard_D2s_v4",<br>  "Standard_F2s_v2",<br>  "Standard_DS2_v2",<br>  "Standard_B2ms"<br>]</pre> | no |
 | <a name="input_vault_namespace"></a> [vault\_namespace](#input\_vault\_namespace) | the namespace in which to deploy vault to | `string` | `"vault"` | no |
 
 ## Outputs

@@ -24,9 +24,16 @@ variable "default_vm_size" {
   default     = "Standard_D2s_v3"
 }
 
-variable "spot_vm_size" {
-  description = "the spot vm size to use"
-  default     = "Standard_D2s_v3"
+variable "spot_vm_sizes" {
+  description = "the spot vm sizes to use"
+  type        = list(string)
+  default = [
+    "Standard_D2s_v3",
+    "Standard_D2s_v4",
+    "Standard_F2s_v2",
+    "Standard_DS2_v2",
+    "Standard_B2ms"
+  ]
 }
 
 
@@ -42,7 +49,7 @@ variable "default_max_node_count" {
 
 variable "spot_min_node_count" {
   description = "the nodecount for the spot nodepool"
-  default     = 1
+  default     = 0
 }
 
 
