@@ -5,6 +5,10 @@
 * * AWX
 * * Vault
 * <br/>
+* To have network segmentations there are different pod_subnets which makes it necessary to enable a previewfeature:<br/>
+* <code>az feature register --namespace "Microsoft.ContainerService" --name "PodSubnetPreview"</code><br/>
+* <code>az feature list -o table --query "[?contains(name, 'Microsoft.ContainerService/PodSubnetPreview')].{Name:name,State:properties.state}"</code>
+* see [MicrosoftDoc](https://docs.microsoft.com/en-us/azure/aks/configure-azure-cni#register-the-podsubnetpreview-preview-feature)
 */
 
 resource "azurerm_resource_group" "rg" {
@@ -33,6 +37,8 @@ module "cluster" {
   resourcegroupname      = azurerm_resource_group.rg.name
   internal_subnet_id     = module.vnet.internal_subnet_id
   appgw_subnet_id        = module.vnet.appgw_subnet_id
+  default_pod_subnet_id  = module.vnet.default_pod_subnet_id
+  nodepool_pod_subnet_id = module.vnet.nodepool_pod_subnet_id
   default_vm_size        = var.default_vm_size
   spot_vm_size           = var.spot_vm_size
   default_min_node_count = var.default_min_node_count

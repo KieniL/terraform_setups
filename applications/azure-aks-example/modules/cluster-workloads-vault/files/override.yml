@@ -5,6 +5,9 @@ ui:
 server:
   dataStorage:
     enabled: false
+  
+  dev:
+    enabled: true
   ingress:
     enabled: true
     labels: {}

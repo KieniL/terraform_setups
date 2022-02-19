@@ -50,3 +50,11 @@ variable "spot_max_node_count" {
 variable "source_ip" {
   description = "Your external IP"
 }
+
+variable "default_pod_subnet_id" {
+  description = "the subnetId in which to deploy the pods from default pool to"
+}
+
+variable "nodepool_pod_subnet_id" {
+  description = "the subnetId in which to deploy the pods from additional pool to"
+}
