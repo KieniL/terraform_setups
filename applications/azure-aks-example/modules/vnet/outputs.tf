@@ -6,6 +6,10 @@ output "appgw_subnet_id" {
   value = azurerm_subnet.appgw.id
 }
 
-output "customroutetable_id" {
-  value = azurerm_route_table.podroutetable.id
+output "default_pod_subnet_id" {
+  value = azurerm_subnet.defaultpod.id
+}
+
+output "nodepool_pod_subnet_id" {
+  value = azurerm_subnet.nodepoolpod.id
 }

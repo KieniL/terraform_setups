@@ -23,6 +23,14 @@ variable "appgw_subnet_id" {
   description = "the subnetId in which to deploy the appgateway to"
 }
 
+variable "default_pod_subnet_id" {
+  description = "the subnetId in which to deploy the pods from default pool to"
+}
+
+variable "nodepool_pod_subnet_id" {
+  description = "the subnetId in which to deploy the pods from additional pool to"
+}
+
 variable "default_vm_size" {
   description = "the default vm size to use"
 }
@@ -49,8 +57,4 @@ variable "spot_max_node_count" {
 
 variable "source_ip" {
   description = "Your external IP"
-}
-
-variable "customroutetable_id" {
-  description = "the id of the custom route table as scope for identity"
 }

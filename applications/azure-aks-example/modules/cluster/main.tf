@@ -3,35 +3,6 @@
 * ![Diagram](./graph.svg)
 */
 
-resource "azurerm_user_assigned_identity" "aksuseridentity" {
-  name                = "${var.prefix}-identity"
-  location            = var.location
-  resource_group_name = var.resourcegroupname
-
-  tags = var.tags
-}
-
-resource "azurerm_role_definition" "aksroutetablerole" {
-  name        = "${var.prefix}-role"
-  scope       = var.customroutetable_id
-  description = "This is a custom role to read and write to routetable"
-
-  permissions {
-    actions     = ["Microsoft.Network/routeTables/read", "Microsoft.Network/routeTables/write"]
-    not_actions = []
-  }
-
-  assignable_scopes = [
-    var.customroutetable_id, # /subscriptions/00000000-0000-0000-0000-000000000000
-  ]
-}
-
-resource "azurerm_role_assignment" "aksroleassigments" {
-  scope                = var.customroutetable_id
-  role_definition_name = azurerm_role_definition.aksroutetablerole.name
-  principal_id         = azurerm_user_assigned_identity.aksuseridentity.principal_id
-}
-
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "${var.prefix}-cluster"
   location            = var.location
@@ -51,11 +22,11 @@ resource "azurerm_kubernetes_cluster" "aks" {
     vm_size             = var.default_vm_size
     vnet_subnet_id      = var.internal_subnet_id
     enable_auto_scaling = true
+    pod_subnet_id       = var.default_pod_subnet_id
   }
 
   identity {
-    type                      = "UserAssigned"
-    user_assigned_identity_id = azurerm_user_assigned_identity.aksuseridentity.id
+    type = "SystemAssigned"
   }
 
   addon_profile {
@@ -75,6 +46,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "akspool" {
   kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
   vm_size               = each.value
   vnet_subnet_id        = var.internal_subnet_id
+  pod_subnet_id         = var.nodepool_pod_subnet_id
   min_count             = var.spot_min_node_count
   max_count             = var.spot_max_node_count
   priority              = "Spot"

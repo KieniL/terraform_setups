@@ -37,6 +37,8 @@ module "cluster" {
   resourcegroupname      = azurerm_resource_group.rg.name
   internal_subnet_id     = module.vnet.internal_subnet_id
   appgw_subnet_id        = module.vnet.appgw_subnet_id
+  default_pod_subnet_id  = module.vnet.default_pod_subnet_id
+  nodepool_pod_subnet_id = module.vnet.nodepool_pod_subnet_id
   default_vm_size        = var.default_vm_size
   spot_vm_sizes          = var.spot_vm_sizes
   default_min_node_count = var.default_min_node_count
@@ -44,7 +46,6 @@ module "cluster" {
   spot_min_node_count    = var.spot_min_node_count
   spot_max_node_count    = var.spot_max_node_count
   source_ip              = var.source_ip
-  customroutetable_id    = module.vnet.customroutetable_id
 }
 
 module "awx" {
