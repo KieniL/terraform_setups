@@ -3,6 +3,10 @@
 * ![Diagram](./graph.svg)
 */
 
+resource "kubectl_manifest" "awxnamespace" {
+  yaml_body = file("${path.module}/files/namespace.yml")
+}
+
 data "http" "awxoperatormanifestfile" {
   url = "https://raw.githubusercontent.com/ansible/awx-operator/${var.awx_version}/deploy/awx-operator.yaml"
 }

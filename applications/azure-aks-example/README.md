@@ -22,6 +22,7 @@ AKS deployment with terraform and following example applications: <br/>
 |------|--------|---------|
 | <a name="module_awx"></a> [awx](#module\_awx) | ./modules/cluster-workloads-awx | n/a |
 | <a name="module_cluster"></a> [cluster](#module\_cluster) | ./modules/cluster | n/a |
+| <a name="module_vault"></a> [vault](#module\_vault) | ./modules/cluster-workloads-vault | n/a |
 | <a name="module_vnet"></a> [vnet](#module\_vnet) | ./modules/vnet | n/a |
 
 ## Resources

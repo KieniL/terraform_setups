@@ -48,3 +48,12 @@ module "awx" {
   client_certificate     = base64decode(module.cluster.kube_config.client_certificate)
   client_key             = base64decode(module.cluster.kube_config.client_key)
 }
+
+module "vault" {
+  source                 = "./modules/cluster-workloads-vault"
+  kubernetes_host        = module.cluster.kube_config.host
+  cluster_token          = module.cluster.kube_config.password
+  cluster_ca_certificate = base64decode(module.cluster.kube_config.cluster_ca_certificate)
+  client_certificate     = base64decode(module.cluster.kube_config.client_certificate)
+  client_key             = base64decode(module.cluster.kube_config.client_key)
+}
