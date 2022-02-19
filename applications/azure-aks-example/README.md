@@ -8,6 +8,7 @@ AKS deployment with terraform and following example applications: <br/>
 To have network segmentations there are different pod\_subnets which makes it necessary to enable a previewfeature:<br/>
 <code>az feature register --namespace "Microsoft.ContainerService" --name "PodSubnetPreview"</code><br/>
 <code>az feature list -o table --query "[?contains(name, 'Microsoft.ContainerService/PodSubnetPreview')].{Name:name,State:properties.state}"</code>
+see [MicrosoftDoc](https://docs.microsoft.com/en-us/azure/aks/configure-azure-cni#register-the-podsubnetpreview-preview-feature)
 
 ## Requirements
 

@@ -8,9 +8,7 @@ No requirements.
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| <a name="provider_helm"></a> [helm](#provider\_helm) | 2.4.1 |
+No providers.
 
 ## Modules
 
@@ -18,9 +16,7 @@ No modules.
 
 ## Resources
 
-| Name | Type |
-|------|------|
-| [helm_release.vault](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+No resources.
 
 ## Inputs
 

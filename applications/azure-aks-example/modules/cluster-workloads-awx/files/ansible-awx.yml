@@ -5,14 +5,17 @@ metadata:
   name: ansible-awx
   namespace: awx
 spec:
-  service_type: LoadBalancer
-  loadbalancer_protocol: http
-  loadbalancer_port: 80
+  service_type: ClusterIP
+  # loadbalancer_protocol: http
+  # loadbalancer_port: 80
   service_annotations: |
     environment: testing
   service_labels: |
     environment: testing
-  ingress_type: none
+  ingress_type: Ingress
+  hostname: awx.kieni.at
+  ingress_annotations: |
+    environment: testing
   tolerations: |
     - key: "kubernetes.azure.com/scalesetpriority"
       operator: "Equal"

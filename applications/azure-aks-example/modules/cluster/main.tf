@@ -8,7 +8,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   location            = var.location
   resource_group_name = var.resourcegroupname
   dns_prefix          = var.prefix
-  pod_subnet_id       = var.default_pod_subnet_id
+
 
   auto_scaler_profile {
     balance_similar_node_groups = true
@@ -22,6 +22,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     vm_size             = var.default_vm_size
     vnet_subnet_id      = var.internal_subnet_id
     enable_auto_scaling = true
+    pod_subnet_id       = var.default_pod_subnet_id
   }
 
   identity {
