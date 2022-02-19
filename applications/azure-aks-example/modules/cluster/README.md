@@ -30,11 +30,9 @@ No modules.
 | <a name="input_appgw_subnet_id"></a> [appgw\_subnet\_id](#input\_appgw\_subnet\_id) | the subnetId in which to deploy the appgateway to | `any` | n/a | yes |
 | <a name="input_default_max_node_count"></a> [default\_max\_node\_count](#input\_default\_max\_node\_count) | the max nodecount for the default nodepool | `any` | n/a | yes |
 | <a name="input_default_min_node_count"></a> [default\_min\_node\_count](#input\_default\_min\_node\_count) | the min nodecount for the default nodepool | `any` | n/a | yes |
-| <a name="input_default_pod_subnet_id"></a> [default\_pod\_subnet\_id](#input\_default\_pod\_subnet\_id) | the subnetId in which to deploy the pods from default pool to | `any` | n/a | yes |
 | <a name="input_default_vm_size"></a> [default\_vm\_size](#input\_default\_vm\_size) | the default vm size to use | `any` | n/a | yes |
 | <a name="input_internal_subnet_id"></a> [internal\_subnet\_id](#input\_internal\_subnet\_id) | the internal subnetId in which to deploy to | `any` | n/a | yes |
 | <a name="input_location"></a> [location](#input\_location) | location to deploy to | `any` | n/a | yes |
-| <a name="input_nodepool_pod_subnet_id"></a> [nodepool\_pod\_subnet\_id](#input\_nodepool\_pod\_subnet\_id) | the subnetId in which to deploy the pods from additional pool to | `any` | n/a | yes |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | the project tag to set for the resources | `any` | n/a | yes |
 | <a name="input_resourcegroupname"></a> [resourcegroupname](#input\_resourcegroupname) | the resourcegroupname to set for the resources | `any` | n/a | yes |
 | <a name="input_source_ip"></a> [source\_ip](#input\_source\_ip) | Your external IP | `any` | n/a | yes |

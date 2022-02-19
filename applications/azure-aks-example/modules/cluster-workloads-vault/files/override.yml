@@ -4,7 +4,7 @@ ui:
 
 server:
   dataStorage:
-    storageClass: manual
+    enabled: false
   ingress:
     enabled: true
     labels: {}

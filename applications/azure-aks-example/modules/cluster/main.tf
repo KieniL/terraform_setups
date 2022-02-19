@@ -22,7 +22,6 @@ resource "azurerm_kubernetes_cluster" "aks" {
     vm_size             = var.default_vm_size
     vnet_subnet_id      = var.internal_subnet_id
     enable_auto_scaling = true
-    pod_subnet_id       = var.default_pod_subnet_id
   }
 
   identity {
@@ -47,7 +46,6 @@ resource "azurerm_kubernetes_cluster_node_pool" "akspool" {
   vnet_subnet_id        = var.internal_subnet_id
   min_count             = var.spot_min_node_count
   max_count             = var.spot_max_node_count
-  pod_subnet_id         = var.nodepool_pod_subnet_id
   priority              = "Spot"
   eviction_policy       = "Delete"
   spot_max_price        = -1 # note: the maximum price to pay is the on demand price
