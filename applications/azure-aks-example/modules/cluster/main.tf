@@ -3,6 +3,35 @@
 * ![Diagram](./graph.svg)
 */
 
+resource "azurerm_user_assigned_identity" "aksuseridentity" {
+  name                = "${var.prefix}-aks-identity"
+  location            = var.location
+  resource_group_name = var.resourcegroupname
+
+  tags = var.tags
+}
+
+resource "azurerm_role_definition" "aksroutetablerole" {
+  name        = "${var.prefix}-aks-role"
+  scope       = var.customroutetable_id
+  description = "This is a custom role to read and write to routetable"
+
+  permissions {
+    actions     = ["Microsoft.Network/routeTables/read", "Microsoft.Network/routeTables/write"]
+    not_actions = []
+  }
+
+  assignable_scopes = [
+    var.customroutetable_id, # /subscriptions/00000000-0000-0000-0000-000000000000
+  ]
+}
+
+resource "azurerm_role_assignment" "aksroleassigments" {
+  scope                = var.customroutetable_id
+  role_definition_name = azurerm_role_definition.aksroutetablerole.name
+  principal_id         = azurerm_user_assigned_identity.aksuseridentity.principal_id
+}
+
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "${var.prefix}-aks"
   location            = var.location
@@ -25,7 +54,8 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
 
   identity {
-    type = "SystemAssigned"
+    type                      = "UserAssigned"
+    user_assigned_identity_id = azurerm_user_assigned_identity.aksuseridentity.id
   }
 
   addon_profile {

@@ -41,5 +41,6 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_appgw_subnet_id"></a> [appgw\_subnet\_id](#output\_appgw\_subnet\_id) | n/a |
+| <a name="output_customroutetable_id"></a> [customroutetable\_id](#output\_customroutetable\_id) | n/a |
 | <a name="output_internal_subnet_id"></a> [internal\_subnet\_id](#output\_internal\_subnet\_id) | n/a |
 <!-- END_TF_DOCS -->

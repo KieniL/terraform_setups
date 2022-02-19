@@ -44,6 +44,7 @@ module "cluster" {
   spot_min_node_count    = var.spot_min_node_count
   spot_max_node_count    = var.spot_max_node_count
   source_ip              = var.source_ip
+  customroutetable_id    = module.vnet.customroutetable_id
 }
 
 module "awx" {

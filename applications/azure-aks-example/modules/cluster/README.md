@@ -22,12 +22,16 @@ No modules.
 |------|------|
 | [azurerm_kubernetes_cluster.aks](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster) | resource |
 | [azurerm_kubernetes_cluster_node_pool.akspool](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster_node_pool) | resource |
+| [azurerm_role_assignment.aksroleassigments](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
+| [azurerm_role_definition.aksroutetablerole](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_definition) | resource |
+| [azurerm_user_assigned_identity.aksuseridentity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/user_assigned_identity) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_appgw_subnet_id"></a> [appgw\_subnet\_id](#input\_appgw\_subnet\_id) | the subnetId in which to deploy the appgateway to | `any` | n/a | yes |
+| <a name="input_customroutetable_id"></a> [customroutetable\_id](#input\_customroutetable\_id) | the id of the custom route table as scope for identity | `any` | n/a | yes |
 | <a name="input_default_max_node_count"></a> [default\_max\_node\_count](#input\_default\_max\_node\_count) | the max nodecount for the default nodepool | `any` | n/a | yes |
 | <a name="input_default_min_node_count"></a> [default\_min\_node\_count](#input\_default\_min\_node\_count) | the min nodecount for the default nodepool | `any` | n/a | yes |
 | <a name="input_default_vm_size"></a> [default\_vm\_size](#input\_default\_vm\_size) | the default vm size to use | `any` | n/a | yes |

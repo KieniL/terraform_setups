@@ -50,3 +50,7 @@ variable "spot_max_node_count" {
 variable "source_ip" {
   description = "Your external IP"
 }
+
+variable "customroutetable_id" {
+  description = "the id of the custom route table as scope for identity"
+}
