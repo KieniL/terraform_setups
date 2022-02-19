@@ -4,7 +4,7 @@
 */
 
 resource "azurerm_user_assigned_identity" "aksuseridentity" {
-  name                = "${var.prefix}-aks-identity"
+  name                = "${var.prefix}-identity"
   location            = var.location
   resource_group_name = var.resourcegroupname
 
@@ -12,7 +12,7 @@ resource "azurerm_user_assigned_identity" "aksuseridentity" {
 }
 
 resource "azurerm_role_definition" "aksroutetablerole" {
-  name        = "${var.prefix}-aks-role"
+  name        = "${var.prefix}-role"
   scope       = var.customroutetable_id
   description = "This is a custom role to read and write to routetable"
 
@@ -33,7 +33,7 @@ resource "azurerm_role_assignment" "aksroleassigments" {
 }
 
 resource "azurerm_kubernetes_cluster" "aks" {
-  name                = "${var.prefix}-aks"
+  name                = "${var.prefix}-cluster"
   location            = var.location
   resource_group_name = var.resourcegroupname
   dns_prefix          = var.prefix
