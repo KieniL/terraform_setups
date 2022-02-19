@@ -8,6 +8,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   location            = var.location
   resource_group_name = var.resourcegroupname
   dns_prefix          = var.prefix
+  pod_subnet_id       = var.default_pod_subnet_id
 
   auto_scaler_profile {
     balance_similar_node_groups = true
@@ -19,13 +20,21 @@ resource "azurerm_kubernetes_cluster" "aks" {
     min_count           = var.default_min_node_count
     max_count           = var.default_max_node_count
     vm_size             = var.default_vm_size
-    vnet_subnet_id      = var.subnet_id
+    vnet_subnet_id      = var.internal_subnet_id
     enable_auto_scaling = true
   }
 
   identity {
     type = "SystemAssigned"
   }
+
+  addon_profile {
+    ingress_application_gateway {
+      enabled   = true
+      subnet_id = var.appgw_subnet_id
+    }
+  }
+
 
   tags = var.tags
 }
@@ -34,9 +43,10 @@ resource "azurerm_kubernetes_cluster_node_pool" "akspool" {
   name                  = "${var.prefix}pool"
   kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
   vm_size               = var.spot_vm_size
-  vnet_subnet_id        = var.subnet_id
+  vnet_subnet_id        = var.internal_subnet_id
   min_count             = var.spot_min_node_count
   max_count             = var.spot_max_node_count
+  pod_subnet_id         = var.nodepool_pod_subnet_id
   priority              = "Spot"
   eviction_policy       = "Delete"
   spot_max_price        = -1 # note: the maximum price to pay is the on demand price

@@ -18,3 +18,24 @@ resource "azurerm_subnet" "internal" {
   resource_group_name  = var.resourcegroupname
   address_prefixes     = ["10.1.0.0/22"]
 }
+
+resource "azurerm_subnet" "appgw" {
+  name                 = "appgw"
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  resource_group_name  = var.resourcegroupname
+  address_prefixes     = ["10.1.4.0/22"]
+}
+
+resource "azurerm_subnet" "defaultpod" {
+  name                 = "defaultpod"
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  resource_group_name  = var.resourcegroupname
+  address_prefixes     = ["10.1.8.0/22"]
+}
+
+resource "azurerm_subnet" "nodepoolpod" {
+  name                 = "nodepoolpod"
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  resource_group_name  = var.resourcegroupname
+  address_prefixes     = ["10.1.12.0/22"]
+}
