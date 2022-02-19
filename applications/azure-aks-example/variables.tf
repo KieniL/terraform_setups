@@ -21,7 +21,7 @@ variable "awx_version" {
 
 variable "default_vm_size" {
   description = "the vm size to use"
-  default     = "Standard_D2s_v3"
+  default     = "Standard_B2s"
 }
 
 variable "spot_vm_sizes" {
