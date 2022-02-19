@@ -9,11 +9,17 @@ resource "azurerm_kubernetes_cluster" "aks" {
   resource_group_name = var.resourcegroupname
   dns_prefix          = var.prefix
 
+  auto_scaler_profile {
+    balance_similar_node_groups = true
+  }
+
   default_node_pool {
-    name           = "default"
-    node_count     = var.default_node_count
-    vm_size        = var.default_vm_size
-    vnet_subnet_id = var.subnet_id
+    name                = "default"
+    node_count          = var.default_min_node_count
+    max_count           = var.default_max_node_count
+    vm_size             = var.default_vm_size
+    vnet_subnet_id      = var.subnet_id
+    enable_auto_scaling = true
   }
 
   identity {
@@ -28,7 +34,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "akspool" {
   kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
   vm_size               = var.spot_vm_size
   vnet_subnet_id        = var.subnet_id
-  min_count             = var.spot_node_count
+  min_count             = var.spot_min_node_count
   max_count             = var.spot_max_node_count
   priority              = "Spot"
   eviction_policy       = "Delete"

@@ -29,12 +29,18 @@ variable "spot_vm_size" {
   default     = "Standard_D2s_v3"
 }
 
-variable "default_node_count" {
-  description = "the nodecount for the default nodepool"
-  default     = 2
+
+variable "default_min_node_count" {
+  description = "the min nodecount for the default nodepool"
+  default     = 1
 }
 
-variable "spot_node_count" {
+variable "default_max_node_count" {
+  description = "the max nodecount for the default nodepool"
+  default     = 3
+}
+
+variable "spot_min_node_count" {
   description = "the nodecount for the spot nodepool"
   default     = 2
 }

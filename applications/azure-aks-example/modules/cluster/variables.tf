@@ -27,12 +27,16 @@ variable "spot_vm_size" {
   description = "the spot vm size to use"
 }
 
-variable "default_node_count" {
-  description = "the nodecount for the default nodepool"
+variable "default_min_node_count" {
+  description = "the min nodecount for the default nodepool"
 }
 
-variable "spot_node_count" {
-  description = "the nodecount for the spot nodepool"
+variable "default_max_node_count" {
+  description = "the max nodecount for the default nodepool"
+}
+
+variable "spot_min_node_count" {
+  description = "the min nodecount for the spot nodepool"
 }
 
 variable "spot_max_node_count" {
