@@ -22,7 +22,6 @@ resource "azurerm_kubernetes_cluster" "aks" {
     vm_size             = var.default_vm_size
     vnet_subnet_id      = var.internal_subnet_id
     enable_auto_scaling = true
-    pod_subnet_id       = var.default_pod_subnet_id
   }
 
   identity {
@@ -45,7 +44,6 @@ resource "azurerm_kubernetes_cluster_node_pool" "akspool" {
   kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
   vm_size               = var.spot_vm_size
   vnet_subnet_id        = var.internal_subnet_id
-  pod_subnet_id         = var.nodepool_pod_subnet_id
   min_count             = var.spot_min_node_count
   max_count             = var.spot_max_node_count
   priority              = "Spot"
