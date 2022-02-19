@@ -21,3 +21,8 @@ variable "client_certificate" {
 variable "client_key" {
   description = "the clientkey  to use"
 }
+
+variable "awx_namespace" {
+  description = "the namespace in which to deploy awx to"
+  default     = "awx"
+}

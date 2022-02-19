@@ -4,7 +4,7 @@
 * AKS deployment with terraform and following example applications: <br/>
 * * AWX
 * * Vault
-*<br/>
+* <br/>
 */
 
 resource "azurerm_resource_group" "rg" {
@@ -50,6 +50,7 @@ module "awx" {
   cluster_ca_certificate = base64decode(module.cluster.kube_config.cluster_ca_certificate)
   client_certificate     = base64decode(module.cluster.kube_config.client_certificate)
   client_key             = base64decode(module.cluster.kube_config.client_key)
+  awx_namespace          = var.awx_namespace
 }
 
 module "vault" {
@@ -59,4 +60,5 @@ module "vault" {
   cluster_ca_certificate = base64decode(module.cluster.kube_config.cluster_ca_certificate)
   client_certificate     = base64decode(module.cluster.kube_config.client_certificate)
   client_key             = base64decode(module.cluster.kube_config.client_key)
+  vault_namespace        = var.vault_namespace
 }

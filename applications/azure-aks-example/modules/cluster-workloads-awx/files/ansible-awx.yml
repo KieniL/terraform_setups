@@ -3,7 +3,6 @@ apiVersion: awx.ansible.com/v1beta1
 kind: AWX
 metadata:
   name: ansible-awx
-  namespace: awx
 spec:
   service_type: ClusterIP
   # loadbalancer_protocol: http
@@ -16,6 +15,7 @@ spec:
   hostname: awx.kieni.at
   ingress_annotations: |
     environment: testing
+    kubernetes.io/ingress.class: azure/application-gateway
   tolerations: |
     - key: "kubernetes.azure.com/scalesetpriority"
       operator: "Equal"

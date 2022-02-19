@@ -33,6 +33,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_awx_namespace"></a> [awx\_namespace](#input\_awx\_namespace) | the namespace in which to deploy awx to | `string` | `"awx"` | no |
 | <a name="input_awx_version"></a> [awx\_version](#input\_awx\_version) | the awx version to deploy | `any` | n/a | yes |
 | <a name="input_client_certificate"></a> [client\_certificate](#input\_client\_certificate) | the client certificate to use | `any` | n/a | yes |
 | <a name="input_client_key"></a> [client\_key](#input\_client\_key) | the clientkey  to use | `any` | n/a | yes |

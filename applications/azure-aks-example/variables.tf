@@ -54,3 +54,13 @@ variable "spot_max_node_count" {
 variable "source_ip" {
   description = "Your external IP"
 }
+
+variable "vault_namespace" {
+  description = "the namespace in which to deploy vault to"
+  default     = "vault"
+}
+
+variable "awx_namespace" {
+  description = "the namespace in which to deploy awx to"
+  default     = "awx"
+}

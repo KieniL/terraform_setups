@@ -7,7 +7,7 @@ resource "helm_release" "vault" {
   name             = "vault"
   repository       = "https://helm.releases.hashicorp.com"
   chart            = "vault"
-  namespace        = "vault"
+  namespace        = var.vault_namespace
   create_namespace = true
   replace          = true
 

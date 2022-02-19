@@ -17,3 +17,8 @@ variable "client_certificate" {
 variable "client_key" {
   description = "the clientkey  to use"
 }
+
+variable "vault_namespace" {
+  description = "the namespace in which to deploy vault to"
+  default     = "vault"
+}

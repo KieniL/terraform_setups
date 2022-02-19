@@ -4,7 +4,7 @@
 AKS deployment with terraform and following example applications: <br/>
 * AWX
 * Vault
-*<br/>
+<br/>
 
 ## Requirements
 
@@ -37,6 +37,7 @@ AKS deployment with terraform and following example applications: <br/>
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_awx_namespace"></a> [awx\_namespace](#input\_awx\_namespace) | the namespace in which to deploy awx to | `string` | `"awx"` | no |
 | <a name="input_awx_version"></a> [awx\_version](#input\_awx\_version) | the awx version to deploy | `string` | `"0.13.0"` | no |
 | <a name="input_default_max_node_count"></a> [default\_max\_node\_count](#input\_default\_max\_node\_count) | the max nodecount for the default nodepool | `number` | `3` | no |
 | <a name="input_default_min_node_count"></a> [default\_min\_node\_count](#input\_default\_min\_node\_count) | the min nodecount for the default nodepool | `number` | `1` | no |
@@ -48,6 +49,7 @@ AKS deployment with terraform and following example applications: <br/>
 | <a name="input_spot_max_node_count"></a> [spot\_max\_node\_count](#input\_spot\_max\_node\_count) | the max nodecount for the spot nodepool | `number` | `3` | no |
 | <a name="input_spot_min_node_count"></a> [spot\_min\_node\_count](#input\_spot\_min\_node\_count) | the nodecount for the spot nodepool | `number` | `1` | no |
 | <a name="input_spot_vm_size"></a> [spot\_vm\_size](#input\_spot\_vm\_size) | the spot vm size to use | `string` | `"Standard_D2s_v3"` | no |
+| <a name="input_vault_namespace"></a> [vault\_namespace](#input\_vault\_namespace) | the namespace in which to deploy vault to | `string` | `"vault"` | no |
 
 ## Outputs
 

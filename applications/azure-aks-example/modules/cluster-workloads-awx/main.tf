@@ -4,7 +4,14 @@
 */
 
 resource "kubectl_manifest" "awxnamespace" {
-  yaml_body = file("${path.module}/files/namespace.yml")
+  yaml_body = <<YAML
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: ${var.awx_namespace}
+  labels:
+    name: ${var.awx_namespace}
+YAML
 }
 
 data "http" "awxoperatormanifestfile" {
@@ -18,9 +25,10 @@ data "kubectl_file_documents" "awxoperatordocs" {
 resource "kubectl_manifest" "awxoperatormanifest" {
   for_each           = data.kubectl_file_documents.awxoperatordocs.manifests
   yaml_body          = each.value
-  override_namespace = "awx"
+  override_namespace = var.awx_namespace
 }
 
 resource "kubectl_manifest" "awx" {
-  yaml_body = file("${path.module}/files/ansible-awx.yml")
+  yaml_body          = file("${path.module}/files/ansible-awx.yml")
+  override_namespace = var.awx_namespace
 }
