@@ -21,3 +21,7 @@ variable "client_key" {
 variable "vault_namespace" {
   description = "the namespace in which to deploy vault to"
 }
+
+variable "domainname" {
+  description = "the domainname to set"
+}

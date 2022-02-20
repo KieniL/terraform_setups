@@ -70,6 +70,7 @@ module "vault" {
   client_certificate     = base64decode(module.cluster.kube_config.client_certificate)
   client_key             = base64decode(module.cluster.kube_config.client_key)
   vault_namespace        = var.vault_namespace
+  domainname             = var.domainname
 }
 
 module "dns" {

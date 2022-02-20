@@ -3,6 +3,12 @@
 * ![Diagram](./graph.svg)
 */
 
+locals {
+  vault_vars = {
+    hostname = "${var.vault_namespace}.${var.domainname}"
+  }
+}
+
 resource "helm_release" "vault" {
   name             = "vault"
   repository       = "https://helm.releases.hashicorp.com"
@@ -13,7 +19,7 @@ resource "helm_release" "vault" {
   force_update     = true
 
   values = [
-    "${file("${path.module}/files/override.yml")}"
+    templatefile("${path.module}/templates/override.yaml.tmpl", local.vault_vars)
   ]
 
 }
