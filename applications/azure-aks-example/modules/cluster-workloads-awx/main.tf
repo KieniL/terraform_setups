@@ -3,6 +3,13 @@
 * ![Diagram](./graph.svg)
 */
 
+locals {
+  awx_vars = {
+    namespace = var.awx_namespace,
+    hostname  = "${var.awx_namespace}.${var.domainname}"
+  }
+}
+
 resource "kubectl_manifest" "awxnamespace" {
   yaml_body = <<YAML
 kind: Namespace
@@ -29,6 +36,6 @@ resource "kubectl_manifest" "awxoperatormanifest" {
 }
 
 resource "kubectl_manifest" "awx" {
-  yaml_body          = file("${path.module}/files/ansible-awx.yml")
-  override_namespace = var.awx_namespace
+  yaml_body = templatefile("${path.module}/templates/ansible-awx.yaml.tmpl", local.awx_vars)
 }
+

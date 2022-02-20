@@ -26,3 +26,7 @@ variable "awx_namespace" {
   description = "the namespace in which to deploy awx to"
   default     = "awx"
 }
+
+variable "domainname" {
+  description = "the domainname to set"
+}

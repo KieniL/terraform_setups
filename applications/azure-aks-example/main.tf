@@ -59,6 +59,7 @@ module "awx" {
   client_certificate     = base64decode(module.cluster.kube_config.client_certificate)
   client_key             = base64decode(module.cluster.kube_config.client_key)
   awx_namespace          = var.awx_namespace
+  domainname             = var.domainname
 }
 
 module "vault" {
