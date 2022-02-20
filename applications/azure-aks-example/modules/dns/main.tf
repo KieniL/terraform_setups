@@ -1,4 +1,4 @@
-resource "azurerm_dns_zone" "example-public" {
+resource "azurerm_dns_zone" "akszone" {
   name                = var.domainname
   resource_group_name = var.resourcegroupname
 

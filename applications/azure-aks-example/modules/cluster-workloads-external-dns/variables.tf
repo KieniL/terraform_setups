@@ -1,3 +1,7 @@
+variable "resourcegroupname" {
+  description = "the resourcegroupname to set for the resources"
+}
+
 variable "kubernetes_host" {
   description = "the kubernetes host to use"
 }
@@ -18,6 +22,10 @@ variable "client_key" {
   description = "the clientkey  to use"
 }
 
-variable "vault_namespace" {
-  description = "the namespace in which to deploy vault to"
+variable "dns_namespace" {
+  description = "the namespace in which to deploy external-dns to"
+}
+
+variable "domainname" {
+  description = "the domainname to set"
 }

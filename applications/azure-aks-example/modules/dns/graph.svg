@@ -10,72 +10,89 @@
 <title>%3</title>
 <polygon fill="white" stroke="transparent" points="-4,4 -4,-416 230,-416 230,4 -4,4"/>
 <g id="clust2" class="cluster">
-<title>cluster[root] azurerm_dns_zone.example&#45;public (expand)_var_</title>
+<title>cluster[root] azurerm_dns_zone.akszone (expand)_var_</title>
 </g>
-<!-- [root] azurerm_dns_zone.example&#45;public (expand) -->
+<g id="clust3" class="cluster">
+<title>cluster[root] root_output_[root] azurerm_dns_zone.akszone (expand)</title>
+</g>
+<!-- [root] azurerm_dns_zone.akszone (expand) -->
 <g id="node_0" class="node">
-<title>[root] azurerm_dns_zone.example&#45;public (expand)</title>
-<polygon fill="none" stroke="black" points="66,-250 66,-265 145,-265 145,-250 66,-250"/>
-<text text-anchor="start" x="69" y="-255.6" font-family="courier new" font-size="8.00">azurerm_dns_zone</text>
-<polygon fill="none" stroke="black" points="66,-235 66,-250 145,-250 145,-235 66,-235"/>
-<text text-anchor="start" x="73.5" y="-240.6" font-family="courier new" font-size="8.00">example&#45;public</text>
+<title>[root] azurerm_dns_zone.akszone (expand)</title>
+<polygon fill="none" stroke="black" points="65,-250 65,-265 144,-265 144,-250 65,-250"/>
+<text text-anchor="start" x="68" y="-255.6" font-family="courier new" font-size="8.00">azurerm_dns_zone</text>
+<polygon fill="none" stroke="black" points="65,-235 65,-250 144,-250 144,-235 65,-235"/>
+<text text-anchor="start" x="88.5" y="-240.6" font-family="courier new" font-size="8.00">akszone</text>
 </g>
 <!-- [root] provider[&quot;registry.terraform.io/hashicorp/azurerm&quot;] -->
-<g id="node_1" class="node">
+<g id="node_2" class="node">
 <title>[root] provider[&quot;registry.terraform.io/hashicorp/azurerm&quot;]</title>
 <polygon fill="none" stroke="black" points="0,-178 0,-193 110,-193 110,-178 0,-178"/>
 <text text-anchor="start" x="34.5" y="-183.6" font-family="courier new" font-size="8.00">terraform</text>
 <polygon fill="none" stroke="black" points="0,-163 0,-178 110,-178 110,-163 0,-163"/>
 <text text-anchor="start" x="3" y="-168.6" font-family="courier new" font-size="8.00">io/hashicorp/azurerm\&quot;]</text>
 </g>
-<!-- [root] azurerm_dns_zone.example&#45;public (expand)&#45;&gt;[root] provider[&quot;registry.terraform.io/hashicorp/azurerm&quot;] -->
+<!-- [root] azurerm_dns_zone.akszone (expand)&#45;&gt;[root] provider[&quot;registry.terraform.io/hashicorp/azurerm&quot;] -->
 <g id="edge_0" class="edge">
-<title>[root] azurerm_dns_zone.example&#45;public (expand)&#45;&gt;[root] provider[&quot;registry.terraform.io/hashicorp/azurerm&quot;]</title>
-<path fill="none" stroke="black" d="M92.64,-231.7C86.77,-223.47 79.63,-213.48 73.16,-204.42"/>
-<polygon fill="black" stroke="black" points="75.88,-202.21 67.22,-196.1 70.18,-206.28 75.88,-202.21"/>
+<title>[root] azurerm_dns_zone.akszone (expand)&#45;&gt;[root] provider[&quot;registry.terraform.io/hashicorp/azurerm&quot;]</title>
+<path fill="none" stroke="black" d="M91.89,-231.7C86.13,-223.47 79.14,-213.48 72.79,-204.42"/>
+<polygon fill="black" stroke="black" points="75.58,-202.29 66.97,-196.1 69.84,-206.3 75.58,-202.29"/>
 </g>
 <!-- [root] var.domainname -->
-<g id="node_2" class="node">
+<g id="node_3" class="node">
 <title>[root] var.domainname</title>
 <polygon fill="none" stroke="black" points="135,-178 135,-193 187,-193 187,-178 135,-178"/>
 <text text-anchor="start" x="154" y="-183.6" font-family="courier new" font-size="8.00">var</text>
 <polygon fill="none" stroke="black" points="135,-163 135,-178 187,-178 187,-163 135,-163"/>
 <text text-anchor="start" x="138" y="-168.6" font-family="courier new" font-size="8.00">domainname</text>
 </g>
-<!-- [root] azurerm_dns_zone.example&#45;public (expand)&#45;&gt;[root] var.domainname -->
+<!-- [root] azurerm_dns_zone.akszone (expand)&#45;&gt;[root] var.domainname -->
 <g id="edge_1" class="edge">
-<title>[root] azurerm_dns_zone.example&#45;public (expand)&#45;&gt;[root] var.domainname</title>
-<path fill="none" stroke="black" d="M118.84,-231.7C125.49,-223.39 133.58,-213.28 140.89,-204.14"/>
-<polygon fill="black" stroke="black" points="143.8,-206.1 147.32,-196.1 138.34,-201.73 143.8,-206.1"/>
+<title>[root] azurerm_dns_zone.akszone (expand)&#45;&gt;[root] var.domainname</title>
+<path fill="none" stroke="black" d="M118.09,-231.7C124.92,-223.3 133.26,-213.07 140.76,-203.86"/>
+<polygon fill="black" stroke="black" points="143.47,-206.07 147.07,-196.1 138.04,-201.65 143.47,-206.07"/>
 </g>
 <!-- [root] provider[&quot;registry.terraform.io/hashicorp/azurerm&quot;] (close) -->
-<g id="node_5" class="node">
+<g id="node_6" class="node">
 <title>[root] provider[&quot;registry.terraform.io/hashicorp/azurerm&quot;] (close)</title>
-<polygon fill="none" stroke="black" points="50,-322 50,-337 160,-337 160,-322 50,-322"/>
-<text text-anchor="start" x="84.5" y="-327.6" font-family="courier new" font-size="8.00">terraform</text>
-<polygon fill="none" stroke="black" points="50,-307 50,-322 160,-322 160,-307 50,-307"/>
-<text text-anchor="start" x="53" y="-312.6" font-family="courier new" font-size="8.00">io/hashicorp/azurerm\&quot;]</text>
+<polygon fill="none" stroke="black" points="1,-322 1,-337 111,-337 111,-322 1,-322"/>
+<text text-anchor="start" x="35.5" y="-327.6" font-family="courier new" font-size="8.00">terraform</text>
+<polygon fill="none" stroke="black" points="1,-307 1,-322 111,-322 111,-307 1,-307"/>
+<text text-anchor="start" x="4" y="-312.6" font-family="courier new" font-size="8.00">io/hashicorp/azurerm\&quot;]</text>
 </g>
-<!-- [root] provider[&quot;registry.terraform.io/hashicorp/azurerm&quot;] (close)&#45;&gt;[root] azurerm_dns_zone.example&#45;public (expand) -->
-<g id="edge_4" class="edge">
-<title>[root] provider[&quot;registry.terraform.io/hashicorp/azurerm&quot;] (close)&#45;&gt;[root] azurerm_dns_zone.example&#45;public (expand)</title>
-<path fill="none" stroke="black" d="M105,-303.7C105,-295.98 105,-286.71 105,-278.11"/>
-<polygon fill="black" stroke="black" points="108.5,-278.1 105,-268.1 101.5,-278.1 108.5,-278.1"/>
+<!-- [root] provider[&quot;registry.terraform.io/hashicorp/azurerm&quot;] (close)&#45;&gt;[root] azurerm_dns_zone.akszone (expand) -->
+<g id="edge_5" class="edge">
+<title>[root] provider[&quot;registry.terraform.io/hashicorp/azurerm&quot;] (close)&#45;&gt;[root] azurerm_dns_zone.akszone (expand)</title>
+<path fill="none" stroke="black" d="M67.87,-303.7C73.5,-295.47 80.35,-285.48 86.57,-276.42"/>
+<polygon fill="black" stroke="black" points="89.5,-278.33 92.27,-268.1 83.73,-274.37 89.5,-278.33"/>
 </g>
 <!-- [root] root -->
-<g id="node_6" class="node">
+<g id="node_7" class="node">
 <title>[root] root</title>
-<polygon fill="none" stroke="black" points="138,-412 72,-412 72,-376 138,-376 138,-412"/>
-<text text-anchor="middle" x="105" y="-392.1" font-family="courier new" font-size="8.00">[root] root</text>
+<polygon fill="none" stroke="black" points="139,-412 73,-412 73,-376 139,-376 139,-412"/>
+<text text-anchor="middle" x="106" y="-392.1" font-family="courier new" font-size="8.00">[root] root</text>
 </g>
 <!-- [root] root&#45;&gt;[root] provider[&quot;registry.terraform.io/hashicorp/azurerm&quot;] (close) -->
-<g id="edge_5" class="edge">
+<g id="edge_7" class="edge">
 <title>[root] root&#45;&gt;[root] provider[&quot;registry.terraform.io/hashicorp/azurerm&quot;] (close)</title>
-<path fill="none" stroke="black" d="M105,-375.7C105,-367.98 105,-358.71 105,-350.11"/>
-<polygon fill="black" stroke="black" points="108.5,-350.1 105,-340.1 101.5,-350.1 108.5,-350.1"/>
+<path fill="none" stroke="black" d="M93.64,-375.7C87.77,-367.47 80.63,-357.48 74.16,-348.42"/>
+<polygon fill="black" stroke="black" points="76.88,-346.21 68.22,-340.1 71.18,-350.28 76.88,-346.21"/>
+</g>
+<!-- [root] output.zone_id -->
+<g id="node_1" class="node">
+<title>[root] output.zone_id</title>
+<polygon fill="none" stroke="black" points="137,-322 137,-337 175,-337 175,-322 137,-322"/>
+<text text-anchor="start" x="142" y="-327.6" font-family="courier new" font-size="8.00">output</text>
+<polygon fill="none" stroke="black" points="137,-307 137,-322 175,-322 175,-307 137,-307"/>
+<text text-anchor="start" x="140" y="-312.6" font-family="courier new" font-size="8.00">zone_id</text>
+</g>
+<!-- [root] root&#45;&gt;[root] output.zone_id -->
+<g id="edge_6" class="edge">
+<title>[root] root&#45;&gt;[root] output.zone_id</title>
+<path fill="none" stroke="black" d="M118.36,-375.7C124.23,-367.47 131.37,-357.48 137.84,-348.42"/>
+<polygon fill="black" stroke="black" points="140.82,-350.28 143.78,-340.1 135.12,-346.21 140.82,-350.28"/>
 </g>
 <!-- [root] var.resourcegroupname -->
-<g id="node_3" class="node">
+<g id="node_4" class="node">
 <title>[root] var.resourcegroupname</title>
 <polygon fill="none" stroke="black" points="127,-106 127,-121 210,-121 210,-106 127,-106"/>
 <text text-anchor="start" x="161.5" y="-111.6" font-family="courier new" font-size="8.00">var</text>
@@ -83,12 +100,12 @@
 <text text-anchor="start" x="130" y="-96.6" font-family="courier new" font-size="8.00">resourcegroupname</text>
 </g>
 <!-- [root] var.domainname&#45;&gt;[root] var.resourcegroupname -->
-<g id="edge_6" class="edge">
+<g id="edge_8" class="edge">
 <title>[root] var.domainname&#45;&gt;[root] var.resourcegroupname</title>
 <path fill="none" stroke="black" stroke-dasharray="5,2" d="M162.73,-159.7C163.82,-148.85 165.21,-134.92 166.29,-124.1"/>
 </g>
 <!-- [root] var.tags -->
-<g id="node_4" class="node">
+<g id="node_5" class="node">
 <title>[root] var.tags</title>
 <polygon fill="none" stroke="black" points="156,-34 156,-49 181,-49 181,-34 156,-34"/>
 <text text-anchor="start" x="161.5" y="-39.6" font-family="courier new" font-size="8.00">var</text>
@@ -96,9 +113,15 @@
 <text text-anchor="start" x="159" y="-24.6" font-family="courier new" font-size="8.00">tags</text>
 </g>
 <!-- [root] var.resourcegroupname&#45;&gt;[root] var.tags -->
-<g id="edge_7" class="edge">
+<g id="edge_9" class="edge">
 <title>[root] var.resourcegroupname&#45;&gt;[root] var.tags</title>
 <path fill="none" stroke="black" stroke-dasharray="5,2" d="M168,-87.7C168,-76.85 168,-62.92 168,-52.1"/>
+</g>
+<!-- [root] output.zone_id&#45;&gt;[root] azurerm_dns_zone.akszone (expand) -->
+<g id="edge_4" class="edge">
+<title>[root] output.zone_id&#45;&gt;[root] azurerm_dns_zone.akszone (expand)</title>
+<path fill="none" stroke="black" d="M143.15,-303.7C136.97,-295.39 129.46,-285.28 122.68,-276.14"/>
+<polygon fill="black" stroke="black" points="125.48,-274.04 116.71,-268.1 119.86,-278.22 125.48,-274.04"/>
 </g>
 </g>
 </svg>

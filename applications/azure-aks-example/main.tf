@@ -47,6 +47,7 @@ module "cluster" {
   spot_min_node_count    = var.spot_min_node_count
   spot_max_node_count    = var.spot_max_node_count
   source_ip              = var.source_ip
+  dns_zone_id            = module.dns.zone_id
 }
 
 module "awx" {
@@ -68,4 +69,23 @@ module "vault" {
   client_certificate     = base64decode(module.cluster.kube_config.client_certificate)
   client_key             = base64decode(module.cluster.kube_config.client_key)
   vault_namespace        = var.vault_namespace
+}
+
+module "dns" {
+  source            = "./modules/dns"
+  tags              = azurerm_resource_group.rg.tags
+  resourcegroupname = azurerm_resource_group.rg.name
+  domainname        = var.domainname
+}
+
+module "external-dns" {
+  source                 = "./modules/cluster-workloads-external-dns"
+  kubernetes_host        = module.cluster.kube_config.host
+  cluster_token          = module.cluster.kube_config.password
+  cluster_ca_certificate = base64decode(module.cluster.kube_config.cluster_ca_certificate)
+  client_certificate     = base64decode(module.cluster.kube_config.client_certificate)
+  client_key             = base64decode(module.cluster.kube_config.client_key)
+  dns_namespace          = var.dns_namespace
+  resourcegroupname      = azurerm_resource_group.rg.name
+  domainname             = var.domainname
 }

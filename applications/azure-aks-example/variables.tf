@@ -81,3 +81,13 @@ variable "awx_namespace" {
   description = "the namespace in which to deploy awx to"
   default     = "awx"
 }
+
+variable "dns_namespace" {
+  description = "the namespace in which to deploy externaldns to"
+  default     = "kube-addons"
+}
+
+variable "domainname" {
+  description = "the domainname to set"
+  default     = "kienifamily.at"
+}

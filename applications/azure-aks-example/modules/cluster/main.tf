@@ -3,6 +3,13 @@
 * ![Diagram](./graph.svg)
 */
 
+resource "azurerm_role_assignment" "attach_dns" {
+
+  scope                = var.dns_zone_id
+  role_definition_name = "DNS Zone Contributor"
+  principal_id         = azurerm_kubernetes_cluster.aks.kubelet_identity[0].object_id
+}
+
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "${var.prefix}-cluster"
   location            = var.location
@@ -73,3 +80,4 @@ resource "azurerm_kubernetes_cluster_node_pool" "akspool" {
     ]
   }
 }
+

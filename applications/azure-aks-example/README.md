@@ -29,6 +29,8 @@ The cluster itself runs on an Standard\_B2s size and has multiple nodepools with
 |------|--------|---------|
 | <a name="module_awx"></a> [awx](#module\_awx) | ./modules/cluster-workloads-awx | n/a |
 | <a name="module_cluster"></a> [cluster](#module\_cluster) | ./modules/cluster | n/a |
+| <a name="module_dns"></a> [dns](#module\_dns) | ./modules/dns | n/a |
+| <a name="module_external-dns"></a> [external-dns](#module\_external-dns) | ./modules/cluster-workloads-external-dns | n/a |
 | <a name="module_vault"></a> [vault](#module\_vault) | ./modules/cluster-workloads-vault | n/a |
 | <a name="module_vnet"></a> [vnet](#module\_vnet) | ./modules/vnet | n/a |
 
@@ -47,6 +49,8 @@ The cluster itself runs on an Standard\_B2s size and has multiple nodepools with
 | <a name="input_default_max_node_count"></a> [default\_max\_node\_count](#input\_default\_max\_node\_count) | the max nodecount for the default nodepool | `number` | `3` | no |
 | <a name="input_default_min_node_count"></a> [default\_min\_node\_count](#input\_default\_min\_node\_count) | the min nodecount for the default nodepool | `number` | `1` | no |
 | <a name="input_default_vm_size"></a> [default\_vm\_size](#input\_default\_vm\_size) | the vm size to use | `string` | `"Standard_B2s"` | no |
+| <a name="input_dns_namespace"></a> [dns\_namespace](#input\_dns\_namespace) | the namespace in which to deploy externaldns to | `string` | `"kube-addons"` | no |
+| <a name="input_domainname"></a> [domainname](#input\_domainname) | the domainname to set | `string` | `"kienifamily.at"` | no |
 | <a name="input_location"></a> [location](#input\_location) | location to deploy to | `string` | `"Germany West Central"` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | the project tag to set for the resources | `string` | `"tfaks"` | no |
 | <a name="input_project"></a> [project](#input\_project) | the project tag to set for the resources | `string` | `"aks"` | no |
