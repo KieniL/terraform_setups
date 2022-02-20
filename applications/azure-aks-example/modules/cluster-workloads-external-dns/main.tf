@@ -8,11 +8,12 @@ data "azurerm_client_config" "current" {}
 
 locals {
   external_dns_vars = {
-    resource_group  = var.resourcegroupname,
-    tenant_id       = data.azurerm_client_config.current.tenant_id,
-    subscription_id = data.azurerm_client_config.current.subscription_id,
-    log_level       = "debug",
-    domain          = var.domainname
+    resource_group         = var.resourcegroupname,
+    tenant_id              = data.azurerm_client_config.current.tenant_id,
+    subscription_id        = data.azurerm_client_config.current.subscription_id,
+    log_level              = "debug",
+    domain                 = var.domainname
+    userAssignedIdentityID = var.gateway_client_id
   }
 
   external_dns_values = templatefile(
@@ -27,6 +28,5 @@ resource "helm_release" "external_dns" {
   chart            = "external-dns"
   namespace        = var.dns_namespace
   create_namespace = true
-  version          = "5.4.5"
   values           = [local.external_dns_values]
 }

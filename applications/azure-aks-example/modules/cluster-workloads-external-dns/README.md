@@ -35,6 +35,7 @@ No modules.
 | <a name="input_cluster_token"></a> [cluster\_token](#input\_cluster\_token) | the token of serviceaccount to use | `any` | n/a | yes |
 | <a name="input_dns_namespace"></a> [dns\_namespace](#input\_dns\_namespace) | the namespace in which to deploy external-dns to | `any` | n/a | yes |
 | <a name="input_domainname"></a> [domainname](#input\_domainname) | the domainname to set | `any` | n/a | yes |
+| <a name="input_gateway_client_id"></a> [gateway\_client\_id](#input\_gateway\_client\_id) | the client id of the gateway to set. | `any` | n/a | yes |
 | <a name="input_kubernetes_host"></a> [kubernetes\_host](#input\_kubernetes\_host) | the kubernetes host to use | `any` | n/a | yes |
 | <a name="input_resourcegroupname"></a> [resourcegroupname](#input\_resourcegroupname) | the resourcegroupname to set for the resources | `any` | n/a | yes |
 

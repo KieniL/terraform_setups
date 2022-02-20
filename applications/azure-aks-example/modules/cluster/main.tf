@@ -7,7 +7,7 @@ resource "azurerm_role_assignment" "attach_dns" {
 
   scope                = var.dns_zone_id
   role_definition_name = "DNS Zone Contributor"
-  principal_id         = azurerm_kubernetes_cluster.aks.kubelet_identity[0].object_id
+  principal_id         = azurerm_kubernetes_cluster.aks.addon_profile.0.ingress_application_gateway.0.ingress_application_gateway_identity.0.object_id
 }
 
 resource "azurerm_kubernetes_cluster" "aks" {
@@ -77,6 +77,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "akspool" {
     ignore_changes = [
       # Ignore changes to tags since there is an API error 
       tags,
+      node_count,
     ]
   }
 }

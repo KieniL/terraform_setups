@@ -4,6 +4,6 @@ output "kube_config" {
   sensitive = true
 }
 
-# output "gateway_id" {
-#   value = azurerm_kubernetes_cluster.aks.addon_profile.0.ingress_application_gateway.0.effective_gateway_id
-# }
+output "gateway_client_id" {
+  value = azurerm_kubernetes_cluster.aks.addon_profile.0.ingress_application_gateway.0.ingress_application_gateway_identity.0.client_id
+}

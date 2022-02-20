@@ -49,5 +49,6 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_gateway_client_id"></a> [gateway\_client\_id](#output\_gateway\_client\_id) | n/a |
 | <a name="output_kube_config"></a> [kube\_config](#output\_kube\_config) | n/a |
 <!-- END_TF_DOCS -->

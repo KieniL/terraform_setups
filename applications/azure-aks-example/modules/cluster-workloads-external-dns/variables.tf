@@ -29,3 +29,7 @@ variable "dns_namespace" {
 variable "domainname" {
   description = "the domainname to set"
 }
+
+variable "gateway_client_id" {
+  description = "the client id of the gateway to set."
+}

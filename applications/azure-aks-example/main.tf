@@ -89,4 +89,5 @@ module "external-dns" {
   dns_namespace          = var.dns_namespace
   resourcegroupname      = azurerm_resource_group.rg.name
   domainname             = var.domainname
+  gateway_client_id      = module.cluster.gateway_client_id
 }
