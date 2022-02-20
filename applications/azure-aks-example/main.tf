@@ -8,7 +8,8 @@
 * To have network segmentations there are different pod_subnets which makes it necessary to enable a previewfeature:<br/>
 * <code>az feature register --namespace "Microsoft.ContainerService" --name "PodSubnetPreview"</code><br/>
 * <code>az feature list -o table --query "[?contains(name, 'Microsoft.ContainerService/PodSubnetPreview')].{Name:name,State:properties.state}"</code>
-* see [MicrosoftDoc](https://docs.microsoft.com/en-us/azure/aks/configure-azure-cni#register-the-podsubnetpreview-preview-feature)
+* see [MicrosoftDoc](https://docs.microsoft.com/en-us/azure/aks/configure-azure-cni#register-the-podsubnetpreview-preview-feature) <br/>
+* The cluster itself runs on an Standard_B2s size and has multiple nodepools with different sizes and spot instances
 */
 
 resource "azurerm_resource_group" "rg" {

@@ -31,7 +31,18 @@ variable "spot_vm_sizes" {
     "Standard_D2s_v3",
     "Standard_D2s_v4",
     "Standard_F2s_v2",
-    "Standard_DS2_v2"
+    "Standard_DS2_v2",
+    "Standard_D2_v4",
+    "Standard_D2ds_v4",
+    "Standard_D2d_v4",
+    "Standard_E2ds_v4",
+    "Standard_E2s_v3",
+    "Standard_E2_v4",
+    "Standard_DS11-1_v2",
+    "Standard_DS11_v2",
+    "Standard_E4-2s_v3",
+    "Standard_E4-2ds_v4",
+    "Standard_DS3_v2"
   ]
 }
 

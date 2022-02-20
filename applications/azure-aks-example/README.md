@@ -8,7 +8,8 @@ AKS deployment with terraform and following example applications: <br/>
 To have network segmentations there are different pod\_subnets which makes it necessary to enable a previewfeature:<br/>
 <code>az feature register --namespace "Microsoft.ContainerService" --name "PodSubnetPreview"</code><br/>
 <code>az feature list -o table --query "[?contains(name, 'Microsoft.ContainerService/PodSubnetPreview')].{Name:name,State:properties.state}"</code>
-see [MicrosoftDoc](https://docs.microsoft.com/en-us/azure/aks/configure-azure-cni#register-the-podsubnetpreview-preview-feature)
+see [MicrosoftDoc](https://docs.microsoft.com/en-us/azure/aks/configure-azure-cni#register-the-podsubnetpreview-preview-feature) <br/>
+The cluster itself runs on an Standard\_B2s size and has multiple nodepools with different sizes and spot instances
 
 ## Requirements
 
@@ -52,7 +53,7 @@ see [MicrosoftDoc](https://docs.microsoft.com/en-us/azure/aks/configure-azure-cn
 | <a name="input_source_ip"></a> [source\_ip](#input\_source\_ip) | Your external IP | `any` | n/a | yes |
 | <a name="input_spot_max_node_count"></a> [spot\_max\_node\_count](#input\_spot\_max\_node\_count) | the max nodecount for the spot nodepool | `number` | `3` | no |
 | <a name="input_spot_min_node_count"></a> [spot\_min\_node\_count](#input\_spot\_min\_node\_count) | the nodecount for the spot nodepool | `number` | `0` | no |
-| <a name="input_spot_vm_sizes"></a> [spot\_vm\_sizes](#input\_spot\_vm\_sizes) | the spot vm sizes to use | `list(string)` | <pre>[<br>  "Standard_D2s_v3",<br>  "Standard_D2s_v4",<br>  "Standard_F2s_v2",<br>  "Standard_DS2_v2"<br>]</pre> | no |
+| <a name="input_spot_vm_sizes"></a> [spot\_vm\_sizes](#input\_spot\_vm\_sizes) | the spot vm sizes to use | `list(string)` | <pre>[<br>  "Standard_D2s_v3",<br>  "Standard_D2s_v4",<br>  "Standard_F2s_v2",<br>  "Standard_DS2_v2",<br>  "Standard_D2_v4",<br>  "Standard_D2ds_v4",<br>  "Standard_D2d_v4",<br>  "Standard_E2ds_v4",<br>  "Standard_E2s_v3",<br>  "Standard_E2_v4",<br>  "Standard_DS11-1_v2",<br>  "Standard_DS11_v2",<br>  "Standard_E4-2s_v3",<br>  "Standard_E4-2ds_v4",<br>  "Standard_DS3_v2"<br>]</pre> | no |
 | <a name="input_vault_namespace"></a> [vault\_namespace](#input\_vault\_namespace) | the namespace in which to deploy vault to | `string` | `"vault"` | no |
 
 ## Outputs
