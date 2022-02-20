@@ -35,6 +35,10 @@ resource "azurerm_kubernetes_cluster" "aks" {
       subnet_id = var.appgw_subnet_id
     }
   }
+  network_profile {
+    #enable cni with this
+    network_plugin = "azure"
+  }
 
 
   tags = var.tags

@@ -31,6 +31,15 @@ resource "azurerm_subnet" "defaultpod" {
   virtual_network_name = azurerm_virtual_network.vnet.name
   resource_group_name  = var.resourcegroupname
   address_prefixes     = ["10.1.64.0/19"]
+
+  delegation {
+    name = "aks-delegation"
+
+    service_delegation {
+      name    = "Microsoft.ContainerService/managedClusters"
+      actions = ["Microsoft.Network/virtualNetworks/subnets/join/action"]
+    }
+  }
 }
 
 resource "azurerm_subnet" "nodepoolpod" {
@@ -38,4 +47,13 @@ resource "azurerm_subnet" "nodepoolpod" {
   virtual_network_name = azurerm_virtual_network.vnet.name
   resource_group_name  = var.resourcegroupname
   address_prefixes     = ["10.1.96.0/19"]
+
+  delegation {
+    name = "aks-delegation"
+
+    service_delegation {
+      name    = "Microsoft.ContainerService/managedClusters"
+      actions = ["Microsoft.Network/virtualNetworks/subnets/join/action"]
+    }
+  }
 }
