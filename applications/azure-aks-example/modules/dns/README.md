@@ -1,4 +1,7 @@
 <!-- BEGIN_TF_DOCS -->
+# dns deployment
+![Diagram](./graph.svg)
+
 ## Requirements
 
 No requirements.
