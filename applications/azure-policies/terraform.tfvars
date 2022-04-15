@@ -1,4 +1,4 @@
-allowedSkus = ["Standard_F1s", "Standard_D2s_v3", "Standard_B2s", "Standard_F2s"]
+allowedSkus = ["Standard_F1s", "Standard_D2s_v3", "Standard_B2s", "Standard_F2s", "Standard_B1s", "Standard_B1ls"]
 allowedImages = {
   publishers = [
     "Canonical",
