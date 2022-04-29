@@ -1,3 +1,9 @@
+variable "vault_address" {
+  type        = string
+  description = "the Adress to Hashicorp vault."
+  default     = "http://localhost:8200"
+}
+
 variable "aws_accesskey" {
   type        = string
   description = "The AWS access key"
@@ -60,4 +66,26 @@ variable "azure_max_role_lease_seconds" {
 variable "azure_showcasing_resourcegroup" {
   type        = string
   description = "the resourcegroup name to use for storageaccount"
+}
+
+variable "secret_id_uses" {
+  type        = number
+  description = "the number of requests before secret id expires."
+  default     = 1
+}
+
+variable "secret_id_ttl" {
+  type        = number
+  description = "the time in second before secret id expires."
+  default     = 120
+}
+
+variable "secret_id_bound_ip_addresses" {
+  type        = list(string)
+  description = "the allowed ip adresses which can login to vault."
+}
+
+variable "token_bound_ip_addresses" {
+  type        = list(string)
+  description = "the allowed ip adresses which can authenticate with the vault token."
 }

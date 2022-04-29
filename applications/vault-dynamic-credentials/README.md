@@ -7,6 +7,7 @@ Use the **teraform.tfvars.example** to create **terraform.tfvars** with your var
 To request credentials on vault-cli run: <br/>
 <code>
 vault read aws/creds/ROLE_NAME
+vault read azure/creds/ROLE_NAME
 </code>
 
 
@@ -33,7 +34,10 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [vault_approle_auth_backend_role.jenkins_deployer](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/approle_auth_backend_role) | resource |
+| [vault_auth_backend.approle](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/auth_backend) | resource |
 | [vault_aws_secret_backend.aws](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/aws_secret_backend) | resource |
+| [vault_aws_secret_backend_role.admin_role](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/aws_secret_backend_role) | resource |
 | [vault_aws_secret_backend_role.audit_role](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/aws_secret_backend_role) | resource |
 | [vault_aws_secret_backend_role.developer_role](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/aws_secret_backend_role) | resource |
 | [vault_aws_secret_backend_role.iam_manager_role](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/aws_secret_backend_role) | resource |
@@ -42,6 +46,7 @@ No modules.
 | [vault_azure_secret_backend_role.storage_manager_role](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/azure_secret_backend_role) | resource |
 | [vault_generic_secret.azure_data](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/generic_secret) | resource |
 | [vault_mount.kvv2](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/mount) | resource |
+| [vault_policy.jenkins_deployer_policy](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/policy) | resource |
 
 ## Inputs
 
@@ -59,6 +64,11 @@ No modules.
 | <a name="input_azure_showcasing_resourcegroup"></a> [azure\_showcasing\_resourcegroup](#input\_azure\_showcasing\_resourcegroup) | the resourcegroup name to use for storageaccount | `string` | n/a | yes |
 | <a name="input_azure_subscription_id"></a> [azure\_subscription\_id](#input\_azure\_subscription\_id) | The Azure subscription id | `string` | n/a | yes |
 | <a name="input_azure_tenant_id"></a> [azure\_tenant\_id](#input\_azure\_tenant\_id) | The Azure tenant id | `string` | n/a | yes |
+| <a name="input_secret_id_bound_ip_addresses"></a> [secret\_id\_bound\_ip\_addresses](#input\_secret\_id\_bound\_ip\_addresses) | the allowed ip adresses which can login to vault. | `list(string)` | n/a | yes |
+| <a name="input_secret_id_ttl"></a> [secret\_id\_ttl](#input\_secret\_id\_ttl) | the time in second before secret id expires. | `number` | `120` | no |
+| <a name="input_secret_id_uses"></a> [secret\_id\_uses](#input\_secret\_id\_uses) | the number of requests before secret id expires. | `number` | `1` | no |
+| <a name="input_token_bound_ip_addresses"></a> [token\_bound\_ip\_addresses](#input\_token\_bound\_ip\_addresses) | the allowed ip adresses which can authenticate with the vault token. | `list(string)` | n/a | yes |
+| <a name="input_vault_address"></a> [vault\_address](#input\_vault\_address) | the Adress to Hashicorp vault. | `string` | `"http://localhost:8200"` | no |
 
 ## Outputs
 

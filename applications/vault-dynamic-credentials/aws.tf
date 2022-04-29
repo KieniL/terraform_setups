@@ -31,6 +31,13 @@ resource "vault_aws_secret_backend_role" "audit_role" {
   policy_arns     = ["arn:aws:iam::aws:policy/ReadOnlyAccess"]
 }
 
+resource "vault_aws_secret_backend_role" "admin_role" {
+  backend         = vault_aws_secret_backend.aws.path
+  name            = "admin_role"
+  credential_type = "iam_user"
+  policy_arns     = ["arn:aws:iam::aws:policy/AdministratorAccess"]
+}
+
 
 resource "vault_aws_secret_backend_role" "developer_role" {
   backend         = vault_aws_secret_backend.aws.path
