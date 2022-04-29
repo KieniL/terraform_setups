@@ -10,14 +10,14 @@ variable "aws_secretkey" {
 
 variable "aws_default_role_lease_seconds" {
   type        = string
-  description = "The default seconds a user get access to the role. Defaults to 2 Minutes."
-  default     = "120"
+  description = "The default seconds a user get access to the role. Defaults to 1 Minutes."
+  default     = "60"
 }
 
 variable "aws_max_role_lease_seconds" {
   type        = string
-  description = "The maximum seconds a user can request the role. Defaults to 24 Hours."
-  default     = "86400"
+  description = "The maximum seconds a user can request the role. Defaults to 5 Minutes."
+  default     = "300"
 }
 
 variable "azure_subscription_id" {
