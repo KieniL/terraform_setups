@@ -1,3 +1,4 @@
-output "role_id" {
-    value = vault_approle_auth_backend_role.jenkins_deployer.role_id
+output "token" {
+    value = vault_token.jenkins_deployer_token.client_token
+    sensitive = true
 }
