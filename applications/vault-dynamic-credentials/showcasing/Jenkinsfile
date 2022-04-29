@@ -10,16 +10,14 @@ pipeline {
     stage ('Vault Stage') {
       steps {
         sh """
-          export TOKEN=`vault read aws/creds/storage_manager_role -format=json`
+          set +x
+          export TOKEN=`vault read aws/creds/storage_manager_role -format=json -o none`
           export AWS_ACCESS_KEY_ID=`echo \$TOKEN | jq -r ."data" | jq -r ."access_key")`
           export AWS_SECRET_ACCESS_KEY=`echo \$TOKEN | jq -r ."data" | jq -r ."secret_key")`
         """
-      }
-    }
 
-    stage ('AWS Stage') {
-      steps {
         sh """
+          set +x
           aws s3 ls --region eu-central-1
         """
       }
