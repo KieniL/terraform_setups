@@ -11,7 +11,7 @@ pipeline {
       steps {
         sh """
             export SECRET_ID=`vault write -force auth/approle/role/jenkins_deployer/secret-id -format=json | jq -r ."data" | jq -r ."secret_id"`
-            export VAULT_TOKEN=`vault write auth/approle/login role_id=$ROLE_ID secret_id=$SECRET_ID -format=json | jq -r ."auth" | jq -r ."client_token"`
+            export VAULT_TOKEN=`vault write auth/approle/login role_id=${ROLE_ID} secret_id=${SECRET_ID} -format=json | jq -r ."auth" | jq -r ."client_token"`
         """      
         sh "echo Test"
       }
