@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage ('Compile Stage') {
       steps {
-        sh "echo test"
+        sh "vault read auth/approle/role/jenkins_deployer/role-id"
       }
     }
   }
