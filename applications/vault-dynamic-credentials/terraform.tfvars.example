@@ -1,0 +1,7 @@
+aws_accesskey = "aws"
+aws_secretkey = "aws"
+azure_subscription_id = "azure"
+azure_tenant_id = "azure"
+azure_client_id = "azure"
+azure_client_secret = "azure"
+azure_environment = "azure"
