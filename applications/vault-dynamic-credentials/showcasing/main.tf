@@ -13,5 +13,5 @@ resource "random_string" "bucketname" {
 
 
 resource "aws_s3_bucket" "statestorage" {
-  bucket = "tmp-${var.random_string.bucketname.result}"
+  bucket = "tmp-${random_string.bucketname.result}"
 }
