@@ -28,7 +28,7 @@ resource "vault_policy" "jenkins_auth_policy" {
 
   policy = <<EOT
 # Create and manage roles
-path "auth/approle/${vault_approle_auth_backend_role.jenkins_deployer.role_name}" {
+path "auth/approle/${vault_approle_auth_backend_role.jenkins_deployer.role_name}/*" {
   capabilities = [ "read", "update"]
 }
 EOT
