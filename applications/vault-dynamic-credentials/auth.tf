@@ -2,7 +2,7 @@ resource "vault_policy" "jenkins_deployer_policy" {
   name = "jenkins_deployer_policy"
 
   policy = <<EOT
-path "aws/${vault_aws_secret_backend_role.admin_role.name}" {
+path "aws/creds/*" {
   capabilities = ["read"]
 }
 EOT
@@ -10,11 +10,11 @@ EOT
 
 resource "vault_token" "jenkins_deployer_token" {
 
-  policies = [vault_policy.jenkins_deployer_policy.name]
+  policies          = [vault_policy.jenkins_deployer_policy.name]
   no_default_policy = true
 
   renewable = true
-  ttl = "5m"
+  ttl       = "5m"
 
   renew_min_lease = 43200
   renew_increment = 86400

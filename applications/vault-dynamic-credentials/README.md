@@ -34,8 +34,6 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [vault_approle_auth_backend_role.jenkins_deployer](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/approle_auth_backend_role) | resource |
-| [vault_auth_backend.approle](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/auth_backend) | resource |
 | [vault_aws_secret_backend.aws](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/aws_secret_backend) | resource |
 | [vault_aws_secret_backend_role.admin_role](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/aws_secret_backend_role) | resource |
 | [vault_aws_secret_backend_role.audit_role](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/aws_secret_backend_role) | resource |
@@ -46,9 +44,8 @@ No modules.
 | [vault_azure_secret_backend_role.storage_manager_role](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/azure_secret_backend_role) | resource |
 | [vault_generic_secret.azure_data](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/generic_secret) | resource |
 | [vault_mount.kvv2](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/mount) | resource |
-| [vault_policy.jenkins_auth_policy](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/policy) | resource |
 | [vault_policy.jenkins_deployer_policy](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/policy) | resource |
-| [vault_token.jenkins_init_token](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/token) | resource |
+| [vault_token.jenkins_deployer_token](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/token) | resource |
 
 ## Inputs
 
@@ -76,5 +73,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_jenkins_token"></a> [jenkins\_token](#output\_jenkins\_token) | n/a |
+| <a name="output_token"></a> [token](#output\_token) | n/a |
 <!-- END_TF_DOCS -->
