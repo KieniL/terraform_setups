@@ -22,9 +22,3 @@ resource "vault_approle_auth_backend_role" "jenkins_deployer" {
   token_bound_cidrs       = var.token_bound_ip_addresses
   token_no_default_policy = true
 }
-
-resource "vault_approle_auth_backend_role_secret_id" "jenkins_secret_id" {
-  backend   = vault_auth_backend.approle.path
-  role_name = vault_approle_auth_backend_role.jenkins_deployer.role_name
-  cidr_list = var.secret_id_bound_ip_addresses
-}
