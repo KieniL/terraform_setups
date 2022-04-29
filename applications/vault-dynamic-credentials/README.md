@@ -46,7 +46,9 @@ No modules.
 | [vault_azure_secret_backend_role.storage_manager_role](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/azure_secret_backend_role) | resource |
 | [vault_generic_secret.azure_data](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/generic_secret) | resource |
 | [vault_mount.kvv2](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/mount) | resource |
+| [vault_policy.jenkins_auth_policy](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/policy) | resource |
 | [vault_policy.jenkins_deployer_policy](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/policy) | resource |
+| [vault_token.jenkins_init_token](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/token) | resource |
 
 ## Inputs
 
@@ -72,5 +74,7 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_jenkins_token"></a> [jenkins\_token](#output\_jenkins\_token) | n/a |
 <!-- END_TF_DOCS -->

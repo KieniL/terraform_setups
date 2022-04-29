@@ -3,6 +3,8 @@ pipeline {
 
   environment {
     VAULT_ADDR = 'http://172.17.0.2:8200'
+    SECRET_ID=credentials("SECRET_ID")
+    ROLE_ID=credentials("ROLE_ID")
   }
 
   stages {
