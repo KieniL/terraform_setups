@@ -1,6 +1,10 @@
 pipeline {
   agent any
 
+  environment {
+    VAULT_ADDR = 'http://172.17.0.2:8200'
+  }
+
   stages {
     stage ('Compile Stage') {
       steps {
