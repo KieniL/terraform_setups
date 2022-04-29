@@ -27,6 +27,7 @@ pipeline {
           export TOKEN=`vault read aws/creds/admin_role -format=json`
           export AWS_ACCESS_KEY_ID=`echo \$TOKEN | jq -r ."data" | jq -r ."access_key")`
           export AWS_SECRET_ACCESS_KEY=`echo \$TOKEN | jq -r ."data" | jq -r ."secret_key")`
+          cd applications/vault-dynamic-credentials/showcasing/
           env | terraform init && terraform plan
         """
       }
