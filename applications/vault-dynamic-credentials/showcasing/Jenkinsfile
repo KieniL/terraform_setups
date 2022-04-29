@@ -3,16 +3,14 @@ pipeline {
 
   environment {
     VAULT_ADDR = 'http://172.17.0.2:8200'
-    SECRET_ID=credentials("SECRET_ID")
-    ROLE_ID=credentials("ROLE_ID")
+    VAULT_TOKEN=credentials("VAULT_TOKEN")
   }
 
   stages {
     stage ('Compile Stage') {
       steps {
-        sh "echo SecretId: ${SECRET_ID}, RoleID: ${ROLE_ID}"
-        sh "vault write auth/approle/login role_id=${ROLE_ID} secret_id=${SECRET_ID}"
         sh "vault read auth/approle/role/jenkins_deployer/role-id"
+        sh "vault write -force auth/approle/role/jenkins_deployer/secret-id"
       }
     }
   }
