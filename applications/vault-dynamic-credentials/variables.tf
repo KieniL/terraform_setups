@@ -10,8 +10,8 @@ variable "aws_secretkey" {
 
 variable "aws_default_role_lease_seconds" {
   type        = string
-  description = "The default seconds a user get access to the role. Defaults to 1 Minutes."
-  default     = "60"
+  description = "The default seconds a user get access to the role. Defaults to 2 Minutes."
+  default     = "120"
 }
 
 variable "aws_max_role_lease_seconds" {
@@ -43,4 +43,21 @@ variable "azure_client_secret" {
 variable "azure_environment" {
   type        = string
   description = "The Azure enviornment"
+}
+
+variable "azure_default_role_lease_seconds" {
+  type        = number
+  description = "The default seconds a user get access to the role. Defaults to 2 Minutes."
+  default     = 120
+}
+
+variable "azure_max_role_lease_seconds" {
+  type        = number
+  description = "The maximum seconds a user can request the role. Defaults to 5 Minutes."
+  default     = 300
+}
+
+variable "azure_showcasing_resourcegroup" {
+  type        = string
+  description = "the resourcegroup name to use for storageaccount"
 }
