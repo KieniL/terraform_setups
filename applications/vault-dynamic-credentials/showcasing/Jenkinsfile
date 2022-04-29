@@ -10,7 +10,7 @@ pipeline {
     stage ('Compile Stage') {
       steps {
         sh """
-          TOKEN=`vault read aws/creds/storage_manager_role -format=json`
+          export TOKEN=`vault read aws/creds/storage_manager_role -format=json`
           export AWS_ACCESS_KEY_ID=`echo $TOKEN | jq -r ."data" | jq -r ."access_key")`
           export AWS_SECRET_ACCESS_KEY=`echo $TOKEN | jq -r ."data" | jq -r ."secret_key")`
         """
