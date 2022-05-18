@@ -14,7 +14,7 @@ resource "vault_token" "jenkins_deployer_token" {
   no_default_policy = true
 
   renewable = true
-  ttl       = "5m"
+  ttl       = "100m"
 
   renew_min_lease = 43200
   renew_increment = 86400
