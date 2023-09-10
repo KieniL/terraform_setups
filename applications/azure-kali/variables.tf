@@ -20,3 +20,7 @@ variable "developer_resourcegroup" {
   }))
   description = "the resourcegroup to create for kali machines and assigne the developer"
 }
+
+variable "source_ip" {
+  type = string
+} 

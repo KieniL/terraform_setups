@@ -26,6 +26,7 @@ module "nsg" {
   source            = "../../modules/azure-nsg"
   location          = var.location
   resourcegroupname = var.vnet_resourcegroup_name
+  source_ip         = var.source_ip
   nsgname           = "kali-nsg"
   tags              = var.tags
   depends_on        = [module.vnet_resourcegroup.resourcegroupname]
