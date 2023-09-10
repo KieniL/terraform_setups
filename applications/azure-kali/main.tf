@@ -53,6 +53,13 @@ module "developer_resourcegroup" {
 resource "azurerm_role_assignment" "vnet_role_assignment" {
   for_each             = { for rg in var.developer_resourcegroup : rg.name => rg }
   scope                = module.vnet.vnetid
-  role_definition_name = "Reader"
+  role_definition_name = "Virtual Machine Contributor"
+  principal_id         = each.value.principal_id
+}
+
+resource "azurerm_role_assignment" "nsg_role_assignment" {
+  for_each             = { for rg in var.developer_resourcegroup : rg.name => rg }
+  scope                = module.nsg.nsgid
+  role_definition_name = "Virtual Machine Contributor"
   principal_id         = each.value.principal_id
 }
